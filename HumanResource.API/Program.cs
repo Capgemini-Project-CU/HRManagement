@@ -1,10 +1,14 @@
 using HumanResource.API.Data;
+using FluentValidation;
 
+using FluentValidation.AspNetCore;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Repositories.Implementations;
 
 using HumanResource.API.Services.Interfaces;
 using HumanResource.API.Services.Implementations;
+
+using HumanResource.API.Mappings;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +30,10 @@ namespace HumanResource.API
             builder.Services.AddSwaggerGen();
 
 
+            // AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
             // Database Connection
             builder.Services.AddDbContext<HRDbContext>(options =>
                 options.UseSqlServer(
@@ -39,6 +47,10 @@ namespace HumanResource.API
             // Service Dependency Injection
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
+
+            builder.Services.AddFluentValidationAutoValidation();
+
+            builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
             var app = builder.Build();
 

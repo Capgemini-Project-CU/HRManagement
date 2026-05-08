@@ -1,4 +1,5 @@
-﻿using HumanResource.API.DTOs;
+﻿using AutoMapper;
+using HumanResource.API.DTOs;
 using HumanResource.API.Models;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Interfaces;
@@ -9,91 +10,48 @@ namespace HumanResource.API.Services.Implementations
     {
         private readonly IDepartmentRepository _repository;
 
-        public DepartmentService(IDepartmentRepository repository)
+        private readonly IMapper _mapper;
+
+        public DepartmentService(
+            IDepartmentRepository repository,
+            IMapper mapper)
         {
             _repository = repository;
+
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<DepartmentDto>> GetAllAsync()
         {
             var departments = await _repository.GetAllAsync();
 
-            return departments.Select(d => new DepartmentDto
-            {
-                DepartmentId = d.DepartmentId,
-                DepartmentName = d.DepartmentName,
-                ManagerId = d.ManagerId,
-                LocationId = d.LocationId,
-
-                ManagerName = d.Manager != null
-                    ? d.Manager.FirstName + " " + d.Manager.LastName
-                    : null,
-
-                City = d.Location != null
-                    ? d.Location.City
-                    : null
-            });
+            return _mapper.Map<IEnumerable<DepartmentDto>>(departments);
         }
 
         public async Task<DepartmentDto?> GetByIdAsync(decimal id)
         {
-            var d = await _repository.GetByIdAsync(id);
+            var department = await _repository.GetByIdAsync(id);
 
-            if (d == null)
+            if (department == null)
                 return null;
 
-            return new DepartmentDto
-            {
-                DepartmentId = d.DepartmentId,
-                DepartmentName = d.DepartmentName,
-                ManagerId = d.ManagerId,
-                LocationId = d.LocationId,
-
-                ManagerName = d.Manager != null
-                    ? d.Manager.FirstName + " " + d.Manager.LastName
-                    : null,
-
-                City = d.Location != null
-                    ? d.Location.City
-                    : null
-            };
+            return _mapper.Map<DepartmentDto>(department);
         }
 
         public async Task<IEnumerable<DepartmentDto>> GetByLocationAsync(decimal locationId)
         {
             var departments = await _repository.GetByLocationAsync(locationId);
 
-            return departments.Select(d => new DepartmentDto
-            {
-                DepartmentId = d.DepartmentId,
-                DepartmentName = d.DepartmentName,
-                ManagerId = d.ManagerId,
-                LocationId = d.LocationId,
-
-                ManagerName = d.Manager != null
-                    ? d.Manager.FirstName + " " + d.Manager.LastName
-                    : null,
-
-                City = d.Location != null
-                    ? d.Location.City
-                    : null
-            });
+            return _mapper.Map<IEnumerable<DepartmentDto>>(departments);
         }
 
         public async Task<DepartmentDto> AddAsync(DepartmentDto dto)
         {
-            var department = new Department
-            {
-                DepartmentName = dto.DepartmentName,
-                ManagerId = dto.ManagerId,
-                LocationId = dto.LocationId
-            };
+            var department = _mapper.Map<Department>(dto);
 
             var result = await _repository.AddAsync(department);
 
-            dto.DepartmentId = result.DepartmentId;
-
-            return dto;
+            return _mapper.Map<DepartmentDto>(result);
         }
 
         public async Task<DepartmentDto?> UpdateAsync(decimal id, DepartmentDto dto)
@@ -103,13 +61,11 @@ namespace HumanResource.API.Services.Implementations
             if (existing == null)
                 return null;
 
-            existing.DepartmentName = dto.DepartmentName;
-            existing.ManagerId = dto.ManagerId;
-            existing.LocationId = dto.LocationId;
+            _mapper.Map(dto, existing);
 
-            await _repository.UpdateAsync(existing);
+            var updatedDepartment = await _repository.UpdateAsync(existing);
 
-            return dto;
+            return _mapper.Map<DepartmentDto>(updatedDepartment);
         }
 
         public async Task<bool> DeleteAsync(decimal id)

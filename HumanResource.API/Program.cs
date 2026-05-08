@@ -1,4 +1,5 @@
-
+using HumanResource.API.Data;
+using Microsoft.EntityFrameworkCore;
 using HumanResource.API.Mappings;
 
 namespace HumanResource.API
@@ -16,6 +17,9 @@ namespace HumanResource.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddDbContext<HRDbContext>(options =>
+                options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

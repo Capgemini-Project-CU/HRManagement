@@ -1,3 +1,12 @@
+using HumanResource.API.Data;
+
+using HumanResource.API.Repositories.Interfaces;
+using HumanResource.API.Repositories.Implementations;
+
+using HumanResource.API.Services.Interfaces;
+using HumanResource.API.Services.Implementations;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace HumanResource.API
 {
@@ -10,9 +19,26 @@ namespace HumanResource.API
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // Learn more about configuring Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen();
+
+
+            // Database Connection
+            builder.Services.AddDbContext<HRDbContext>(options =>
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+            // Repository Dependency Injection
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+
+            // Service Dependency Injection
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
 
             var app = builder.Build();
 
@@ -20,13 +46,13 @@ namespace HumanResource.API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

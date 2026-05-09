@@ -1,6 +1,12 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using HumanResource.API.Data;
-using Microsoft.EntityFrameworkCore;
 using HumanResource.API.Mappings;
+using HumanResource.API.Repositories.Implementations;
+using HumanResource.API.Repositories.Interfaces;
+using HumanResource.API.Services.Implementations;
+using HumanResource.API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HumanResource.API
 {
@@ -20,6 +26,12 @@ namespace HumanResource.API
             builder.Services.AddDbContext<HRDbContext>(options =>
                 options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
+            builder.Services.AddScoped<IJobRepository, JobRepository>();
+            builder.Services.AddScoped<IJobService, JobService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

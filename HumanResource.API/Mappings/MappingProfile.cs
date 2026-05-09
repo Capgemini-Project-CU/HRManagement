@@ -8,9 +8,9 @@ namespace HumanResource.API.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<Job, JobDto>().ReverseMap();
 
-            CreateMap<JobHistory, JobHistoryDto>().ReverseMap();
+            CreateMap<Role, RoleDto>().ReverseMap();
         }
     }
 }

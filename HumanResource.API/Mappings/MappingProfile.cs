@@ -19,15 +19,9 @@ namespace HumanResource.API.Mappings
                     opt => opt.MapFrom(src =>
                         src.Countries.Select(c => c.CountryName).ToList()))
                 .ReverseMap();
-
-            //CreateMap<Country, CountryDto>()
-            //    .ForMember(dest => dest.RegionName,
-            //        opt => opt.MapFrom(src => src.Region.RegionName))
-            //    .ReverseMap();
             CreateMap<Country, CountryDto>()
                 .ForMember(dest => dest.RegionName,
                     opt => opt.MapFrom(src => src.Region.RegionName));
-
             CreateMap<CountryDto, Country>()
                 .ForMember(dest => dest.Region, opt => opt.Ignore());
         }

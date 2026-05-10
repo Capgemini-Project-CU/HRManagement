@@ -13,6 +13,23 @@ namespace HumanResource.API.Mappings
             CreateMap<Department, DepartmentDto>().ReverseMap();
             CreateMap<Job, JobDto>().ReverseMap();
             CreateMap<Role, RoleDto>().ReverseMap();
+
+            CreateMap<Region, RegionDto>()
+                .ForMember(dest => dest.CountryNames,
+                    opt => opt.MapFrom(src =>
+                        src.Countries.Select(c => c.CountryName).ToList()))
+                .ReverseMap();
+
+            //CreateMap<Country, CountryDto>()
+            //    .ForMember(dest => dest.RegionName,
+            //        opt => opt.MapFrom(src => src.Region.RegionName))
+            //    .ReverseMap();
+            CreateMap<Country, CountryDto>()
+                .ForMember(dest => dest.RegionName,
+                    opt => opt.MapFrom(src => src.Region.RegionName));
+
+            CreateMap<CountryDto, Country>()
+                .ForMember(dest => dest.Region, opt => opt.Ignore());
         }
     }
 }

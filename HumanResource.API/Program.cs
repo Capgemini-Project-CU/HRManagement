@@ -41,6 +41,11 @@ namespace HumanResource.API
             builder.Services.AddScoped<IJobRepository, JobRepository>();
             builder.Services.AddScoped<IJobService, JobService>();
 
+            builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+            builder.Services.AddScoped<IRegionService, RegionService>();
+            builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+            builder.Services.AddScoped<ICountryService, CountryService>();
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())

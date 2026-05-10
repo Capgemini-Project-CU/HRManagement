@@ -7,7 +7,6 @@ using HumanResource.API.Repositories.Implementations;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Implementations;
 using HumanResource.API.Services.Interfaces;
-using HumanResource.API.Validators;
 using Microsoft.EntityFrameworkCore;
 
 namespace HumanResource.API
@@ -40,6 +39,7 @@ namespace HumanResource.API
             builder.Services.AddScoped<IRoleRepository, RoleRepository>();
             builder.Services.AddScoped<IRegionRepository, RegionRepository>();
             builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+            builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IJobHistoryService, JobHistoryService>();
@@ -48,6 +48,7 @@ namespace HumanResource.API
             builder.Services.AddScoped<IRoleService, RoleService>();
             builder.Services.AddScoped<IRegionService, RegionService>();
             builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<ILocationService, LocationService>();
 
             var app = builder.Build();
 

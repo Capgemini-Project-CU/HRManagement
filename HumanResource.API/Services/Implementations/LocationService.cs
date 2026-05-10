@@ -1,8 +1,9 @@
-﻿using HumanResource.API.DTOs.LocationDto;
+﻿using AutoMapper;
+using HumanResource.API.DTOs.LocationDto;
+using HumanResource.API.Exceptions;
 using HumanResource.API.Models;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Interfaces;
-using AutoMapper;
 
 namespace HumanResource.API.Services.Implementations
 {
@@ -11,7 +12,9 @@ namespace HumanResource.API.Services.Implementations
         private readonly ILocationRepository _repository;
         private readonly IMapper _mapper;
 
-        public LocationService(ILocationRepository repository, IMapper mapper)
+        public LocationService(
+            ILocationRepository repository,
+            IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -29,7 +32,7 @@ namespace HumanResource.API.Services.Implementations
             var location = await _repository.GetByIdAsync(id);
 
             if (location == null)
-                return null;
+                throw new NotFoundException($"Location with Id {id} not found");
 
             return _mapper.Map<LocationResponseDto>(location);
         }
@@ -43,58 +46,58 @@ namespace HumanResource.API.Services.Implementations
 
         public async Task<LocationResponseDto> CreateAsync(LocationRequestDto dto)
         {
-            // Foreign Key Validation
-            var countryExists = await _repository
-                .CountryExistsAsync(dto.CountryId);
+            var countryExists =
+                await _repository.CountryExistsAsync(dto.CountryId);
 
             if (!countryExists)
-            {
-                throw new Exception("Invalid Country Id");
-            }
+                throw new BadRequestException("Invalid Country Id");
 
             var location = _mapper.Map<Location>(dto);
 
             var created = await _repository.AddAsync(location);
 
-            var createdLocation = await _repository
-                .GetByIdAsync(created.LocationId);
+            var createdLocation =
+                await _repository.GetByIdAsync(created.LocationId);
 
             return _mapper.Map<LocationResponseDto>(createdLocation);
-
         }
 
-        public async Task<LocationResponseDto?> UpdateAsync(decimal id, LocationRequestDto dto)
+        public async Task<LocationResponseDto?> UpdateAsync(
+            decimal id,
+            LocationRequestDto dto)
         {
-            // Foreign Key Validation
-            var countryExists = await _repository
-                .CountryExistsAsync(dto.CountryId);
+            var existingLocation =
+                await _repository.GetByIdAsync(id);
+
+            if (existingLocation == null)
+                throw new NotFoundException(
+                    $"Location with Id {id} not found");
+
+            var countryExists =
+                await _repository.CountryExistsAsync(dto.CountryId);
 
             if (!countryExists)
-            {
-                throw new Exception("Invalid Country Id");
-            }
+                throw new BadRequestException("Invalid Country Id");
 
             var location = _mapper.Map<Location>(dto);
 
-            location.LocationId = location.LocationId;
+            location.LocationId = id;
 
-            var updated = await _repository.UpdateAsync(location);
+            var updated =
+                await _repository.UpdateAsync(location);
 
-            if (updated == null)
-                return null;
-
-            var updatedLocation = await _repository
-                .GetByIdAsync(updated.LocationId);
-
-            return _mapper.Map<LocationResponseDto>(updatedLocation);
-
+            return _mapper.Map<LocationResponseDto>(updated);
         }
 
         public async Task<bool> DeleteAsync(decimal id)
         {
-            return await _repository.DeleteAsync(id);
-        }
+            var deleted = await _repository.DeleteAsync(id);
 
-        
+            if (!deleted)
+                throw new NotFoundException(
+                    $"Location with Id {id} not found");
+
+            return true;
+        }
     }
 }

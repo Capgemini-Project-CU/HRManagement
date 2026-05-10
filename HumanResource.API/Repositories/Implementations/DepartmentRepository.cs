@@ -42,32 +42,24 @@ namespace HumanResource.API.Repositories.Implementations
         public async Task<Department> AddAsync(Department department)
         {
             await _context.Departments.AddAsync(department);
-
             await _context.SaveChangesAsync();
-
             return department;
         }
 
         public async Task<Department> UpdateAsync(Department department)
         {
             _context.Departments.Update(department);
-
             await _context.SaveChangesAsync();
-
             return department;
         }
 
         public async Task<bool> DeleteAsync(decimal id)
         {
             var department = await _context.Departments.FindAsync(id);
-
             if (department == null)
                 return false;
-
             _context.Departments.Remove(department);
-
             await _context.SaveChangesAsync();
-
             return true;
         }
     }

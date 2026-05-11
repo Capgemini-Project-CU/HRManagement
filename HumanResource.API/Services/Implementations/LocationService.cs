@@ -46,35 +46,27 @@ namespace HumanResource.API.Services.Implementations
 
         public async Task<LocationResponseDto> CreateAsync(LocationRequestDto dto)
         {
-            var countryExists =
-                await _repository.CountryExistsAsync(dto.CountryId);
-
-            if (!countryExists)
-                throw new BadRequestException("Invalid Country Id");
+            var locationIdExists = await _repository.GetByIdAsync(dto.LocationId); 
+            var countryExists = await _repository.CountryExistsAsync(dto.CountryId); 
+            if (locationIdExists!=null) throw new BadRequestException("Location Id already Exists"); 
+            if (!countryExists) throw new BadRequestException("Invalid Country Id");
 
             var location = _mapper.Map<Location>(dto);
 
             var created = await _repository.AddAsync(location);
 
-            var createdLocation =
-                await _repository.GetByIdAsync(created.LocationId);
+            var createdLocation = await _repository.GetByIdAsync(created.LocationId);
 
             return _mapper.Map<LocationResponseDto>(createdLocation);
         }
 
-        public async Task<LocationResponseDto?> UpdateAsync(
-            decimal id,
-            LocationRequestDto dto)
+        public async Task<LocationResponseDto?> UpdateAsync(decimal id, UpdateLocationDto dto)
         {
-            var existingLocation =
-                await _repository.GetByIdAsync(id);
+            var existingLocation = await _repository.GetByIdAsync(id);
 
-            if (existingLocation == null)
-                throw new NotFoundException(
-                    $"Location with Id {id} not found");
+            if (existingLocation == null) throw new NotFoundException($"Location with Id {id} not found");
 
-            var countryExists =
-                await _repository.CountryExistsAsync(dto.CountryId);
+            var countryExists = await _repository.CountryExistsAsync(dto.CountryId);
 
             if (!countryExists)
                 throw new BadRequestException("Invalid Country Id");
@@ -83,8 +75,7 @@ namespace HumanResource.API.Services.Implementations
 
             location.LocationId = id;
 
-            var updated =
-                await _repository.UpdateAsync(location);
+            var updated = await _repository.UpdateAsync(location);
 
             return _mapper.Map<LocationResponseDto>(updated);
         }
@@ -94,8 +85,7 @@ namespace HumanResource.API.Services.Implementations
             var deleted = await _repository.DeleteAsync(id);
 
             if (!deleted)
-                throw new NotFoundException(
-                    $"Location with Id {id} not found");
+                throw new NotFoundException($"Location with Id {id} not found");
 
             return true;
         }

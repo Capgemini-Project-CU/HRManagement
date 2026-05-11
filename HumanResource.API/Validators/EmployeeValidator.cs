@@ -33,6 +33,20 @@ namespace HumanResource.API.Validators
                 .MaximumLength(25)
                 .WithMessage("Email cannot exceed 25 characters.");
 
+            RuleFor(e => e.PhoneNumber)
+                .NotEmpty()
+                .WithMessage("Phone Number is required.")
+                .MaximumLength(20)
+                .WithMessage("Phone Number cannot exceed 20 characters.")
+                .Matches(@"^[0-9+\-() ]+$")
+                .WithMessage("Invalid Phone Number format.");
+
+            RuleFor(e => e.HireDate)
+                 .LessThanOrEqualTo(
+                    DateOnly.FromDateTime(DateTime.Today))
+                .WithMessage(
+                    "Hire Date cannot be in the future.");
+
             RuleFor(e => e.Salary)
                 .GreaterThan(0)
                 .WithMessage("Salary must be greater than 0.");

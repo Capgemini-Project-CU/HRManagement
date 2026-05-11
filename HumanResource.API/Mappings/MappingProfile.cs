@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanResource.API.DTOs;
+using HumanResource.API.DTOs.LocationDto;
 using HumanResource.API.Models;
 
 namespace HumanResource.API.Mappings
@@ -26,6 +27,13 @@ namespace HumanResource.API.Mappings
                     opt => opt.MapFrom(src => src.Region.RegionName));
             CreateMap<CountryDto, Country>()
                 .ForMember(dest => dest.Region, opt => opt.Ignore());
+            CreateMap<Location, LocationResponseDto>()
+                .ForMember(
+                    dest => dest.CountryName,
+                    opt => opt.MapFrom(src => src.Country!.CountryName)
+                );
+            CreateMap<LocationRequestDto, Location>();
+            CreateMap<UpdateLocationDto, Location>();
         }
     }
 }

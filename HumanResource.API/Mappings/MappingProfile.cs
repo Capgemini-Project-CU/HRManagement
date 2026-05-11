@@ -9,7 +9,14 @@ namespace HumanResource.API.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<EmployeeDto, Employee>()
+            .ForMember(
+            dest => dest.PasswordHash,
+            opt => opt.MapFrom(src => src.Password))
+            .ReverseMap()
+            .ForMember(
+            dest => dest.Password,
+            opt => opt.MapFrom(src => src.PasswordHash));
             CreateMap<JobHistory, JobHistoryDto>().ReverseMap();
             CreateMap<Department, DepartmentDto>().ReverseMap();
             CreateMap<Job, JobDto>().ReverseMap();

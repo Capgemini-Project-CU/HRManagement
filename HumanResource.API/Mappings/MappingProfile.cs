@@ -31,6 +31,7 @@ namespace HumanResource.API.Mappings
                     opt => opt.MapFrom(src => src.Country!.CountryName)
                 );
             CreateMap<LocationRequestDto, Location>();
+            CreateMap<UpdateLocationDto, Location>();
         }
     }
 }

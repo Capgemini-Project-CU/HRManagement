@@ -34,11 +34,9 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(
-            [FromBody] LocationRequestDto dto)
+        public async Task<IActionResult> Create([FromBody] LocationRequestDto dto)
         {
-            var createdLocation =
-                await _service.CreateAsync(dto);
+            var createdLocation = await _service.CreateAsync(dto);
 
             return CreatedAtAction(
                 nameof(GetById),
@@ -49,7 +47,7 @@ namespace HumanResource.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(
             decimal id,
-            [FromBody] LocationRequestDto dto)
+            [FromBody] UpdateLocationDto dto)
         {
             var updatedLocation =
                 await _service.UpdateAsync(id, dto);

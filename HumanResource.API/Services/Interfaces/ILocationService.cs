@@ -13,7 +13,7 @@ namespace HumanResource.API.Services.Interfaces
 
         Task<LocationResponseDto> CreateAsync(LocationRequestDto dto);
 
-        Task<LocationResponseDto?> UpdateAsync(decimal id, LocationRequestDto dto);
+        Task<LocationResponseDto?> UpdateAsync(decimal id, UpdateLocationDto dto);
 
         Task<bool> DeleteAsync(decimal id);
     }

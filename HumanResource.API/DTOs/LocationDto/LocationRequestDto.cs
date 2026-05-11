@@ -2,7 +2,7 @@
 {
     public class LocationRequestDto
     {
-        public decimal LocationId { get; set; }
+       public decimal LocationId { get; set; }
 
         public string StreetAddress { get; set; } = null!;
 

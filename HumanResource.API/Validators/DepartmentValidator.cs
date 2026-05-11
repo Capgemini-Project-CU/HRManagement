@@ -7,34 +7,25 @@ namespace HumanResource.API.Validators
     {
         public DepartmentValidator()
         {
-            // Department Name Validation
+            // DepartmentId Validation
+            RuleFor(x => x.DepartmentId)
+                .GreaterThan(0)
+                .WithMessage("DepartmentId must be greater than 0.");
+
+            // DepartmentName Validation
             RuleFor(x => x.DepartmentName)
-
                 .NotEmpty()
-                .WithMessage("Department Name is required")
+                .MaximumLength(30);
 
-                .MaximumLength(30)
-                .WithMessage("Department Name cannot exceed 30 characters");
-
-
-            // Manager Id Validation
+            // ManagerId Validation
             RuleFor(x => x.ManagerId)
-
-                .NotNull()
-                .WithMessage("Manager Id is required")
-
                 .GreaterThan(0)
-                .WithMessage("Manager Id must be greater than 0");
+                .When(x => x.ManagerId.HasValue);
 
-
-            // Location Id Validation
+            // LocationId Validation
             RuleFor(x => x.LocationId)
-
-                .NotNull()
-                .WithMessage("Location Id is required")
-
                 .GreaterThan(0)
-                .WithMessage("Location Id must be greater than 0");
+                .When(x => x.LocationId.HasValue);
         }
     }
 }

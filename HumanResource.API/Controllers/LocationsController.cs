@@ -30,6 +30,7 @@ namespace HumanResource.API.Controllers
         [HttpGet("country/{countryId}")]
         public async Task<IActionResult> GetByCountry(string countryId)
         {
+
             return Ok(await _service.GetByCountryAsync(countryId));
         }
 

@@ -25,35 +25,65 @@ namespace HumanResource.API.Middleware
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(
+            HttpContext context,
+            Exception exception)
         {
             context.Response.ContentType = "application/json";
 
-            var response = new
-            {
-                message = exception.Message
-            };
+            int statusCode;
+            string message;
 
             switch (exception)
             {
                 case NotFoundException:
-                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    statusCode = (int)HttpStatusCode.NotFound;
+                    message = exception.Message;
                     break;
 
                 case BadRequestException:
-                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    statusCode = (int)HttpStatusCode.BadRequest;
+                    message = exception.Message;
                     break;
 
                 case UnauthorizedException:
-                    context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    statusCode = (int)HttpStatusCode.Unauthorized;
+                    message = exception.Message;
+                    break;
+
+                case ConflictException:
+                    statusCode = (int)HttpStatusCode.Conflict;
+                    message = exception.Message;
                     break;
 
                 default:
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    statusCode =
+                        (int)HttpStatusCode.InternalServerError;
+
+                    message = exception.InnerException != null
+                        ? exception.InnerException.Message
+                        : exception.Message;
+
                     break;
             }
 
-            var jsonResponse = JsonSerializer.Serialize(response);
+            context.Response.StatusCode = statusCode;
+
+            var response = new
+            {
+                statusCode,
+                message,
+                details = exception.InnerException?.Message,
+                exceptionType = exception.GetType().Name,
+                stackTrace = exception.StackTrace
+            };
+
+            var jsonResponse = JsonSerializer.Serialize(
+                response,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                });
 
             await context.Response.WriteAsync(jsonResponse);
         }

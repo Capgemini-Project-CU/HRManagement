@@ -1,13 +1,14 @@
-using HumanResource.API.Data;
-using Microsoft.EntityFrameworkCore;
-using HumanResource.API.Mappings;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using HumanResource.API.Repositories.Interfaces;
-using HumanResource.API.Repositories.Implementations;
-using HumanResource.API.Services.Interfaces;
-using HumanResource.API.Services.Implementations;
+using HumanResource.API.Data;
+using HumanResource.API.Mappings;
 using HumanResource.API.Middleware;
+using HumanResource.API.Repositories.Implementations;
+using HumanResource.API.Repositories.Interfaces;
+using HumanResource.API.Services.Implementations;
+using HumanResource.API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace HumanResource.API
 {
     public class Program
@@ -16,25 +17,41 @@ namespace HumanResource.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             builder.Services.AddDbContext<HRDbContext>(options =>
                 options.UseSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection")));
+                    builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddFluentValidationAutoValidation();
+
             builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IJobHistoryRepository, JobHistoryRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IJobRepository, JobRepository>();
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+            builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+            builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+            builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IJobHistoryService, JobHistoryService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IJobService, JobService>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
+            builder.Services.AddScoped<IRegionService, RegionService>();
+            builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<ILocationService, LocationService>();
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -46,7 +63,6 @@ namespace HumanResource.API
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

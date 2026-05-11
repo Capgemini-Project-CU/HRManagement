@@ -9,43 +9,30 @@ namespace HumanResource.API.Controllers
     public class LocationsController : ControllerBase
     {
         private readonly ILocationService _service;
-        private readonly ILogger<LocationsController> _logger;
 
-        public LocationsController(ILocationService service, ILogger<LocationsController> logger)
+        public LocationsController(ILocationService service)
         {
             _service = service;
-            _logger = logger;
         }
 
-        // GET: api/locations
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var locations = await _service.GetAllAsync();
-            return Ok(locations);
+            return Ok(await _service.GetAllAsync());
         }
 
-        // GET: api/locations/1000
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(decimal id)
         {
-            var location = await _service.GetByIdAsync(id);
-
-            if (location == null)
-                return NotFound(new { message = "Location not found" });
-
-            return Ok(location);
+            return Ok(await _service.GetByIdAsync(id));
         }
 
-        // GET: api/locations/country/IN
         [HttpGet("country/{countryId}")]
         public async Task<IActionResult> GetByCountry(string countryId)
         {
-            var locations = await _service.GetByCountryAsync(countryId);
-            return Ok(locations);
+            return Ok(await _service.GetByCountryAsync(countryId));
         }
 
-        // POST: api/locations
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] LocationRequestDto dto)
         {
@@ -53,33 +40,30 @@ namespace HumanResource.API.Controllers
 
             return CreatedAtAction(
                 nameof(GetById),
-                new { id = createdLocation.LocationId }, // ⚠️ requires LocationId in DTO
-                createdLocation
-            );
+                new { id = createdLocation.LocationId },
+                createdLocation);
         }
 
-        // PUT: api/locations/1000
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(decimal id, [FromBody] LocationRequestDto dto)
+        public async Task<IActionResult> Update(
+            decimal id,
+            [FromBody] UpdateLocationDto dto)
         {
-            var updatedLocation = await _service.UpdateAsync(id, dto);
-
-            if (updatedLocation == null)
-                return NotFound(new { message = "Location not found" });
+            var updatedLocation =
+                await _service.UpdateAsync(id, dto);
 
             return Ok(updatedLocation);
         }
 
-        // DELETE: api/locations/1000
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(decimal id)
         {
-            var deleted = await _service.DeleteAsync(id);
+            await _service.DeleteAsync(id);
 
-            if (!deleted)
-                return NotFound(new { message = "Location not found" });
-
-            return Ok(new { message = "Location deleted successfully" });
+            return Ok(new
+            {
+                message = "Location deleted successfully"
+            });
         }
     }
 }

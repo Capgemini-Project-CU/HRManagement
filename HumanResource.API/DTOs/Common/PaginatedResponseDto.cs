@@ -12,4 +12,5 @@
 
         public IEnumerable<T> Data { get; set; }
     }
+
 }

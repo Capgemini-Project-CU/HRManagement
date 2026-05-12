@@ -110,12 +110,12 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet("pagination")]
-        [Authorize(Roles = "Admin,HR")]
-        public async Task<IActionResult> GetPaginatedEmployees(int pageNumber, int pageSize)
+        public async Task<IActionResult> GetPaginatedEmployees(int pageNumber = 1, int pageSize = 10)
         {
-            var employees = await _employeeService.GetPaginatedAsync(pageNumber, pageSize);
+            var result = await _employeeService
+                .GetPaginatedAsync(pageNumber, pageSize);
 
-            return Ok(employees);
+            return Ok(result);
         }
 
         [HttpGet("highest-salary")]

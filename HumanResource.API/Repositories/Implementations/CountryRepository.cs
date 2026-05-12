@@ -16,30 +16,56 @@ namespace HumanResource.API.Repositories.Implementations
 
         public async Task<IEnumerable<Country>> GetAllAsync()
         {
-            return await _context.Countries
-                .Include(c => c.Region)
+            var countries = await _context.Countries
                 .ToListAsync();
+
+            foreach (var country in countries)
+            {
+                await _context.Entry(country)
+                    .Reference(c => c.Region)
+                    .LoadAsync();
+            }
+
+            return countries;
         }
 
         public async Task<Country?> GetByIdAsync(string id)
         {
-            return await _context.Countries
-                .Include(c => c.Region)
+            var country = await _context.Countries
                 .FirstOrDefaultAsync(c => c.CountryId == id);
+
+            if (country != null)
+            {
+                await _context.Entry(country)
+                    .Reference(c => c.Region)
+                    .LoadAsync();
+            }
+
+            return country;
         }
 
         public async Task<IEnumerable<Country>> GetByRegionIdAsync(decimal regionId)
         {
-            return await _context.Countries
-                .Include(c => c.Region)
+            var countries = await _context.Countries
                 .Where(c => c.RegionId == regionId)
                 .ToListAsync();
+
+            foreach (var country in countries)
+            {
+                await _context.Entry(country)
+                    .Reference(c => c.Region)
+                    .LoadAsync();
+            }
+
+            return countries;
         }
 
         public async Task<Country> AddAsync(Country country)
         {
             await _context.Countries.AddAsync(country);
+
             await _context.SaveChangesAsync();
+
             return country;
         }
 
@@ -52,6 +78,7 @@ namespace HumanResource.API.Repositories.Implementations
                 return null;
 
             existing.CountryName = country.CountryName;
+
             existing.RegionId = country.RegionId;
 
             await _context.SaveChangesAsync();

@@ -16,22 +16,40 @@ namespace HumanResource.API.Repositories.Implementations
 
         public async Task<IEnumerable<Region>> GetAllAsync()
         {
-            return await _context.Regions
-                .Include(r => r.Countries)
+            var regions = await _context.Regions
                 .ToListAsync();
+
+            foreach (var region in regions)
+            {
+                await _context.Entry(region)
+                    .Collection(r => r.Countries)
+                    .LoadAsync();
+            }
+
+            return regions;
         }
 
         public async Task<Region?> GetByIdAsync(decimal id)
         {
-            return await _context.Regions
-                .Include(r => r.Countries)
+            var region = await _context.Regions
                 .FirstOrDefaultAsync(r => r.RegionId == id);
+
+            if (region != null)
+            {
+                await _context.Entry(region)
+                    .Collection(r => r.Countries)
+                    .LoadAsync();
+            }
+
+            return region;
         }
 
         public async Task<Region> AddAsync(Region region)
         {
             await _context.Regions.AddAsync(region);
+
             await _context.SaveChangesAsync();
+
             return region;
         }
 

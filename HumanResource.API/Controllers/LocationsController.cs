@@ -35,6 +35,7 @@ namespace HumanResource.API.Controllers
         [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetByCountry(string countryId)
         {
+
             return Ok(await _service.GetByCountryAsync(countryId));
         }
 

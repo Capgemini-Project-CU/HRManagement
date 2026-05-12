@@ -10,16 +10,31 @@ namespace HumanResource.API.Mappings
         public MappingProfile()
         {
             CreateMap<EmployeeDto, Employee>()
-            .ForMember(
-            dest => dest.PasswordHash,
-            opt => opt.MapFrom(src => src.Password))
-            .ReverseMap()
-            .ForMember(
-            dest => dest.Password,
-            opt => opt.MapFrom(src => src.PasswordHash));
+                .ForMember(
+                    dest => dest.PasswordHash,
+                    opt => opt.MapFrom(src => src.Password))
+                .ReverseMap()
+                .ForMember(
+                    dest => dest.Password,
+                    opt => opt.MapFrom(src => src.PasswordHash));
+
             CreateMap<JobHistory, JobHistoryDto>().ReverseMap();
-            CreateMap<Department, DepartmentDto>().ReverseMap();
+
+            CreateMap<Department, DepartmentDto>()
+                .ForMember(dest => dest.ManagerName,
+                    opt => opt.MapFrom(src =>
+                        src.Manager != null
+                            ? src.Manager.FirstName + " " + src.Manager.LastName
+                            : null))
+                .ForMember(dest => dest.City,
+                    opt => opt.MapFrom(src =>
+                        src.Location != null
+                            ? src.Location.City
+                            : null))
+                .ReverseMap();
+
             CreateMap<Job, JobDto>().ReverseMap();
+
             CreateMap<Role, RoleDto>().ReverseMap();
 
             CreateMap<Region, RegionDto>()
@@ -27,19 +42,25 @@ namespace HumanResource.API.Mappings
                     opt => opt.MapFrom(src =>
                         src.Countries.Select(c => c.CountryName).ToList()))
                 .ReverseMap();
+
             CreateMap<Country, CountryDto>()
                 .ForMember(dest => dest.CountryId,
                     opt => opt.MapFrom(src => src.CountryId.Trim()))
                 .ForMember(dest => dest.RegionName,
                     opt => opt.MapFrom(src => src.Region.RegionName));
+
             CreateMap<CountryDto, Country>()
                 .ForMember(dest => dest.Region, opt => opt.Ignore());
+
             CreateMap<Location, LocationResponseDto>()
-                .ForMember(
-                    dest => dest.CountryName,
-                    opt => opt.MapFrom(src => src.Country!.CountryName)
-                );
+                .ForMember(dest => dest.CountryName,
+                    opt => opt.MapFrom(src =>
+                        src.Country != null
+                            ? src.Country.CountryName
+                            : null));
+
             CreateMap<LocationRequestDto, Location>();
+
             CreateMap<UpdateLocationDto, Location>();
         }
     }

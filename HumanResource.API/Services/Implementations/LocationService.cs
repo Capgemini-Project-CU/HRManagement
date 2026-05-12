@@ -2,8 +2,10 @@
 using HumanResource.API.DTOs.LocationDto;
 using HumanResource.API.Exceptions;
 using HumanResource.API.Models;
+using HumanResource.API.Repositories.Implementations;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Interfaces;
+using Microsoft.Identity.Client;
 
 namespace HumanResource.API.Services.Implementations
 {
@@ -40,6 +42,9 @@ namespace HumanResource.API.Services.Implementations
         public async Task<IEnumerable<LocationResponseDto>> GetByCountryAsync(string countryId)
         {
             var locations = await _repository.GetByCountryAsync(countryId);
+
+            if (!locations.Any())
+                throw new NotFoundException("No location found for this Country Id");
 
             return _mapper.Map<IEnumerable<LocationResponseDto>>(locations);
         }

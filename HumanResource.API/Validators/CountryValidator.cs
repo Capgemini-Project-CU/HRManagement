@@ -9,16 +9,21 @@ namespace HumanResource.API.Validators
         {
             RuleFor(x => x.CountryId)
                 .NotEmpty()
-                .Length(4)
-                .When(x => !string.IsNullOrEmpty(x.CountryId));
+                .WithMessage("Country ID is required.")
+                .Length(2, 4)
+                .WithMessage("Country ID must be between 2 and 4 characters.")
+                .Matches("^[A-Z]+$")
+                .WithMessage("Country ID must contain only uppercase letters.");
 
             RuleFor(x => x.CountryName)
                 .NotEmpty()
-                .MaximumLength(60);
+                .WithMessage("Country name is required.")
+                .MaximumLength(60)
+                .WithMessage("Country name cannot exceed 60 characters.");
 
             RuleFor(x => x.RegionId)
-                .NotNull()
-                .GreaterThan(0);
+                .GreaterThan(0)
+                .WithMessage("Valid Region ID is required.");
         }
     }
 }

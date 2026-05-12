@@ -35,10 +35,8 @@ namespace HumanResource.API.Mappings
             CreateMap<CountryDto, Country>()
                 .ForMember(dest => dest.Region, opt => opt.Ignore());
             CreateMap<Location, LocationResponseDto>()
-                .ForMember(
-                    dest => dest.CountryName,
-                    opt => opt.MapFrom(src => src.Country!.CountryName)
-                );
+                .ForMember(dest => dest.CountryName,
+                   opt => opt.MapFrom(src => src.Country != null? src.Country.CountryName: null));
             CreateMap<LocationRequestDto, Location>();
             CreateMap<UpdateLocationDto, Location>();
         }

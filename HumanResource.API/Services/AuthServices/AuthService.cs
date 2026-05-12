@@ -93,7 +93,7 @@ namespace HumanResource.API.Services.AuthServices
                     employee.EmployeeId.ToString()),
 
                 new Claim(
-                    ClaimTypes.Email,
+                    ClaimTypes.Email, 
                     employee.Email),
 
                 new Claim(

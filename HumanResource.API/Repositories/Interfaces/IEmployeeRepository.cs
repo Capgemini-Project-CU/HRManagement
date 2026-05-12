@@ -13,7 +13,7 @@ namespace HumanResource.API.Repositories.Interfaces
         Task<IEnumerable<Employee>> GetByJobAsync(string jobId);
         Task<IEnumerable<Employee>> GetByRoleAsync(int roleId);
         Task<IEnumerable<Employee>> SearchAsync(string keyword);
-        Task<IEnumerable<Employee>> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<(IEnumerable<Employee> Employees, int TotalRecords)> GetPaginatedAsync(int pageNumber, int pageSize);
         Task<Employee> GetHighestSalaryEmployeeAsync();
     }
 }

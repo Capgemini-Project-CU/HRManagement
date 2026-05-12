@@ -16,50 +16,91 @@ namespace HumanResource.API.Repositories.Implementations
 
         public async Task<IEnumerable<Department>> GetAllAsync()
         {
-            return await _context.Departments
-                .Include(d => d.Location)
-                .Include(d => d.Manager)
-                .ToListAsync();
+            var departments = await _context.Departments.ToListAsync();
+
+            foreach (var department in departments)
+            {
+                await _context.Entry(department)
+                    .Reference(d => d.Location)
+                    .LoadAsync();
+
+                await _context.Entry(department)
+                    .Reference(d => d.Manager)
+                    .LoadAsync();
+            }
+
+            return departments;
         }
 
         public async Task<Department?> GetByIdAsync(decimal id)
         {
-            return await _context.Departments
-                .Include(d => d.Location)
-                .Include(d => d.Manager)
+            var department = await _context.Departments
                 .FirstOrDefaultAsync(d => d.DepartmentId == id);
+
+            if (department != null)
+            {
+                await _context.Entry(department)
+                    .Reference(d => d.Location)
+                    .LoadAsync();
+
+                await _context.Entry(department)
+                    .Reference(d => d.Manager)
+                    .LoadAsync();
+            }
+
+            return department;
         }
 
         public async Task<IEnumerable<Department>> GetByLocationAsync(decimal locationId)
         {
-            return await _context.Departments
-                .Include(d => d.Location)
-                .Include(d => d.Manager)
+            var departments = await _context.Departments
                 .Where(d => d.LocationId == locationId)
                 .ToListAsync();
+
+            foreach (var department in departments)
+            {
+                await _context.Entry(department)
+                    .Reference(d => d.Location)
+                    .LoadAsync();
+
+                await _context.Entry(department)
+                    .Reference(d => d.Manager)
+                    .LoadAsync();
+            }
+
+            return departments;
         }
 
         public async Task<Department> AddAsync(Department department)
         {
             await _context.Departments.AddAsync(department);
+
             await _context.SaveChangesAsync();
+
             return department;
         }
 
         public async Task<Department> UpdateAsync(Department department)
         {
             _context.Departments.Update(department);
+
             await _context.SaveChangesAsync();
+
             return department;
         }
 
         public async Task<bool> DeleteAsync(decimal id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var department = await _context.Departments
+                .FindAsync(id);
+
             if (department == null)
                 return false;
+
             _context.Departments.Remove(department);
+
             await _context.SaveChangesAsync();
+
             return true;
         }
     }

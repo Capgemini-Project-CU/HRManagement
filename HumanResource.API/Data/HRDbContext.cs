@@ -32,10 +32,6 @@ public partial class HRDbContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
-//<<<<<<< Updated upstream
-//========
-//>>>>>>> Stashed changes
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Country>(entity =>

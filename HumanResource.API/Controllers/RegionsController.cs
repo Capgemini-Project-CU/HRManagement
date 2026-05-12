@@ -8,61 +8,53 @@ namespace HumanResource.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class RolesController : ControllerBase
+    public class RegionsController : ControllerBase
     {
-        private readonly IRoleService _service;
+        private readonly IRegionService _service;
 
-        public RolesController(IRoleService service)
+        public RegionsController(IRegionService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,HR")]
+        [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
-
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin,HR")]
-        public async Task<IActionResult> GetById(int id)
+        [Authorize(Roles = "Admin,HR,Employee")]
+        public async Task<IActionResult> GetById(decimal id)
         {
             var result = await _service.GetByIdAsync(id);
-
             return Ok(result);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(
-            [FromBody] RoleDto dto)
+        [Authorize(Roles = "Admin,HR")]
+        public async Task<IActionResult> Create(RegionDto dto)
         {
-            var result = await _service.CreateAsync(dto);
-
+            var result = await _service.AddAsync(dto);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update(
-            int id,
-            [FromBody] RoleDto dto)
+        [Authorize(Roles = "Admin,HR")]
+        public async Task<IActionResult> Update(decimal id, RegionDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
-
             return Ok(result);
         }
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(decimal id)
         {
-            await _service.DeleteAsync(id);
-
-            return Ok($"Role with Id {id} deleted successfully");
+            var result = await _service.DeleteAsync(id);
+            return Ok($"Region with Id {id} deleted successfully");
         }
     }
 }

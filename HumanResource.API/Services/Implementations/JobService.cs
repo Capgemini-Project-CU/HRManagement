@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanResource.API.DTOs;
+using HumanResource.API.Exceptions;
 using HumanResource.API.Models;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Interfaces;
@@ -25,6 +26,7 @@ namespace HumanResource.API.Services.Implementations
 
             return _mapper.Map<IEnumerable<JobDto>>(jobs);
         }
+
         public async Task<IEnumerable<JobDto>> GetBySalaryRangeAsync(decimal min, decimal max)
         {
             var jobs = await _repository.GetBySalaryRangeAsync(min, max);
@@ -32,18 +34,23 @@ namespace HumanResource.API.Services.Implementations
             return _mapper.Map<IEnumerable<JobDto>>(jobs);
         }
 
-        public async Task<JobDto?> GetByIdAsync(string id)
+        public async Task<JobDto> GetByIdAsync(string id)
         {
             var job = await _repository.GetByIdAsync(id);
 
             if (job == null)
-                return null;
+                throw new NotFoundException("Job not found");
 
             return _mapper.Map<JobDto>(job);
         }
 
         public async Task<JobDto> CreateAsync(JobDto dto)
         {
+            var existingJob = await _repository.GetByIdAsync(dto.JobId);
+
+            if (existingJob != null)
+                throw new BadRequestException("Job already exists");
+
             var job = _mapper.Map<Job>(dto);
 
             await _repository.AddAsync(job);
@@ -56,7 +63,7 @@ namespace HumanResource.API.Services.Implementations
             var existingJob = await _repository.GetByIdAsync(id);
 
             if (existingJob == null)
-                return false;
+                throw new NotFoundException("Job not found");
 
             _mapper.Map(dto, existingJob);
 
@@ -70,7 +77,7 @@ namespace HumanResource.API.Services.Implementations
             var job = await _repository.GetByIdAsync(id);
 
             if (job == null)
-                return false;
+                throw new NotFoundException("Job not found");
 
             await _repository.DeleteAsync(job);
 

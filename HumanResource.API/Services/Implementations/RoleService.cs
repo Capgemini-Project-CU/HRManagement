@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanResource.API.DTOs;
+using HumanResource.API.Exceptions;
 using HumanResource.API.Models;
 using HumanResource.API.Repositories.Interfaces;
 using HumanResource.API.Services.Interfaces;
@@ -26,12 +27,12 @@ namespace HumanResource.API.Services.Implementations
             return _mapper.Map<IEnumerable<RoleDto>>(roles);
         }
 
-        public async Task<RoleDto?> GetByIdAsync(int id)
+        public async Task<RoleDto> GetByIdAsync(int id)
         {
             var role = await _repository.GetByIdAsync(id);
 
             if (role == null)
-                return null;
+                throw new NotFoundException("Role not found");
 
             return _mapper.Map<RoleDto>(role);
         }
@@ -50,7 +51,7 @@ namespace HumanResource.API.Services.Implementations
             var existingRole = await _repository.GetByIdAsync(id);
 
             if (existingRole == null)
-                return false;
+                throw new NotFoundException("Role not found");
 
             _mapper.Map(dto, existingRole);
 
@@ -64,7 +65,7 @@ namespace HumanResource.API.Services.Implementations
             var role = await _repository.GetByIdAsync(id);
 
             if (role == null)
-                return false;
+                throw new NotFoundException("Role not found");
 
             await _repository.DeleteAsync(role);
 

@@ -1,12 +1,13 @@
 ﻿using HumanResource.API.DTOs;
 using HumanResource.API.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResource.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly IRegionService _service;
@@ -17,6 +18,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -24,6 +26,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetById(decimal id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -31,6 +34,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> Create(RegionDto dto)
         {
             var result = await _service.AddAsync(dto);
@@ -38,6 +42,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> Update(decimal id, RegionDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
@@ -45,6 +50,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(decimal id)
         {
             var result = await _service.DeleteAsync(id);

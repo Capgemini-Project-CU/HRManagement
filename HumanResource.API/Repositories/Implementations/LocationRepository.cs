@@ -48,10 +48,12 @@ namespace HumanResource.API.Repositories.Implementations
 
         public async Task<Location?> UpdateAsync(Location location)
         {
-            var existing = await _context.Locations.FirstOrDefaultAsync(l => l.LocationId == location.LocationId);
+            var existing = await _context.Locations
+                .FirstOrDefaultAsync(l => l.LocationId == location.LocationId);
 
-            if (existing == null) return null;
-            existing.LocationId = location.LocationId;  
+            if (existing == null)
+                return null;
+
             existing.StreetAddress = location.StreetAddress;
             existing.PostalCode = location.PostalCode;
             existing.City = location.City;
@@ -60,7 +62,11 @@ namespace HumanResource.API.Repositories.Implementations
 
             await _context.SaveChangesAsync();
 
-            return existing;
+            // Fetch updated location again with Country included
+            return await _context.Locations
+                .Include(l => l.Country)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(l => l.LocationId == location.LocationId);
         }
 
         public async Task<bool> DeleteAsync(decimal id)

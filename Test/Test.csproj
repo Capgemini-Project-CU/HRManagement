@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MockData\**" />
+    <Compile Remove="UnitTests\**" />
+    <EmbeddedResource Remove="MockData\**" />
+    <EmbeddedResource Remove="UnitTests\**" />
+    <None Remove="MockData\**" />
+    <None Remove="UnitTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="FluentAssertions" Version="8.10.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
@@ -24,9 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MockData\" />
     <Folder Include="Repositories\" />
-    <Folder Include="UnitTests\" />
   </ItemGroup>
 
   <ItemGroup>

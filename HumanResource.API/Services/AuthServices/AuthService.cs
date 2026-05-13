@@ -89,16 +89,20 @@ namespace HumanResource.API.Services.AuthServices
             var claims = new List<Claim>
             {
                 new Claim(
-                    ClaimTypes.NameIdentifier,
-                    employee.EmployeeId.ToString()),
+                ClaimTypes.NameIdentifier,
+                employee.EmployeeId.ToString()),
 
                 new Claim(
-                    ClaimTypes.Email, 
-                    employee.Email),
+                ClaimTypes.Email,
+                employee.Email),
 
                 new Claim(
-                    ClaimTypes.Role,
-                    employee.Role!.RoleName)
+                ClaimTypes.Role,
+                employee.Role!.RoleName),
+
+                new Claim(
+                "EmployeeId",
+                employee.EmployeeId.ToString())
             };
 
             var key = new SymmetricSecurityKey(

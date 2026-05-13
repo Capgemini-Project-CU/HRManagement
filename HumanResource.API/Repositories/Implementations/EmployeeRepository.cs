@@ -128,7 +128,21 @@ namespace HumanResource.API.Repositories.Implementations
 
             return (employees, totalRecords);
         }
+        public async Task<IEnumerable<Employee>> GetMyTeamAsync(decimal managerId)
+        {
+            var employees = await _context.Employees
+                .Where(e => e.ManagerId == managerId)
+                .ToListAsync();
 
+            foreach (var employee in employees)
+            {
+                await _context.Entry(employee)
+                    .Reference(e => e.Department)
+                    .LoadAsync();
+            }
+
+            return employees;
+        }
         public async Task<Employee> GetHighestSalaryEmployeeAsync()
         {
             return await _context.Employees.OrderByDescending(e => e.Salary).FirstOrDefaultAsync();

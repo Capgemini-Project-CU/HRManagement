@@ -14,6 +14,7 @@ namespace HumanResource.API.Repositories.Interfaces
         Task<IEnumerable<Employee>> GetByRoleAsync(int roleId);
         Task<IEnumerable<Employee>> SearchAsync(string keyword);
         Task<(IEnumerable<Employee> Employees, int TotalRecords)> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<Employee>> GetMyTeamAsync(decimal managerId);
         Task<Employee> GetHighestSalaryEmployeeAsync();
     }
 }

@@ -15,6 +15,7 @@ namespace HumanResource.API.Services.Interfaces
         public Task<IEnumerable<EmployeeDto>> GetByRoleAsync(int roleId);
         public Task<IEnumerable<EmployeeDto>> SearchAsync(string keyword);
         Task<PaginatedResponseDto<EmployeeDto>> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<MyTeamEmployeeDto>> GetMyTeamAsync(decimal managerId);
         public Task<EmployeeDto> GetHighestSalaryEmployeeAsync();
     }
 }

@@ -8,9 +8,13 @@ namespace HumanResource.API.Middleware
     {
         private readonly RequestDelegate _next;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        private readonly ILogger<ExceptionMiddleware> _logger;
+
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
+
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -21,6 +25,11 @@ namespace HumanResource.API.Middleware
             }
             catch (Exception ex)
             {
+                _logger.LogError(
+                    ex,
+                    "Exception occurred while processing request: {Path}",
+                    context.Request.Path);
+
                 await HandleExceptionAsync(context, ex);
             }
         }

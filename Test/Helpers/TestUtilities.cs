@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using HumanResource.API.Data;
 using HumanResource.API.Mappings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Test.TestData;
 
 namespace Test.Helpers
@@ -21,6 +16,7 @@ namespace Test.Helpers
 
             return config.CreateMapper();
         }
+
         public static void SeedRegion(HRDbContext context)
         {
             context.Regions.Add(
@@ -35,6 +31,34 @@ namespace Test.Helpers
 
             context.Countries.Add(
                 CountryTestData.GetCountryEntity());
+
+            context.SaveChanges();
+        }
+
+        public static void SeedLocation(HRDbContext context)
+        {
+            context.Locations.Add(
+                LocationTestData.GetLocationEntity());
+
+            context.SaveChanges();
+        }
+
+        public static void SeedEmployee(HRDbContext context)
+        {
+            context.Employees.Add(
+                EmployeeTestData.GetEmployeeEntity());
+
+            context.SaveChanges();
+        }
+
+        public static void SeedDepartment(HRDbContext context)
+        {
+            SeedLocation(context);
+
+            SeedEmployee(context);
+
+            context.Departments.Add(
+                DepartmentTestData.GetDepartmentEntity());
 
             context.SaveChanges();
         }

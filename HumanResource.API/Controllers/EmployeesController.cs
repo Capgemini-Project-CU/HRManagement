@@ -119,7 +119,7 @@ namespace HumanResource.API.Controllers
             return Ok(result);
         }
         [HttpGet("my-team")]
-        [Authorize(Roles = "Manager, Admin, HR")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> GetMyTeam()
         {
             var employeeIdClaim =

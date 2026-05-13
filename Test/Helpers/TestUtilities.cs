@@ -37,6 +37,8 @@ namespace Test.Helpers
 
         public static void SeedLocation(HRDbContext context)
         {
+            SeedCountry(context);
+
             context.Locations.Add(
                 LocationTestData.GetLocationEntity());
 

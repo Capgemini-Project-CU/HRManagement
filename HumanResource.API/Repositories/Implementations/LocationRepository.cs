@@ -61,8 +61,6 @@ namespace HumanResource.API.Repositories.Implementations
             existing.CountryId = location.CountryId;
 
             await _context.SaveChangesAsync();
-
-            // Fetch updated location again with Country included
             return await _context.Locations
                 .Include(l => l.Country)
                 .AsNoTracking()

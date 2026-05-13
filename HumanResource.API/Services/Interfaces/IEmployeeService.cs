@@ -1,4 +1,5 @@
 ﻿using HumanResource.API.DTOs;
+using HumanResource.API.DTOs.Common;
 namespace HumanResource.API.Services.Interfaces
 {
     public interface IEmployeeService
@@ -13,7 +14,7 @@ namespace HumanResource.API.Services.Interfaces
         public Task<IEnumerable<EmployeeDto>> GetByJobAsync(string jobId);
         public Task<IEnumerable<EmployeeDto>> GetByRoleAsync(int roleId);
         public Task<IEnumerable<EmployeeDto>> SearchAsync(string keyword);
-        public Task<IEnumerable<EmployeeDto>> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<PaginatedResponseDto<EmployeeDto>> GetPaginatedAsync(int pageNumber, int pageSize);
         public Task<EmployeeDto> GetHighestSalaryEmployeeAsync();
     }
 }

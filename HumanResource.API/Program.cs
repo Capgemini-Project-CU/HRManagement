@@ -1,4 +1,5 @@
 using FluentValidation;
+using Serilog;
 using FluentValidation.AspNetCore;
 using HumanResource.API.Authentication;
 using HumanResource.API.Data;
@@ -21,7 +22,11 @@ namespace HumanResource.API
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration().WriteTo.Console().WriteTo.File("logs/log-.txt",rollingInterval: RollingInterval.Day).CreateLogger();
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseSerilog();
 
             builder.Services.AddControllers();
 

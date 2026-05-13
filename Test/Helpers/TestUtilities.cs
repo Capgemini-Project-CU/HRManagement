@@ -38,5 +38,15 @@ namespace Test.Helpers
 
             context.SaveChanges();
         }
+
+        public static void SeedLocation(HRDbContext context)
+        {
+            SeedCountry(context);
+
+            context.Locations.Add(
+                LocationTestData.GetLocationEntity());
+
+            context.SaveChanges();
+        }
     }
 }

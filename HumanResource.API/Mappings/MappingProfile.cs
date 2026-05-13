@@ -17,7 +17,12 @@ namespace HumanResource.API.Mappings
                 .ForMember(
                     dest => dest.Password,
                     opt => opt.MapFrom(src => src.PasswordHash));
-
+            CreateMap<Employee, MyTeamEmployeeDto>()
+                .ForMember(
+                    dest => dest.DepartmentName,
+                    opt => opt.MapFrom(src => src.Department != null
+                    ? src.Department.DepartmentName
+                    : null));
             CreateMap<JobHistory, JobHistoryDto>().ReverseMap();
 
             CreateMap<Department, DepartmentDto>()

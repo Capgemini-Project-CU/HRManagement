@@ -169,7 +169,13 @@ namespace HumanResource.API.Services.Implementations
                 Data = employeeDtos
             };
         }
+        public async Task<IEnumerable<MyTeamEmployeeDto>> GetMyTeamAsync(decimal managerId)
+        {
+            var employees = await _employeeRepository
+                .GetMyTeamAsync(managerId);
 
+            return _mapper.Map<IEnumerable<MyTeamEmployeeDto>>(employees);
+        }
         public async Task<EmployeeDto>
             GetHighestSalaryEmployeeAsync()
         {

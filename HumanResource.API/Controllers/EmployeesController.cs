@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HumanResource.API.DTOs;
+using System.Security.Claims;
 using HumanResource.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
@@ -116,6 +117,26 @@ namespace HumanResource.API.Controllers
                 .GetPaginatedAsync(pageNumber, pageSize);
 
             return Ok(result);
+        }
+        [HttpGet("my-team")]
+        [Authorize(Roles = "Manager, Admin, HR")]
+        public async Task<IActionResult> GetMyTeam()
+        {
+            var employeeIdClaim =
+                User.FindFirst("EmployeeId");
+
+            if (employeeIdClaim == null)
+            {
+                return Unauthorized("EmployeeId not found in token");
+            }
+
+            decimal managerId =
+                Convert.ToDecimal(employeeIdClaim.Value);
+
+            var employees =
+                await _employeeService.GetMyTeamAsync(managerId);
+
+            return Ok(employees);
         }
 
         [HttpGet("highest-salary")]

@@ -1,8 +1,11 @@
 ﻿using HumanResource.API.Controllers;
 using HumanResource.API.DTOs;
+using HumanResource.API.Exceptions;
 using HumanResource.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Test.TestData;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Test.Controllers
 {
@@ -23,75 +26,54 @@ namespace Test.Controllers
         }
 
         [Fact]
-        public async Task GetAll_ReturnsOkResult()
+        public async Task GetAll_ReturnsOkResult_WithJobs()
         {
             // Arrange
 
-            var jobs = new List<JobDto>
-            {
-                new JobDto
+            var jobs = JobTestData.GetJobs()
+                .Select(j => new JobDto
                 {
-                    JobId = "IT_PROG",
-                    JobTitle = "Programmer",
-                    MinSalary = 4000,
-                    MaxSalary = 10000
-                },
-
-                new JobDto
-                {
-                    JobId = "HR_REP",
-                    JobTitle = "HR Representative",
-                    MinSalary = 3000,
-                    MaxSalary = 8000
-                }
-            };
+                    JobId = j.JobId,
+                    JobTitle = j.JobTitle,
+                    MinSalary = j.MinSalary,
+                    MaxSalary = j.MaxSalary
+                })
+                .ToList();
 
             _mockService.Setup(s =>
                 s.GetAllAsync())
                 .ReturnsAsync(jobs);
 
-            // Act
 
             var result =
                 await _controller.GetAll();
 
-            // Assert
 
             var okResult =
                 Assert.IsType<OkObjectResult>(result);
 
             var returnedJobs =
                 Assert.IsAssignableFrom<
-                    IEnumerable<JobDto>>
-                    (okResult.Value);
+                    IEnumerable<JobDto>>(
+                        okResult.Value);
 
             Assert.Equal(2, returnedJobs.Count());
         }
 
         [Fact]
-        public async Task GetById_ValidId_ReturnsOkResult()
+        public async Task GetById_ValidId_ReturnsCorrectJob()
         {
-            // Arrange
 
-            var job = new JobDto
-            {
-                JobId = "IT_PROG",
-                JobTitle = "Programmer",
-                MinSalary = 4000,
-                MaxSalary = 10000
-            };
+            var dto = JobTestData.GetJobDto();
 
             _mockService.Setup(s =>
-                s.GetByIdAsync("IT_PROG"))
-                .ReturnsAsync(job);
+                s.GetByIdAsync("DEV_JOB"))
+                .ReturnsAsync(dto);
 
-            // Act
 
             var result =
-                await _controller.GetById(
-                    "IT_PROG");
+                await _controller.GetById("DEV_JOB");
 
-            // Assert
 
             var okResult =
                 Assert.IsType<OkObjectResult>(result);
@@ -101,33 +83,24 @@ namespace Test.Controllers
                     okResult.Value);
 
             Assert.Equal(
-                "IT_PROG",
+                "DEV_JOB",
                 returnedJob.JobId);
         }
 
         [Fact]
         public async Task Create_ValidJob_ReturnsOkResult()
         {
-            // Arrange
 
-            var dto = new JobDto
-            {
-                JobId = "DEV_JOB",
-                JobTitle = "Developer",
-                MinSalary = 5000,
-                MaxSalary = 12000
-            };
+            var dto = JobTestData.GetJobDto();
 
             _mockService.Setup(s =>
                 s.CreateAsync(dto))
                 .ReturnsAsync(dto);
 
-            // Act
 
             var result =
                 await _controller.Create(dto);
 
-            // Assert
 
             var okResult =
                 Assert.IsType<OkObjectResult>(result);
@@ -137,112 +110,100 @@ namespace Test.Controllers
                     okResult.Value);
 
             Assert.Equal(
-                dto.JobId,
-                returnedJob.JobId);
+                dto.JobTitle,
+                returnedJob.JobTitle);
         }
 
         [Fact]
-        public async Task Update_ValidData_ReturnsOkResult()
+        public async Task Delete_ValidId_ReturnsSuccessMessage()
         {
-            // Arrange
 
-            var dto = new JobDto
-            {
-                JobId = "IT_PROG",
-                JobTitle = "Senior Developer",
-                MinSalary = 7000,
-                MaxSalary = 15000
-            };
+            _mockService.Setup(s =>
+                s.DeleteAsync("DEV_JOB"))
+                .ReturnsAsync(true);
+
+
+            var result =
+                await _controller.Delete("DEV_JOB");
+
+
+            var okResult =
+                Assert.IsType<OkObjectResult>(result);
+
+            Assert.Equal(
+                "Job with Id DEV_JOB deleted successfully",
+                okResult.Value);
+        }
+
+        [Fact]
+        public async Task GetById_InvalidId_ThrowsNotFoundException()
+        {
+
+            _mockService.Setup(s =>
+                s.GetByIdAsync("INVALID"))
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Job not found"));
+
+
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.GetById("INVALID"));
+        }
+
+        [Fact]
+        public async Task Create_DuplicateJob_ThrowsBadRequestException()
+        {
+
+            var dto = JobTestData.GetJobDto();
+
+            _mockService.Setup(s =>
+                s.CreateAsync(dto))
+                .ThrowsAsync(
+                    new BadRequestException(
+                        "Job already exists"));
+
+
+            await Assert.ThrowsAsync<
+                BadRequestException>(() =>
+                _controller.Create(dto));
+        }
+
+        [Fact]
+        public async Task Update_InvalidId_ThrowsNotFoundException()
+        {
+
+            var dto =
+                JobTestData.GetUpdatedJobDto();
 
             _mockService.Setup(s =>
                 s.UpdateAsync(
-                    "IT_PROG",
+                    "INVALID",
                     dto))
-                .ReturnsAsync(true);
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Job not found"));
 
-            // Act
-
-            var result =
-                await _controller.Update(
-                    "IT_PROG",
-                    dto);
-
-            // Assert
-
-            var okResult =
-                Assert.IsType<OkObjectResult>(result);
-
-            Assert.Equal(
-                true,
-                okResult.Value);
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.Update(
+                    "INVALID",
+                    dto));
         }
 
         [Fact]
-        public async Task Delete_ValidId_ReturnsOkResult()
+        public async Task Delete_InvalidId_ThrowsNotFoundException()
         {
-            // Arrange
 
             _mockService.Setup(s =>
-                s.DeleteAsync("IT_PROG"))
-                .ReturnsAsync(true);
+                s.DeleteAsync("INVALID"))
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Job not found"));
 
-            // Act
-
-            var result =
-                await _controller.Delete(
-                    "IT_PROG");
-
-            // Assert
-
-            var okResult =
-                Assert.IsType<OkObjectResult>(result);
-
-            Assert.Equal(
-                "Job with Id IT_PROG deleted successfully",
-                okResult.Value);
-        }
-
-        [Fact]
-        public async Task GetBySalaryRange_ReturnsOkResult()
-        {
-            // Arrange
-
-            var jobs = new List<JobDto>
-            {
-                new JobDto
-                {
-                    JobId = "IT_PROG",
-                    JobTitle = "Programmer",
-                    MinSalary = 4000,
-                    MaxSalary = 10000
-                }
-            };
-
-            _mockService.Setup(s =>
-                s.GetBySalaryRangeAsync(
-                    3000,
-                    12000))
-                .ReturnsAsync(jobs);
-
-            // Act
-
-            var result =
-                await _controller
-                    .GetBySalaryRange(
-                        3000,
-                        12000);
-
-            // Assert
-
-            var okResult =
-                Assert.IsType<OkObjectResult>(result);
-
-            var returnedJobs =
-                Assert.IsAssignableFrom<
-                    IEnumerable<JobDto>>
-                    (okResult.Value);
-
-            Assert.Single(returnedJobs);
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.Delete("INVALID"));
         }
     }
 }

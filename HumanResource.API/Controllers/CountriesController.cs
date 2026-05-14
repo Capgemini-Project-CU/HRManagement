@@ -18,7 +18,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,HR,Employee")]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
@@ -34,7 +34,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet("region/{regionId}")]
-        [Authorize(Roles = "Admin,HR,Employee")]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> GetByRegion(decimal regionId)
         {
             var result = await _service.GetByRegionIdAsync(regionId);

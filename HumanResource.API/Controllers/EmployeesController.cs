@@ -19,7 +19,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,HR,Employee")]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> GetAllEmployees()
         {
             var employees = await _employeeService.GetAllAsync();

@@ -1,8 +1,10 @@
 ﻿using HumanResource.API.Controllers;
 using HumanResource.API.DTOs;
+using HumanResource.API.Exceptions;
 using HumanResource.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Test.TestData;
 
 namespace Test.Controllers
 {
@@ -23,22 +25,15 @@ namespace Test.Controllers
         }
 
         [Fact]
-        public async Task GetAll_ReturnsOkResult()
+        public async Task GetAll_ReturnsOkResult_WithRoles()
         {
-            var roles = new List<RoleDto>
-            {
-                new RoleDto
+            var roles = RoleTestData.GetRoles()
+                .Select(r => new RoleDto
                 {
-                    RoleId = 1,
-                    RoleName = "Admin"
-                },
-
-                new RoleDto
-                {
-                    RoleId = 4,
-                    RoleName = "Manager"
-                }
-            };
+                    RoleId = r.RoleId,
+                    RoleName = r.RoleName
+                })
+                .ToList();
 
             _mockService.Setup(s =>
                 s.GetAllAsync())
@@ -48,56 +43,45 @@ namespace Test.Controllers
                 await _controller.GetAll();
 
             var okResult =
-                Assert.IsType<OkObjectResult>(
-                    result);
+                Assert.IsType<OkObjectResult>(result);
 
             var returnedRoles =
                 Assert.IsAssignableFrom<
                     IEnumerable<RoleDto>>(
-                    okResult.Value);
+                        okResult.Value);
 
-            Assert.Equal(
-                2,
-                returnedRoles.Count());
+            Assert.Equal(3, returnedRoles.Count());
         }
 
         [Fact]
-        public async Task GetById_ReturnsOkResult()
+        public async Task GetById_ValidId_ReturnsCorrectRole()
         {
-            var role = new RoleDto
-            {
-                RoleId = 1,
-                RoleName = "Admin"
-            };
+
+            var dto = RoleTestData.GetRoleDto();
 
             _mockService.Setup(s =>
-                s.GetByIdAsync(1))
-                .ReturnsAsync(role);
+                s.GetByIdAsync(4))
+                .ReturnsAsync(dto);
 
             var result =
-                await _controller.GetById(1);
+                await _controller.GetById(4);
 
             var okResult =
-                Assert.IsType<OkObjectResult>(
-                    result);
+                Assert.IsType<OkObjectResult>(result);
 
             var returnedRole =
                 Assert.IsType<RoleDto>(
                     okResult.Value);
 
             Assert.Equal(
-                "Admin",
+                "Manager",
                 returnedRole.RoleName);
         }
 
         [Fact]
-        public async Task Create_ReturnsOkResult()
+        public async Task Create_ValidRole_ReturnsOkResult()
         {
-            var dto = new RoleDto
-            {
-                RoleId = 4,
-                RoleName = "Manager"
-            };
+            var dto = RoleTestData.GetRoleDto();
 
             _mockService.Setup(s =>
                 s.CreateAsync(dto))
@@ -106,35 +90,22 @@ namespace Test.Controllers
             var result =
                 await _controller.Create(dto);
 
-            Assert.IsType<OkObjectResult>(
-                result);
+            var okResult =
+                Assert.IsType<OkObjectResult>(result);
+
+            var returnedRole =
+                Assert.IsType<RoleDto>(
+                    okResult.Value);
+
+            Assert.Equal(
+                dto.RoleName,
+                returnedRole.RoleName);
         }
 
         [Fact]
-        public async Task Update_ReturnsOkResult()
+        public async Task Delete_ValidId_ReturnsSuccessMessage()
         {
-            var dto = new RoleDto
-            {
-                RoleId = 4,
-                RoleName = "Senior Manager"
-            };
 
-            _mockService.Setup(s =>
-                s.UpdateAsync(4, dto))
-                .ReturnsAsync(true);
-
-            var result =
-                await _controller.Update(
-                    4,
-                    dto);
-
-            Assert.IsType<OkObjectResult>(
-                result);
-        }
-
-        [Fact]
-        public async Task Delete_ReturnsOkResult()
-        {
             _mockService.Setup(s =>
                 s.DeleteAsync(4))
                 .ReturnsAsync(true);
@@ -142,8 +113,80 @@ namespace Test.Controllers
             var result =
                 await _controller.Delete(4);
 
-            Assert.IsType<OkObjectResult>(
-                result);
+            var okResult =
+                Assert.IsType<OkObjectResult>(result);
+
+            Assert.Equal(
+                "Role with Id 4 deleted successfully",
+                okResult.Value);
+        }
+
+        [Fact]
+        public async Task GetById_InvalidId_ThrowsNotFoundException()
+        {
+
+            _mockService.Setup(s =>
+                s.GetByIdAsync(999))
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Role not found"));
+
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.GetById(999));
+        }
+
+        [Fact]
+        public async Task Create_DuplicateRole_ThrowsBadRequestException()
+        {
+
+            var dto = RoleTestData.GetRoleDto();
+
+            _mockService.Setup(s =>
+                s.CreateAsync(dto))
+                .ThrowsAsync(
+                    new BadRequestException(
+                        "Role already exists"));
+
+            await Assert.ThrowsAsync<
+                BadRequestException>(() =>
+                _controller.Create(dto));
+        }
+
+        [Fact]
+        public async Task Update_InvalidId_ThrowsNotFoundException()
+        {
+            var dto =
+                RoleTestData.GetUpdatedRoleDto();
+
+            _mockService.Setup(s =>
+                s.UpdateAsync(
+                    999,
+                    dto))
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Role not found"));
+
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.Update(
+                    999,
+                    dto));
+        }
+
+        [Fact]
+        public async Task Delete_InvalidId_ThrowsNotFoundException()
+        {
+            _mockService.Setup(s =>
+                s.DeleteAsync(999))
+                .ThrowsAsync(
+                    new NotFoundException(
+                        "Role not found"));
+
+
+            await Assert.ThrowsAsync<
+                NotFoundException>(() =>
+                _controller.Delete(999));
         }
     }
 }

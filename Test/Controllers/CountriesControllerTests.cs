@@ -15,15 +15,20 @@ namespace Test.Controllers
 {
     public class CountriesControllerTests
     {
-        private readonly Mock<ICountryService> _serviceMock;
-        private readonly CountriesController _controller;
+        private readonly Mock<ICountryService>
+            _serviceMock;
+
+        private readonly CountriesController
+            _controller;
 
         public CountriesControllerTests()
         {
-            _serviceMock = new Mock<ICountryService>();
+            _serviceMock =
+                new Mock<ICountryService>();
 
-            _controller = new CountriesController(
-                _serviceMock.Object);
+            _controller =
+                new CountriesController(
+                    _serviceMock.Object);
         }
 
         [Fact]
@@ -38,7 +43,8 @@ namespace Test.Controllers
                 .Setup(x => x.GetAllAsync())
                 .ReturnsAsync(data);
 
-            var result = await _controller.GetAll();
+            var result =
+                await _controller.GetAll();
 
             result.Should()
                 .BeOfType<OkObjectResult>();
@@ -47,13 +53,15 @@ namespace Test.Controllers
         [Fact]
         public async Task GetById_ShouldReturnOk_WhenCountryExists()
         {
-            var dto = CountryTestData.GetCountryDto();
+            var dto =
+                CountryTestData.GetCountryDto();
 
             _serviceMock
                 .Setup(x => x.GetByIdAsync("IN"))
                 .ReturnsAsync(dto);
 
-            var result = await _controller.GetById("IN");
+            var result =
+                await _controller.GetById("IN");
 
             result.Should()
                 .BeOfType<OkObjectResult>();
@@ -62,13 +70,15 @@ namespace Test.Controllers
         [Fact]
         public async Task Create_ShouldReturnOk_WhenCountryCreated()
         {
-            var dto = CountryTestData.GetCountryDto();
+            var dto =
+                CountryTestData.GetCountryDto();
 
             _serviceMock
                 .Setup(x => x.AddAsync(dto))
                 .ReturnsAsync(dto);
 
-            var result = await _controller.Create(dto);
+            var result =
+                await _controller.Create(dto);
 
             result.Should()
                 .BeOfType<OkObjectResult>();
@@ -81,7 +91,8 @@ namespace Test.Controllers
                 .Setup(x => x.DeleteAsync("IN"))
                 .ReturnsAsync(true);
 
-            var result = await _controller.Delete("IN");
+            var result =
+                await _controller.Delete("IN");
 
             result.Should()
                 .BeOfType<OkObjectResult>();
@@ -97,6 +108,44 @@ namespace Test.Controllers
 
             Func<Task> act = async () =>
                 await _controller.GetById("XX");
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Country not found");
+        }
+
+        [Fact]
+        public async Task Create_ShouldThrowException_WhenCountryAlreadyExists()
+        {
+            var dto =
+                CountryTestData.GetCountryDto();
+
+            _serviceMock
+                .Setup(x => x.AddAsync(dto))
+                .ThrowsAsync(
+                    new Exception("Country already exists"));
+
+            Func<Task> act = async () =>
+                await _controller.Create(dto);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Country already exists");
+        }
+
+        [Fact]
+        public async Task Update_ShouldThrowException_WhenCountryNotFound()
+        {
+            var dto =
+                CountryTestData.GetCountryDto();
+
+            _serviceMock
+                .Setup(x => x.UpdateAsync("XX", dto))
+                .ThrowsAsync(
+                    new Exception("Country not found"));
+
+            Func<Task> act = async () =>
+                await _controller.Update("XX", dto);
 
             await act.Should()
                 .ThrowAsync<Exception>()

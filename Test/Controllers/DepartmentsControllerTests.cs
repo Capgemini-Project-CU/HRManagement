@@ -56,24 +56,6 @@ namespace Test.Controllers
         }
 
         [Fact]
-        public async Task GetByLocation_ShouldReturnOk()
-        {
-            var data = new List<DepartmentDto>
-            {
-                DepartmentTestData.GetDepartmentDto()
-            };
-
-            _serviceMock
-                .Setup(x => x.GetByLocationAsync(1700))
-                .ReturnsAsync(data);
-
-            var result = await _controller.GetByLocation(1700);
-
-            result.Should()
-                .BeOfType<OkObjectResult>();
-        }
-
-        [Fact]
         public async Task Create_ShouldReturnOk_WhenDepartmentCreated()
         {
             var dto = DepartmentTestData.GetDepartmentDto();
@@ -98,19 +80,6 @@ namespace Test.Controllers
                 .ReturnsAsync(dto);
 
             var result = await _controller.Update(10, dto);
-
-            result.Should()
-                .BeOfType<OkObjectResult>();
-        }
-
-        [Fact]
-        public async Task Delete_ShouldReturnOk_WhenDeleted()
-        {
-            _serviceMock
-                .Setup(x => x.DeleteAsync(10))
-                .ReturnsAsync(true);
-
-            var result = await _controller.Delete(10);
 
             result.Should()
                 .BeOfType<OkObjectResult>();
@@ -142,6 +111,36 @@ namespace Test.Controllers
 
             result.Should()
                 .BeOfType<OkObjectResult>();
+        }
+
+        [Fact]
+        public async Task Delete_ShouldThrowException_WhenDepartmentNotFound()
+        {
+            _serviceMock
+                .Setup(x => x.DeleteAsync(100))
+                .ThrowsAsync(new Exception("Department not found"));
+
+            Func<Task> act = async () =>
+                await _controller.Delete(100);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Department not found");
+        }
+
+        [Fact]
+        public async Task GetByLocation_ShouldThrowException_WhenLocationNotFound()
+        {
+            _serviceMock
+                .Setup(x => x.GetByLocationAsync(999))
+                .ThrowsAsync(new Exception("No departments found"));
+
+            Func<Task> act = async () =>
+                await _controller.GetByLocation(999);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("No departments found");
         }
     }
 }

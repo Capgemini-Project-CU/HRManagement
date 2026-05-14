@@ -4,6 +4,7 @@ using HumanResource.API.DTOs;
 using HumanResource.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Test.TestData;
 
 namespace Test.Controllers
 {
@@ -25,19 +26,14 @@ namespace Test.Controllers
                     _serviceMock.Object);
         }
 
+        // ---------------- POSITIVE TEST CASES ----------------
+
         [Fact]
         public async Task GetAll_ShouldReturnOk()
         {
             var data = new List<JobHistoryDto>
             {
-                new JobHistoryDto
-                {
-                    EmployeeId = 100,
-                    JobId = "IT_PROG",
-                    DepartmentId = 60,
-                    StartDate = new DateOnly(2024,1,1),
-                    EndDate = new DateOnly(2025,1,1)
-                }
+                JobHistoryTestData.GetJobHistoryDto()
             };
 
             _serviceMock
@@ -54,14 +50,8 @@ namespace Test.Controllers
         [Fact]
         public async Task GetById_ShouldReturnOk_WhenExists()
         {
-            var dto = new JobHistoryDto
-            {
-                EmployeeId = 100,
-                JobId = "IT_PROG",
-                DepartmentId = 60,
-                StartDate = new DateOnly(2024, 1, 1),
-                EndDate = new DateOnly(2025, 1, 1)
-            };
+            var dto =
+                JobHistoryTestData.GetJobHistoryDto();
 
             _serviceMock
                 .Setup(x => x.GetByIdAsync(100))
@@ -77,14 +67,8 @@ namespace Test.Controllers
         [Fact]
         public async Task Add_ShouldReturnOk_WhenCreated()
         {
-            var dto = new JobHistoryDto
-            {
-                EmployeeId = 100,
-                JobId = "IT_PROG",
-                DepartmentId = 60,
-                StartDate = new DateOnly(2024, 1, 1),
-                EndDate = new DateOnly(2025, 1, 1)
-            };
+            var dto =
+                JobHistoryTestData.GetJobHistoryDto();
 
             _serviceMock
                 .Setup(x => x.AddAsync(dto))
@@ -111,6 +95,8 @@ namespace Test.Controllers
                 .BeOfType<OkObjectResult>();
         }
 
+        // ---------------- NEGATIVE TEST CASES ----------------
+
         [Fact]
         public async Task GetById_ShouldThrowException_WhenNotFound()
         {
@@ -125,6 +111,57 @@ namespace Test.Controllers
             await act.Should()
                 .ThrowAsync<Exception>()
                 .WithMessage("Job history not found");
+        }
+
+        [Fact]
+        public async Task Add_ShouldThrowException_WhenInvalid()
+        {
+            var dto =
+                JobHistoryTestData.GetJobHistoryDto();
+
+            _serviceMock
+                .Setup(x => x.AddAsync(dto))
+                .ThrowsAsync(
+                    new Exception("Invalid job history"));
+
+            Func<Task> act = async () =>
+                await _controller.AddJobHistory(dto);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Invalid job history");
+        }
+
+        [Fact]
+        public async Task Delete_ShouldThrowException_WhenNotFound()
+        {
+            _serviceMock
+                .Setup(x => x.DeleteAsync(999))
+                .ThrowsAsync(
+                    new Exception("Job history not found"));
+
+            Func<Task> act = async () =>
+                await _controller.DeleteJobHistory(999);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Job history not found");
+        }
+
+        [Fact]
+        public async Task GetAll_ShouldThrowException_WhenFailed()
+        {
+            _serviceMock
+                .Setup(x => x.GetAllAsync())
+                .ThrowsAsync(
+                    new Exception("Database error"));
+
+            Func<Task> act = async () =>
+                await _controller.GetAllJobHistory();
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Database error");
         }
     }
 }

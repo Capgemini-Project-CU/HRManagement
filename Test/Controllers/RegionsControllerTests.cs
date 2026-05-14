@@ -15,27 +15,20 @@ namespace Test.Controllers
 {
     public class RegionsControllerTests
     {
-        private readonly Mock<IRegionService> _serviceMock;
-        private readonly RegionsController _controller;
+        private readonly Mock<IRegionService>
+            _serviceMock;
+
+        private readonly RegionsController
+            _controller;
 
         public RegionsControllerTests()
         {
-            _serviceMock = new Mock<IRegionService>();
-            _controller = new RegionsController(_serviceMock.Object);
-        }
+            _serviceMock =
+                new Mock<IRegionService>();
 
-        [Fact]
-        public async Task GetById_ShouldReturnOk_WhenRegionExists()
-        {
-            var dto = RegionTestData.GetRegionDto();
-
-            _serviceMock
-                .Setup(x => x.GetByIdAsync(10))
-                .ReturnsAsync(dto);
-
-            var result = await _controller.GetById(10);
-
-            result.Should().BeOfType<OkObjectResult>();
+            _controller =
+                new RegionsController(
+                    _serviceMock.Object);
         }
 
         [Fact]
@@ -50,35 +43,59 @@ namespace Test.Controllers
                 .Setup(x => x.GetAllAsync())
                 .ReturnsAsync(data);
 
-            var result = await _controller.GetAll();
+            var result =
+                await _controller.GetAll();
 
-            result.Should().BeOfType<OkObjectResult>();
+            result.Should()
+                .BeOfType<OkObjectResult>();
         }
 
         [Fact]
-        public async Task Create_ShouldReturnCreatedAtAction()
+        public async Task GetById_ShouldReturnOk_WhenRegionExists()
         {
-            var dto = RegionTestData.GetRegionDto();
+            var dto =
+                RegionTestData.GetRegionDto();
+
+            _serviceMock
+                .Setup(x => x.GetByIdAsync(10))
+                .ReturnsAsync(dto);
+
+            var result =
+                await _controller.GetById(10);
+
+            result.Should()
+                .BeOfType<OkObjectResult>();
+        }
+
+        [Fact]
+        public async Task Create_ShouldReturnOk_WhenRegionCreated()
+        {
+            var dto =
+                RegionTestData.GetRegionDto();
 
             _serviceMock
                 .Setup(x => x.AddAsync(dto))
                 .ReturnsAsync(dto);
 
-            var result = await _controller.Create(dto);
+            var result =
+                await _controller.Create(dto);
 
-            result.Should().BeOfType<OkObjectResult>();
+            result.Should()
+                .BeOfType<OkObjectResult>();
         }
 
         [Fact]
-        public async Task Delete_ShouldReturnOk()
+        public async Task Delete_ShouldReturnOk_WhenDeleted()
         {
             _serviceMock
                 .Setup(x => x.DeleteAsync(10))
                 .ReturnsAsync(true);
 
-            var result = await _controller.Delete(10);
+            var result =
+                await _controller.Delete(10);
 
-            result.Should().BeOfType<OkObjectResult>();
+            result.Should()
+                .BeOfType<OkObjectResult>();
         }
 
         [Fact]
@@ -86,10 +103,49 @@ namespace Test.Controllers
         {
             _serviceMock
                 .Setup(x => x.GetByIdAsync(99))
-                .ThrowsAsync(new Exception("Region not found"));
+                .ThrowsAsync(
+                    new Exception("Region not found"));
 
             Func<Task> act = async () =>
                 await _controller.GetById(99);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Region not found");
+        }
+
+        [Fact]
+        public async Task Create_ShouldThrowException_WhenRegionAlreadyExists()
+        {
+            var dto =
+                RegionTestData.GetRegionDto();
+
+            _serviceMock
+                .Setup(x => x.AddAsync(dto))
+                .ThrowsAsync(
+                    new Exception("Region already exists"));
+
+            Func<Task> act = async () =>
+                await _controller.Create(dto);
+
+            await act.Should()
+                .ThrowAsync<Exception>()
+                .WithMessage("Region already exists");
+        }
+
+        [Fact]
+        public async Task Update_ShouldThrowException_WhenRegionNotFound()
+        {
+            var dto =
+                RegionTestData.GetRegionDto();
+
+            _serviceMock
+                .Setup(x => x.UpdateAsync(99, dto))
+                .ThrowsAsync(
+                    new Exception("Region not found"));
+
+            Func<Task> act = async () =>
+                await _controller.Update(99, dto);
 
             await act.Should()
                 .ThrowAsync<Exception>()
@@ -101,7 +157,9 @@ namespace Test.Controllers
         {
             _serviceMock
                 .Setup(x => x.DeleteAsync(99))
-                .ThrowsAsync(new Exception("Region not found"));
+                .ThrowsAsync(
+                    new Exception("Region not found"));
+
             Func<Task> act = async () =>
                 await _controller.Delete(99);
 

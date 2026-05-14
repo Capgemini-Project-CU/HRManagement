@@ -368,3 +368,16 @@ WHERE [d].[department_id] = @__p_0
 2026-05-13 17:49:38.921 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API) in 708.2394ms
 2026-05-13 17:49:38.926 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API)'
 2026-05-13 17:49:38.929 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/my-team - 200 null application/json; charset=utf-8 954.1448ms
+2026-05-13 23:45:51.629 +05:30 [INF] User profile is available. Using 'C:\Users\visha\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-13 23:45:52.015 +05:30 [INF] Now listening on: http://localhost:5032
+2026-05-13 23:45:52.170 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-13 23:45:52.172 +05:30 [INF] Hosting environment: Development
+2026-05-13 23:45:52.173 +05:30 [INF] Content root path: D:\Capgemini_Final_Project\HRManagement\HumanResource.API
+2026-05-13 23:45:53.706 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/index.html - null null
+2026-05-13 23:45:54.156 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/index.html - 200 null text/html;charset=utf-8 483.7101ms
+2026-05-13 23:45:54.612 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-13 23:45:54.612 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_vs/browserLink - null null
+2026-05-13 23:45:54.620 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - 200 16519 application/javascript; charset=utf-8 7.8932ms
+2026-05-13 23:45:54.686 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_vs/browserLink - 200 null text/javascript; charset=UTF-8 74.1603ms
+2026-05-13 23:45:55.233 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - null null
+2026-05-13 23:45:55.258 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 25.1329ms

@@ -190,12 +190,13 @@ namespace HumanResource.API.Services.Implementations
 
             return _mapper.Map<IEnumerable<MyTeamEmployeeDto>>(employees);
         }
-        public async Task<EmployeeDto>
-            GetHighestSalaryEmployeeAsync()
+        public async Task<EmployeeDto> GetHighestSalaryEmployeeAsync()
         {
             var employee =
-                await _employeeRepository
-                    .GetHighestSalaryEmployeeAsync();
+                await _employeeRepository.GetHighestSalaryEmployeeAsync();
+
+            if (employee is null)
+                throw new NotFoundException("No employees found.");
 
             return _mapper.Map<EmployeeDto>(employee);
         }

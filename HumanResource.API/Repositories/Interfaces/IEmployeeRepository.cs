@@ -4,7 +4,7 @@ namespace HumanResource.API.Repositories.Interfaces
     public interface IEmployeeRepository
     {
         Task<IEnumerable<Employee>> GetAllAsync();
-        Task<Employee> GetByIdAsync(int id);
+        Task<Employee?> GetByIdAsync(int id);
         Task<Employee> AddAsync(Employee employee);
         Task<Employee> UpdateAsync(Employee employee);
         Task<bool> DeleteAsync(int id);
@@ -15,6 +15,6 @@ namespace HumanResource.API.Repositories.Interfaces
         Task<IEnumerable<Employee>> SearchAsync(string keyword);
         Task<(IEnumerable<Employee> Employees, int TotalRecords)> GetPaginatedAsync(int pageNumber, int pageSize);
         Task<IEnumerable<Employee>> GetMyTeamAsync(decimal managerId);
-        Task<Employee> GetHighestSalaryEmployeeAsync();
+        Task<Employee?> GetHighestSalaryEmployeeAsync();
     }
 }

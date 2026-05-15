@@ -15,7 +15,7 @@ namespace HumanResource.API.Repositories.Implementations
         {
             return await _context.JobHistories.ToListAsync();
         }
-        public async Task<JobHistory> GetByIdAsync(int employeeId)
+        public async Task<JobHistory?> GetByIdAsync(int employeeId)
         {
             return await _context.JobHistories.FirstOrDefaultAsync(j => j.EmployeeId == employeeId);
         }

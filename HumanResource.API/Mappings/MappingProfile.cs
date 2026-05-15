@@ -52,7 +52,7 @@ namespace HumanResource.API.Mappings
                 .ForMember(dest => dest.CountryId,
                     opt => opt.MapFrom(src => src.CountryId.Trim()))
                 .ForMember(dest => dest.RegionName,
-                    opt => opt.MapFrom(src => src.Region.RegionName));
+                    opt => opt.MapFrom(src => src.Region != null ? src.Region.RegionName : string.Empty));
 
             CreateMap<CountryDto, Country>()
                 .ForMember(dest => dest.Region, opt => opt.Ignore());

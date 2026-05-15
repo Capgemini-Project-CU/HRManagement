@@ -158,6 +158,32 @@ namespace HumanResource.API.Controllers
             return Ok(employees);
         }
 
+        [HttpPut("my-team/{id}")]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> UpdateTeamMember(int id, [FromBody] MyTeamUpdateDto updateDto)
+        {
+            var employeeIdClaim = User.FindFirst("EmployeeId");
+            if (employeeIdClaim == null)
+            {
+                return Unauthorized("EmployeeId not found in token");
+            }
+
+            int managerId = Convert.ToInt32(Convert.ToDecimal(employeeIdClaim.Value));
+
+            var employee = await _employeeService.GetByIdAsync(id);
+            if (employee.ManagerId != managerId)
+            {
+                return Forbid();
+            }
+
+            employee.FirstName = updateDto.FirstName;
+            employee.LastName = updateDto.LastName;
+            employee.PhoneNumber = updateDto.PhoneNumber ?? employee.PhoneNumber;
+
+            var updated = await _employeeService.UpdateAsync(employee);
+            return Ok(updated);
+        }
+
         [HttpGet("highest-salary")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetHighestSalaryEmployee()

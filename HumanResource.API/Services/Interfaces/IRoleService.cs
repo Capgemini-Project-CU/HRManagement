@@ -6,7 +6,7 @@ namespace HumanResource.API.Services.Interfaces
     {
         Task<IEnumerable<RoleDto>> GetAllAsync();
 
-        Task<RoleDto?> GetByIdAsync(int id);
+        Task<RoleDto> GetByIdAsync(int id);
 
         Task<RoleDto> CreateAsync(RoleDto dto);
 

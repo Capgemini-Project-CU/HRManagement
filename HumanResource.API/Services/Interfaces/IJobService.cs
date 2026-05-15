@@ -7,7 +7,7 @@ namespace HumanResource.API.Services.Interfaces
         Task<IEnumerable<JobDto>> GetAllAsync();
         Task<IEnumerable<JobDto>> GetBySalaryRangeAsync(decimal min, decimal max);
 
-        Task<JobDto?> GetByIdAsync(string id);
+        Task<JobDto> GetByIdAsync(string id);
 
         Task<JobDto> CreateAsync(JobDto dto);
 

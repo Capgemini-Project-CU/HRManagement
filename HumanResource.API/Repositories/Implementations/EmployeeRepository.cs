@@ -19,7 +19,7 @@ namespace HumanResource.API.Repositories.Implementations
             return await _context.Employees.ToListAsync();
         }
 
-        public async Task<Employee> GetByIdAsync(int id)
+        public async Task<Employee?> GetByIdAsync(int id)
         {
             var employee = await _context.Employees
                 .FirstOrDefaultAsync(e => e.EmployeeId == id);
@@ -109,9 +109,9 @@ namespace HumanResource.API.Repositories.Implementations
         {
             return await _context.Employees
                 .Where(e =>
-                    e.FirstName.Contains(keyword) ||
-                    e.LastName.Contains(keyword) ||
-                    e.Email.Contains(keyword))
+                    (e.FirstName != null && e.FirstName.Contains(keyword)) ||
+                    (e.LastName  != null && e.LastName.Contains(keyword))  ||
+                    (e.Email     != null && e.Email.Contains(keyword)))
                 .ToListAsync();
         }
 
@@ -143,7 +143,7 @@ namespace HumanResource.API.Repositories.Implementations
 
             return employees;
         }
-        public async Task<Employee> GetHighestSalaryEmployeeAsync()
+        public async Task<Employee?> GetHighestSalaryEmployeeAsync()
         {
             return await _context.Employees.OrderByDescending(e => e.Salary).FirstOrDefaultAsync();
         }

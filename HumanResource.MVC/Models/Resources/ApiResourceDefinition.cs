@@ -6,6 +6,8 @@ public class ApiResourceDefinition
 
     public string Title { get; set; } = string.Empty;
 
+    public string ControllerName { get; set; } = string.Empty;
+
     public string Endpoint { get; set; } = string.Empty;
 
     public string IdField { get; set; } = string.Empty;

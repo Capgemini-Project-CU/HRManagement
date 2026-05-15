@@ -41,6 +41,7 @@ public class ResourceCatalog
         {
             Key = "employees",
             Title = "Employees",
+            ControllerName = "Employees",
             Endpoint = "api/Employees",
             IdField = "employeeId",
             Icon = "",
@@ -80,6 +81,7 @@ public class ResourceCatalog
         {
             Key = "departments",
             Title = "Departments",
+            ControllerName = "Departments",
             Endpoint = "api/Departments",
             IdField = "departmentId",
             Icon = "",
@@ -110,6 +112,7 @@ public class ResourceCatalog
         {
             Key = "jobs",
             Title = "Jobs",
+            ControllerName = "Jobs",
             Endpoint = "api/Jobs",
             IdField = "jobId",
             Icon = "",
@@ -138,6 +141,7 @@ public class ResourceCatalog
         {
             Key = "job-history",
             Title = "Job History",
+            ControllerName = "JobHistory",
             Endpoint = "api/JobHistory",
             IdField = "employeeId",
             Icon = "",
@@ -168,6 +172,7 @@ public class ResourceCatalog
         {
             Key = "roles",
             Title = "Roles",
+            ControllerName = "Roles",
             Endpoint = "api/Roles",
             IdField = "roleId",
             Icon = "",
@@ -190,6 +195,7 @@ public class ResourceCatalog
         {
             Key = "regions",
             Title = "Regions",
+            ControllerName = "Regions",
             Endpoint = "api/Regions",
             IdField = "regionId",
             Icon = "",
@@ -213,6 +219,7 @@ public class ResourceCatalog
         {
             Key = "countries",
             Title = "Countries",
+            ControllerName = "Countries",
             Endpoint = "api/Countries",
             IdField = "countryId",
             Icon = "",
@@ -241,6 +248,7 @@ public class ResourceCatalog
         {
             Key = "locations",
             Title = "Locations",
+            ControllerName = "Locations",
             Endpoint = "api/Locations",
             IdField = "locationId",
             Icon = "",

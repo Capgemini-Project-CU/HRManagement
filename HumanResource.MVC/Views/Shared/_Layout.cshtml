@@ -30,11 +30,11 @@
                 <a asp-controller="Home" asp-action="Index"><span>Dashboard</span></a>
                 @if (string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase))
                 {
-                    <a asp-controller="Resources" asp-action="MyTeam"><span>My Team</span></a>
+                    <a asp-controller="Employees" asp-action="MyTeam"><span>My Team</span></a>
                 }
                 @foreach (var resource in Catalog.All.Where(item => Catalog.IsAllowed(role, item.ViewRoles)))
                 {
-                    <a asp-controller="Resources" asp-action="Index" asp-route-key="@resource.Key">
+                    <a asp-controller="@resource.ControllerName" asp-action="Index">
                         <span>@resource.Title</span>
                     </a>
                 }

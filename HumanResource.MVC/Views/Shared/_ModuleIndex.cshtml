@@ -3,8 +3,6 @@
     ViewData["Title"] = Model.Resource.Title;
     var tableFields = Model.Resource.Fields.Where(field => field.ShowInTable).ToList();
     var createFields = Model.Resource.Fields.Where(field => !field.ReadOnly && field.ShowInCreate).ToList();
-    var editFields = Model.Resource.Fields.Where(field => !field.ReadOnly && field.ShowInEdit).ToList();
-    var editShowsIdField = editFields.Any(field => string.Equals(field.Name, Model.Resource.IdField, StringComparison.OrdinalIgnoreCase));
     var hasActions = Model.Resource.ShowDetails || Model.CanEdit || Model.CanDelete;
     var showFilters = Model.Resource.Filters.Count > 0
         && !(string.Equals(Model.Resource.Key, "job-history", StringComparison.OrdinalIgnoreCase)
@@ -62,12 +60,6 @@
         };
     }
 
-    private static string InputValue(System.Text.Json.JsonElement row, ApiField field)
-    {
-        var value = Value(row, field.Name);
-        return field.Type == ApiFieldType.Date && value.Length >= 10 ? value[..10] : value;
-    }
-
     private static bool RoleAllowed(string role, IEnumerable<string> roles)
     {
         return roles.Any(item => string.Equals(item, role, StringComparison.OrdinalIgnoreCase));
@@ -101,7 +93,7 @@
 {
     <div class="alert alert-info border-0 shadow-sm">
         Showing result for <strong>@Model.ActiveFilterTitle</strong>.
-        <a asp-controller="Resources" asp-action="Index" asp-route-key="@Model.Resource.Key" class="ms-2">Clear</a>
+        <a asp-action="Index" class="ms-2">Clear</a>
     </div>
 }
 
@@ -110,7 +102,7 @@
     <section class="filter-strip">
         @foreach (var filter in Model.Resource.Filters.Where(filter => RoleAllowed(Model.Role, filter.Roles)))
         {
-            <form asp-controller="Resources" asp-action="Filter" asp-route-key="@Model.Resource.Key" asp-route-filterKey="@filter.Key" method="post" class="filter-form">
+            <form asp-action="Filter" asp-route-filterKey="@filter.Key" method="post" class="filter-form">
                 @Html.AntiForgeryToken()
                 <strong>@filter.Title</strong>
                 @foreach (var field in filter.Fields)
@@ -182,13 +174,13 @@
                                     }
                                     @if (Model.CanEdit && !string.IsNullOrWhiteSpace(id))
                                     {
-                                        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#editModal@index">
+                                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@id">
                                             Edit
-                                        </button>
+                                        </a>
                                     }
                                     @if (Model.CanDelete && !string.IsNullOrWhiteSpace(id))
                                     {
-                                        <form asp-controller="Resources" asp-action="Delete" asp-route-key="@Model.Resource.Key" asp-route-id="@id" method="post" onsubmit="return confirm('Delete this record?');">
+                                        <form asp-action="Delete" asp-route-id="@id" method="post" onsubmit="return confirm('Delete this record?');">
                                             @Html.AntiForgeryToken()
                                             <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
                                         </form>
@@ -209,14 +201,10 @@
         <span>Page @Model.PageNumber of @Model.TotalPages</span>
         <div>
             <a class="btn btn-sm btn-outline-primary @(Model.PageNumber <= 1 ? "disabled" : null)"
-               asp-controller="Resources"
                asp-action="Index"
-               asp-route-key="@Model.Resource.Key"
                asp-route-pageNumber="@(Model.PageNumber - 1)">Previous</a>
             <a class="btn btn-sm btn-outline-primary @(Model.PageNumber >= Model.TotalPages ? "disabled" : null)"
-               asp-controller="Resources"
                asp-action="Index"
-               asp-route-key="@Model.Resource.Key"
                asp-route-pageNumber="@(Model.PageNumber + 1)">Next</a>
         </div>
     </nav>
@@ -227,7 +215,7 @@
     <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <form asp-controller="Resources" asp-action="Create" asp-route-key="@Model.Resource.Key" method="post">
+                <form asp-action="Create" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
                         <h5 class="modal-title">Add @Model.Resource.Title</h5>
@@ -270,7 +258,6 @@
 @for (var index = 0; index < Model.Records.Count; index++)
 {
     var row = Model.Records[index];
-    var id = Value(row, Model.Resource.IdField);
 
     @if (Model.Resource.ShowDetails)
     {
@@ -291,56 +278,6 @@
                             </div>
                         }
                     </div>
-                </div>
-            </div>
-        </div>
-    }
-
-    @if (Model.CanEdit && !string.IsNullOrWhiteSpace(id))
-    {
-        <div class="modal fade" id="editModal@index" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <form asp-controller="Resources" asp-action="Update" asp-route-key="@Model.Resource.Key" asp-route-id="@id" method="post">
-                        @Html.AntiForgeryToken()
-                        @if (!editShowsIdField)
-                        {
-                            <input type="hidden" name="@Model.Resource.IdField" value="@id" />
-                        }
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit @Model.Resource.Title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body form-grid">
-                            @foreach (var field in editFields)
-                            {
-                                var currentValue = InputValue(row, field);
-                                <div>
-                                    <label class="form-label" for="edit-@index-@field.Name">@field.Label</label>
-                                    @if (!string.IsNullOrWhiteSpace(field.LookupKey) && Model.LookupOptions.TryGetValue(field.LookupKey, out var options))
-                                    {
-                                        <div class="select-wrap">
-                                            <select id="edit-@index-@field.Name" name="@field.Name" class="form-select" required="@(field.Required ? "required" : null)">
-                                                <option value="">Select @field.Label</option>
-                                                @foreach (var option in options)
-                                                {
-                                                    <option value="@option.Value" selected="@(string.Equals(option.Value, currentValue, StringComparison.OrdinalIgnoreCase) ? "selected" : null)">@option.Text</option>
-                                                }
-                                            </select>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <input id="edit-@index-@field.Name" name="@field.Name" value="@currentValue" type="@InputType(field)" class="form-control" required="@(field.Required ? "required" : null)" step="@(field.Type == ApiFieldType.Number ? "0.01" : null)" />
-                                    }
-                                </div>
-                            }
-                        </div>
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

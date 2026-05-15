@@ -7,35 +7,30 @@ namespace HumanResource.MVC.Services;
 public class HrApiClient
 {
     private readonly HttpClient _httpClient;
+    private readonly ILogger<HrApiClient> _logger;
+
     private readonly JsonSerializerOptions _jsonOptions = new(JsonSerializerDefaults.Web)
     {
         PropertyNameCaseInsensitive = true
     };
 
-    public HrApiClient(HttpClient httpClient)
+    public HrApiClient(HttpClient httpClient, ILogger<HrApiClient> logger)
     {
         _httpClient = httpClient;
+        _logger     = logger;
     }
 
-    public async Task<ApiResult<JsonElement?>> GetAsync(string path, string? token)
-    {
-        return await SendAsync(HttpMethod.Get, path, null, token);
-    }
+    public Task<ApiResult<JsonElement?>> GetAsync(string path, string? token)
+        => SendAsync(HttpMethod.Get, path, null, token);
 
-    public async Task<ApiResult<JsonElement?>> PostAsync(string path, object payload, string? token)
-    {
-        return await SendAsync(HttpMethod.Post, path, payload, token);
-    }
+    public Task<ApiResult<JsonElement?>> PostAsync(string path, object payload, string? token)
+        => SendAsync(HttpMethod.Post, path, payload, token);
 
-    public async Task<ApiResult<JsonElement?>> PutAsync(string path, object payload, string? token)
-    {
-        return await SendAsync(HttpMethod.Put, path, payload, token);
-    }
+    public Task<ApiResult<JsonElement?>> PutAsync(string path, object payload, string? token)
+        => SendAsync(HttpMethod.Put, path, payload, token);
 
-    public async Task<ApiResult<JsonElement?>> DeleteAsync(string path, string? token)
-    {
-        return await SendAsync(HttpMethod.Delete, path, null, token);
-    }
+    public Task<ApiResult<JsonElement?>> DeleteAsync(string path, string? token)
+        => SendAsync(HttpMethod.Delete, path, null, token);
 
     private async Task<ApiResult<JsonElement?>> SendAsync(
         HttpMethod method,
@@ -48,9 +43,7 @@ public class HrApiClient
             using var request = new HttpRequestMessage(method, path);
 
             if (!string.IsNullOrWhiteSpace(token))
-            {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
 
             if (payload is not null)
             {
@@ -63,25 +56,39 @@ public class HrApiClient
 
             if (!response.IsSuccessStatusCode)
             {
-                return ApiResult<JsonElement?>.Failure(ReadError(content), (int)response.StatusCode);
+                var error = ReadError(content);
+                _logger.LogWarning(
+                    "API {Method} {Path} responded {StatusCode}: {Error}",
+                    method, path, (int)response.StatusCode, error);
+
+                return ApiResult<JsonElement?>.Failure(error, (int)response.StatusCode);
             }
 
             if (string.IsNullOrWhiteSpace(content))
+                return ApiResult<JsonElement?>.Success(null, (int)response.StatusCode);
+
+            try
             {
+                using var document = JsonDocument.Parse(content);
+                return ApiResult<JsonElement?>.Success(
+                    document.RootElement.Clone(), (int)response.StatusCode);
+            }
+            catch (JsonException)
+            {
+                // API returned plain text (e.g. a delete confirmation message).
+                // Treat as success; the MVC layer does not need the raw string.
                 return ApiResult<JsonElement?>.Success(null, (int)response.StatusCode);
             }
-
-            using var document = JsonDocument.Parse(content);
-            return ApiResult<JsonElement?>.Success(document.RootElement.Clone(), (int)response.StatusCode);
         }
-        catch (HttpRequestException)
+        catch (HttpRequestException ex)
         {
+            _logger.LogError(ex, "API is unreachable at {BaseAddress}", _httpClient.BaseAddress);
             return ApiResult<JsonElement?>.Failure(
-                "The API is not reachable. Start HumanResource.API and try again.",
-                0);
+                "The API is not reachable. Start HumanResource.API and try again.", 0);
         }
-        catch (TaskCanceledException)
+        catch (TaskCanceledException ex)
         {
+            _logger.LogError(ex, "API request timed out: {Method} {Path}", method, path);
             return ApiResult<JsonElement?>.Failure("The API request timed out.", 0);
         }
     }
@@ -89,9 +96,7 @@ public class HrApiClient
     private static string ReadError(string content)
     {
         if (string.IsNullOrWhiteSpace(content))
-        {
             return "The API returned an error.";
-        }
 
         try
         {
@@ -101,16 +106,14 @@ public class HrApiClient
             if (root.ValueKind == JsonValueKind.Object)
             {
                 if (root.TryGetProperty("message", out var message))
-                {
                     return message.ToString();
-                }
 
                 if (root.TryGetProperty("title", out var title))
                 {
-                    var validationErrors = ReadValidationErrors(root);
-                    return string.IsNullOrWhiteSpace(validationErrors)
+                    var validation = ReadValidationErrors(root);
+                    return string.IsNullOrWhiteSpace(validation)
                         ? title.ToString()
-                        : $"{title} {validationErrors}";
+                        : $"{title} {validation}";
                 }
             }
         }
@@ -133,14 +136,12 @@ public class HrApiClient
         var messages = new List<string>();
         foreach (var property in errors.EnumerateObject())
         {
-            if (property.Value.ValueKind != JsonValueKind.Array)
-            {
-                continue;
-            }
+            if (property.Value.ValueKind != JsonValueKind.Array) continue;
 
-            messages.AddRange(property.Value.EnumerateArray()
-                .Select(message => message.ToString())
-                .Where(message => !string.IsNullOrWhiteSpace(message)));
+            messages.AddRange(
+                property.Value.EnumerateArray()
+                    .Select(m => m.ToString())
+                    .Where(m => !string.IsNullOrWhiteSpace(m)));
         }
 
         return messages.Count == 0 ? string.Empty : string.Join(" ", messages);

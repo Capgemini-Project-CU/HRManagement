@@ -11,11 +11,16 @@ public class ResourcesController : MvcControllerBase
 {
     private readonly HrApiClient _apiClient;
     private readonly ResourceCatalog _catalog;
+    private readonly ILogger<ResourcesController> _logger;
 
-    public ResourcesController(HrApiClient apiClient, ResourceCatalog catalog)
+    public ResourcesController(
+        HrApiClient apiClient,
+        ResourceCatalog catalog,
+        ILogger<ResourcesController> logger)
     {
         _apiClient = apiClient;
-        _catalog = catalog;
+        _catalog   = catalog;
+        _logger    = logger;
     }
 
     [HttpGet("{key}")]
@@ -63,7 +68,7 @@ public class ResourcesController : MvcControllerBase
     }
 
     [HttpGet("MyTeam")]
-    public async Task<IActionResult> MyTeam()
+    public async Task<IActionResult> MyTeam(string? notice = null)
     {
         var denied = RequireRole("Manager");
         if (denied is not null)
@@ -71,13 +76,15 @@ public class ResourcesController : MvcControllerBase
             return denied;
         }
 
-        var employees = _catalog.Find("employees");
-        if (employees is null)
-        {
-            return NotFound();
-        }
+        var team = BuildTeamResource();
+        var model = await BuildPage(team, team.Endpoint);
+        model.Notice = notice;
+        return View("Index", model);
+    }
 
-        var team = new ApiResourceDefinition
+    private static ApiResourceDefinition BuildTeamResource()
+    {
+        return new ApiResourceDefinition
         {
             Key = "my-team",
             Title = "My Team",
@@ -85,17 +92,18 @@ public class ResourcesController : MvcControllerBase
             IdField = "employeeId",
             Summary = "Direct reports assigned to you.",
             ViewRoles = ["Manager"],
+            EditRoles = ["Manager"],
             Fields =
             [
                 new ApiField { Name = "employeeId", Label = "Employee", Type = ApiFieldType.Number, ShowInTable = false, ReadOnly = true },
-                new ApiField { Name = "fullName", Label = "Name", ReadOnly = true },
-                new ApiField { Name = "email", Label = "Email", ReadOnly = true },
-                new ApiField { Name = "phoneNumber", Label = "Phone", ReadOnly = true },
-                new ApiField { Name = "hireDate", Label = "Hire date", Type = ApiFieldType.Date, ReadOnly = true }
+                new ApiField { Name = "fullName", Label = "Name", ShowInTable = true, ReadOnly = true, ShowInEdit = false },
+                new ApiField { Name = "email", Label = "Email", ShowInTable = true, ReadOnly = true, ShowInEdit = false },
+                new ApiField { Name = "hireDate", Label = "Hire date", Type = ApiFieldType.Date, ShowInTable = true, ReadOnly = true, ShowInEdit = false },
+                new ApiField { Name = "phoneNumber", Label = "Phone", ShowInTable = true, ShowInEdit = true },
+                new ApiField { Name = "firstName", Label = "First name", ShowInTable = false, ShowInEdit = true, Required = true },
+                new ApiField { Name = "lastName", Label = "Last name", ShowInTable = false, ShowInEdit = true, Required = true }
             ]
         };
-
-        return View("Index", await BuildPage(team, team.Endpoint));
     }
 
     [HttpPost("{key}/create")]
@@ -117,6 +125,11 @@ public class ResourcesController : MvcControllerBase
             : Token;
         var result = await _apiClient.PostAsync(createEndpoint, payload, createToken);
 
+        if (result.Succeeded)
+            _logger.LogInformation("Record created in {Resource} by {User}", key, Email);
+        else
+            _logger.LogWarning("Create failed in {Resource} by {User}: {Error}", key, Email, result.ErrorMessage);
+
         return await RedirectAfterWrite(resource.Value, result, "Record created.");
     }
 
@@ -124,6 +137,11 @@ public class ResourcesController : MvcControllerBase
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update(string key, string id)
     {
+        if (string.Equals(key, "my-team", StringComparison.OrdinalIgnoreCase))
+        {
+            return await UpdateMyTeamMember(id);
+        }
+
         var resource = FindAllowed(key, Operation.Edit);
         if (resource.Result is not null)
         {
@@ -134,7 +152,50 @@ public class ResourcesController : MvcControllerBase
         var path = $"{resource.Value!.Endpoint}/{Uri.EscapeDataString(id)}";
         var result = await _apiClient.PutAsync(path, payload, Token);
 
-        return await RedirectAfterWrite(resource.Value, result, "Record updated.");
+        if (result.Succeeded)
+            _logger.LogInformation("Record {Id} updated in {Resource} by {User}", id, key, Email);
+        else
+            _logger.LogWarning("Update failed for {Id} in {Resource} by {User}: {Error}", id, key, Email, result.ErrorMessage);
+
+        if (IsAjaxRequest())
+        {
+            return result.Succeeded
+                ? Ok(new { redirectUrl = Url.Action(nameof(Index), new { key = resource.Value!.Key, notice = "Record updated." }) })
+                : BadRequest(new { error = result.ErrorMessage ?? "Update failed." });
+        }
+
+        return await RedirectAfterWrite(resource.Value, result, "Record updated.", editId: id);
+    }
+
+    private async Task<IActionResult> UpdateMyTeamMember(string id)
+    {
+        var denied = RequireRole("Manager");
+        if (denied is not null)
+        {
+            return denied;
+        }
+
+        var team = BuildTeamResource();
+        var payload = BuildPayload(team, isUpdate: true, id);
+        var path = $"api/Employees/my-team/{Uri.EscapeDataString(id)}";
+        var result = await _apiClient.PutAsync(path, payload, Token);
+
+        if (IsAjaxRequest())
+        {
+            return result.Succeeded
+                ? Ok(new { redirectUrl = Url.Action(nameof(MyTeam), new { notice = "Record updated." }) })
+                : BadRequest(new { error = result.ErrorMessage ?? "Update failed." });
+        }
+
+        if (result.Succeeded)
+        {
+            return RedirectToAction(nameof(MyTeam), new { notice = "Record updated." });
+        }
+
+        var model = await BuildPage(team, team.Endpoint);
+        model.Error = result.ErrorMessage ?? "The action could not be completed.";
+        model.EditId = id;
+        return View("Index", model);
     }
 
     [HttpPost("{key}/delete")]
@@ -149,6 +210,11 @@ public class ResourcesController : MvcControllerBase
 
         var path = $"{resource.Value!.Endpoint}/{Uri.EscapeDataString(id)}";
         var result = await _apiClient.DeleteAsync(path, Token);
+
+        if (result.Succeeded)
+            _logger.LogInformation("Record {Id} deleted from {Resource} by {User}", id, key, Email);
+        else
+            _logger.LogWarning("Delete failed for {Id} in {Resource} by {User}: {Error}", id, key, Email, result.ErrorMessage);
 
         return await RedirectAfterWrite(resource.Value, result, "Record deleted.");
     }
@@ -215,10 +281,11 @@ public class ResourcesController : MvcControllerBase
             : (null, RedirectToAction("AccessDenied", "Account"));
     }
 
-    private bool RoleIs(params string[] roles)
-    {
-        return roles.Any(role => string.Equals(role, Role, StringComparison.OrdinalIgnoreCase));
-    }
+    private bool IsAjaxRequest()
+        => string.Equals(
+            Request.Headers["X-Requested-With"],
+            "XMLHttpRequest",
+            StringComparison.OrdinalIgnoreCase);
 
     private async Task<ResourcePageViewModel> BuildPage(ApiResourceDefinition resource, string endpoint)
     {
@@ -278,7 +345,8 @@ public class ResourcesController : MvcControllerBase
     private async Task<IActionResult> RedirectAfterWrite(
         ApiResourceDefinition resource,
         ApiResult<JsonElement?> result,
-        string successMessage)
+        string successMessage,
+        string? editId = null)
     {
         if (result.Succeeded)
         {
@@ -287,6 +355,7 @@ public class ResourcesController : MvcControllerBase
 
         var model = await BuildPage(resource, resource.Endpoint);
         model.Error = result.ErrorMessage ?? "The action could not be completed.";
+        model.EditId = editId;
         return View("Index", model);
     }
 
@@ -416,7 +485,7 @@ public class ResourcesController : MvcControllerBase
             "employees" => new LookupOption
             {
                 Value = Value(row, "employeeId"),
-                Text = Join(Value(row, "firstName"), Value(row, "lastName"), Value(row, "email"))
+                Text = Join(Value(row, "firstName"), Value(row, "lastName"))
             },
             "departments" => new LookupOption
             {
@@ -480,30 +549,6 @@ public class ResourcesController : MvcControllerBase
     private static string Join(params string[] parts)
     {
         return string.Join(" - ", parts.Where(part => !string.IsNullOrWhiteSpace(part)));
-    }
-
-    private static IReadOnlyList<JsonElement> ExtractRows(JsonElement? data)
-    {
-        if (data is null)
-        {
-            return [];
-        }
-
-        var root = data.Value;
-
-        if (root.ValueKind == JsonValueKind.Array)
-        {
-            return root.EnumerateArray().Select(item => item.Clone()).ToList();
-        }
-
-        if (root.ValueKind == JsonValueKind.Object
-            && root.TryGetProperty("data", out var page)
-            && page.ValueKind == JsonValueKind.Array)
-        {
-            return page.EnumerateArray().Select(item => item.Clone()).ToList();
-        }
-
-        return [root.Clone()];
     }
 
     private enum Operation

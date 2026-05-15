@@ -92,7 +92,7 @@
     <div class="alert alert-success border-0 shadow-sm">@Model.Notice</div>
 }
 
-@if (!string.IsNullOrWhiteSpace(Model.Error))
+@if (!string.IsNullOrWhiteSpace(Model.Error) && string.IsNullOrWhiteSpace(Model.EditId))
 {
     <div class="alert alert-danger border-0 shadow-sm">@Model.Error</div>
 }
@@ -176,13 +176,15 @@
                                 <div class="row-actions">
                                     @if (Model.Resource.ShowDetails)
                                     {
-                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#viewModal@index">
+                                        <button class="btn btn-sm btn-outline-secondary" type="button"
+                                                onclick="bootstrap.Modal.getOrCreateInstance(document.getElementById('viewModal_@(id)')).show()">
                                             View
                                         </button>
                                     }
                                     @if (Model.CanEdit && !string.IsNullOrWhiteSpace(id))
                                     {
-                                        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#editModal@index">
+                                        <button class="btn btn-sm btn-outline-primary" type="button"
+                                            onclick="bootstrap.Modal.getOrCreateInstance(document.getElementById('editModal_@(id)')).show()">
                                             Edit
                                         </button>
                                     }
@@ -274,7 +276,7 @@
 
     @if (Model.Resource.ShowDetails)
     {
-        <div class="modal fade" id="viewModal@index" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="viewModal_@(id)" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -298,10 +300,10 @@
 
     @if (Model.CanEdit && !string.IsNullOrWhiteSpace(id))
     {
-        <div class="modal fade" id="editModal@index" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="editModal_@(id)" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <form asp-controller="Resources" asp-action="Update" asp-route-key="@Model.Resource.Key" asp-route-id="@id" method="post">
+                    <form class="js-edit-form" asp-controller="Resources" asp-action="Update" asp-route-key="@Model.Resource.Key" asp-route-id="@id" method="post">
                         @Html.AntiForgeryToken()
                         @if (!editShowsIdField)
                         {
@@ -312,15 +314,20 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body form-grid">
+                            @if (!string.IsNullOrWhiteSpace(Model.Error)
+                                && string.Equals(Model.EditId, id, StringComparison.OrdinalIgnoreCase))
+                            {
+                                <div class="alert alert-danger border-0 mb-3">@Model.Error</div>
+                            }
                             @foreach (var field in editFields)
                             {
                                 var currentValue = InputValue(row, field);
                                 <div>
-                                    <label class="form-label" for="edit-@index-@field.Name">@field.Label</label>
+                                    <label class="form-label" for="edit-@(id)-@field.Name">@field.Label</label>
                                     @if (!string.IsNullOrWhiteSpace(field.LookupKey) && Model.LookupOptions.TryGetValue(field.LookupKey, out var options))
                                     {
                                         <div class="select-wrap">
-                                            <select id="edit-@index-@field.Name" name="@field.Name" class="form-select" required="@(field.Required ? "required" : null)">
+                                            <select id="edit-@(id)-@field.Name" name="@field.Name" class="form-select" required="@(field.Required ? "required" : null)">
                                                 <option value="">Select @field.Label</option>
                                                 @foreach (var option in options)
                                                 {
@@ -331,7 +338,7 @@
                                     }
                                     else
                                     {
-                                        <input id="edit-@index-@field.Name" name="@field.Name" value="@currentValue" type="@InputType(field)" class="form-control" required="@(field.Required ? "required" : null)" step="@(field.Type == ApiFieldType.Number ? "0.01" : null)" />
+                                        <input id="edit-@(id)-@field.Name" name="@field.Name" value="@currentValue" type="@InputType(field)" class="form-control" required="@(field.Required ? "required" : null)" step="@(field.Type == ApiFieldType.Number ? "0.01" : null)" />
                                     }
                                 </div>
                             }
@@ -345,4 +352,14 @@
             </div>
         </div>
     }
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.EditId))
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var el = document.getElementById('editModal_@(Model.EditId)');
+            if (el) { bootstrap.Modal.getOrCreateInstance(el).show(); }
+        });
+    </script>
 }

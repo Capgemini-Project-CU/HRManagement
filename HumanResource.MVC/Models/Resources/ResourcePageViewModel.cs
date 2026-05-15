@@ -18,6 +18,9 @@ public class ResourcePageViewModel
 
     public string? Error { get; set; }
 
+    /// <summary>When an edit POST fails, holds the record ID whose modal should be re-opened.</summary>
+    public string? EditId { get; set; }
+
     public bool CanCreate { get; set; }
 
     public bool CanEdit { get; set; }

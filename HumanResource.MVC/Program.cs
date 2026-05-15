@@ -9,12 +9,12 @@ namespace HumanResource.MVC
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // ── Logging ────────────────────────────────────────────────────────
+            // Logging 
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
             builder.Logging.AddDebug();
 
-            // ── Data protection (persists encryption keys across restarts) ─────
+            // Data protection persists encryption keys across restarts
             var keyDirectory = Path.Combine(
                 builder.Environment.ContentRootPath,
                 "App_Data",
@@ -25,17 +25,17 @@ namespace HumanResource.MVC
                 .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory))
                 .SetApplicationName("HumanResource.MVC");
 
-            // ── MVC & infrastructure ───────────────────────────────────────────
+            // MVC & infrastructure 
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpContextAccessor();
 
-            // ── Application services (API client, catalog, typed config) ───────
+            // Application services (API client, catalog, typed config) 
             builder.Services.AddApplicationServices(builder.Configuration);
 
-            // ── Session ────────────────────────────────────────────────────────
+            // Session 
             builder.Services.AddSessionSupport();
 
-            // ── Build & middleware pipeline ────────────────────────────────────
+            // Build & middleware pipeline 
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())

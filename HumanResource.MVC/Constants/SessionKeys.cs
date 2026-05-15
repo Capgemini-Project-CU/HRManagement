@@ -1,9 +1,9 @@
 namespace HumanResource.MVC.Constants;
 
-/// <summary>
-/// Centralises all HttpContext.Session key names so magic strings are never
-/// scattered across controllers.
-/// </summary>
+
+// Centralises all HttpContext.Session key names so magic strings are never
+// scattered across controllers.
+
 public static class SessionKeys
 {
     public const string JwtToken         = "JwtToken";

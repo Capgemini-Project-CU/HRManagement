@@ -3,15 +3,15 @@ using HumanResource.MVC.Services;
 
 namespace HumanResource.MVC.Extensions;
 
-/// <summary>
-/// Extension methods that keep Program.cs clean by grouping related
-/// service registrations in one place.
-/// </summary>
+
+// Extension methods that keep Program.cs clean by grouping related
+// service registrations in one place.
+
 public static class ServiceCollectionExtensions
 {
-    /// <summary>
-    /// Registers the typed API client, resource catalog, and binds ApiSettings.
-    /// </summary>
+    
+    // Registers the typed API client, resource catalog, and binds ApiSettings.
+  
     public static IServiceCollection AddApplicationServices(
         this IServiceCollection services,
         IConfiguration configuration)
@@ -34,9 +34,9 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    /// <summary>
-    /// Configures the session cookie with security best practices.
-    /// </summary>
+
+    // Configures the session cookie with security best practices.
+  
     public static IServiceCollection AddSessionSupport(
         this IServiceCollection services)
     {

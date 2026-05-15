@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="HumanResource.API/HumanResource.API.csproj" />
   <Project Path="HumanResource.MVC/HumanResource.MVC.csproj" />
-  <Project Path="Test/Test.csproj" />
+  <Project Path="Test/HumanResource.Test.csproj" />
 </Solution>

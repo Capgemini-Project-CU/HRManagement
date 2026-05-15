@@ -1,8 +1,156 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@functions {
+    private static string Value(System.Text.Json.JsonElement? item, string name)
+    {
+        if (item is null || item.Value.ValueKind != System.Text.Json.JsonValueKind.Object)
+        {
+            return "-";
+        }
+
+        return item.Value.TryGetProperty(name, out var value) ? Display(value) : "-";
+    }
+
+    private static string Display(System.Text.Json.JsonElement value)
+    {
+        return value.ValueKind switch
+        {
+            System.Text.Json.JsonValueKind.Array => string.Join(", ", value.EnumerateArray().Select(Display)),
+            System.Text.Json.JsonValueKind.Null => "-",
+            _ => value.ToString()
+        };
+    }
+
+    private bool RoleIs(params string[] roles)
+    {
+        return roles.Any(role => string.Equals(role, Model.Role, StringComparison.OrdinalIgnoreCase));
+    }
+}
+
+@if (Model.Warnings.Count > 0)
+{
+    <div class="alert alert-warning border-0 shadow-sm">
+        @Model.Warnings.First()
+    </div>
+}
+
+@if (RoleIs("Manager"))
+{
+    <section class="metric-grid manager-grid">
+        <div class="metric-card accent-blue">
+            <p>Team employees</p>
+            <strong>@Model.EmployeeCount</strong>
+        </div>
+        <div class="metric-card accent-green">
+            <p>Assigned departments</p>
+            <strong>@Model.TeamDepartmentCount</strong>
+        </div>
+        <div class="metric-card accent-amber">
+            <p>Joined this year</p>
+            <strong>@Model.TeamHiredThisYearCount</strong>
+        </div>
+    </section>
+}
+else
+{
+    <section class="metric-grid">
+        @if (RoleIs("Admin", "HR"))
+        {
+            <div class="metric-card accent-blue">
+                <p>Employees</p>
+                <strong>@Model.EmployeeCount</strong>
+            </div>
+        }
+        <div class="metric-card accent-green">
+            <p>Departments</p>
+            <strong>@Model.DepartmentCount</strong>
+        </div>
+        <div class="metric-card accent-amber">
+            <p>Jobs</p>
+            <strong>@Model.JobCount</strong>
+        </div>
+        <div class="metric-card accent-rose">
+            <p>Locations</p>
+            <strong>@Model.LocationCount</strong>
+        </div>
+    </section>
+}
+
+<section class="dashboard-grid simple">
+    <div class="panel">
+        <div class="panel-heading">
+            <div>
+                <p class="eyebrow">Quick Action</p>
+                <h2>Open A Module</h2>
+            </div>
+        </div>
+        <div class="quick-actions">
+            @if (RoleIs("Admin", "HR"))
+            {
+                <a asp-controller="Resources" asp-action="Index" asp-route-key="employees">Employees</a>
+            }
+            @if (RoleIs("Admin", "HR", "Employee"))
+            {
+                <a asp-controller="Resources" asp-action="Index" asp-route-key="departments">Departments</a>
+                <a asp-controller="Resources" asp-action="Index" asp-route-key="job-history">Job History</a>
+            }
+            @if (RoleIs("Manager"))
+            {
+                <a asp-controller="Resources" asp-action="MyTeam">My Team</a>
+            }
+            <a asp-controller="Home" asp-action="Profile">Profile</a>
+        </div>
+    </div>
+</section>
+
+@if (Model.HighestSalaryEmployee is not null)
+{
+    <section class="panel mt-4">
+        <div class="panel-heading">
+            <div>
+                <p class="eyebrow">Admin Insight</p>
+                <h2>Highest Salary Employee</h2>
+            </div>
+        </div>
+        <div class="insight-row">
+            <span>@Value(Model.HighestSalaryEmployee, "employeeId")</span>
+            <strong>@Value(Model.HighestSalaryEmployee, "firstName") @Value(Model.HighestSalaryEmployee, "lastName")</strong>
+            <em>@Value(Model.HighestSalaryEmployee, "email")</em>
+            <b>@Value(Model.HighestSalaryEmployee, "salary")</b>
+        </div>
+    </section>
+}
+
+@if (Model.TeamMembers.Count > 0)
+{
+    <section class="panel mt-4">
+        <div class="panel-heading">
+            <div>
+                <p class="eyebrow">Manager View</p>
+                <h2>Team Snapshot</h2>
+            </div>
+            <a class="btn btn-sm btn-outline-primary" asp-controller="Resources" asp-action="MyTeam">View all</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr><th>Name</th><th>Email</th><th>Phone</th><th>Hire Date</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.TeamMembers.Take(5))
+                    {
+                        <tr>
+                            <td>@Value(item, "firstName") @Value(item, "lastName")</td>
+                            <td>@Value(item, "email")</td>
+                            <td>@Value(item, "phoneNumber")</td>
+                            <td>@Value(item, "hireDate")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}

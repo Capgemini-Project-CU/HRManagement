@@ -30,6 +30,15 @@ namespace HumanResource.API.Controllers
         [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
+            if (User?.Identity?.IsAuthenticated == true && User.IsInRole("Employee"))
+            {
+                var employeeIdClaim = User.FindFirst("EmployeeId");
+                if (employeeIdClaim == null || employeeIdClaim.Value != id.ToString())
+                {
+                    return Forbid();
+                }
+            }
+
             var employee = await _employeeService.GetByIdAsync(id);
             return Ok(employee);
         }
@@ -43,12 +52,21 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin,HR")]
+        [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> UpdateEmployee(int id, EmployeeDto employeeDto)
         {
             if (id != employeeDto.EmployeeId)
             {
                 return BadRequest("Employee Id mismatch");
+            }
+
+            if (User?.Identity?.IsAuthenticated == true && User.IsInRole("Employee"))
+            {
+                var employeeIdClaim = User.FindFirst("EmployeeId");
+                if (employeeIdClaim == null || employeeIdClaim.Value != id.ToString())
+                {
+                    return Forbid();
+                }
             }
 
             var updatedEmployee = await _employeeService.UpdateAsync(employeeDto);
@@ -111,6 +129,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet("pagination")]
+        [Authorize(Roles = "Admin,HR")]
         public async Task<IActionResult> GetPaginatedEmployees(int pageNumber = 1, int pageSize = 10)
         {
             var result = await _employeeService

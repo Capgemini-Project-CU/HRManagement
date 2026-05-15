@@ -1,0 +1,43 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<section class="auth-card">
+    <div class="auth-brand">
+        <span>HR</span>
+        <div>
+            <strong>HR Management System</strong>
+        </div>
+    </div>
+
+    <h1>Sign in</h1>
+    <p>Access your HR workspace securely.</p>
+
+    @if (TempData["Notice"] is string notice)
+    {
+        <div class="alert alert-success">@notice</div>
+    }
+
+    <form asp-action="Login" method="post" class="stacked-form">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" autocomplete="username" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" autocomplete="current-password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <button class="btn btn-primary w-100" type="submit">
+            Sign in
+        </button>
+    </form>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -69,11 +69,25 @@ namespace HumanResource.API.Services.Implementations
         public async Task<EmployeeDto> UpdateAsync(
             EmployeeDto employeeDto)
         {
-            var employee =
-                _mapper.Map<Employee>(employeeDto);
+            var existingEmployee =
+                await _employeeRepository.GetByIdAsync(
+                    employeeDto.EmployeeId);
+
+            if (existingEmployee == null)
+            {
+                throw new NotFoundException(
+                    $"Employee with Id {employeeDto.EmployeeId} not found");
+            }
+
+            if (string.IsNullOrWhiteSpace(employeeDto.Password))
+            {
+                employeeDto.Password = existingEmployee.PasswordHash ?? string.Empty;
+            }
+
+            _mapper.Map(employeeDto, existingEmployee);
 
             var updatedEmployee =
-                await _employeeRepository.UpdateAsync(employee);
+                await _employeeRepository.UpdateAsync(existingEmployee);
 
             var updatedEmployeeDto =
                 _mapper.Map<EmployeeDto>(updatedEmployee);

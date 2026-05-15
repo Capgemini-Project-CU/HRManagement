@@ -44,14 +44,6 @@
             <p>Team employees</p>
             <strong>@Model.EmployeeCount</strong>
         </div>
-        <div class="metric-card accent-green">
-            <p>Assigned departments</p>
-            <strong>@Model.TeamDepartmentCount</strong>
-        </div>
-        <div class="metric-card accent-amber">
-            <p>Joined this year</p>
-            <strong>@Model.TeamHiredThisYearCount</strong>
-        </div>
     </section>
 }
 else
@@ -75,51 +67,6 @@ else
         <div class="metric-card accent-rose">
             <p>Locations</p>
             <strong>@Model.LocationCount</strong>
-        </div>
-    </section>
-}
-
-<section class="dashboard-grid simple">
-    <div class="panel">
-        <div class="panel-heading">
-            <div>
-                <p class="eyebrow">Quick Action</p>
-                <h2>Open A Module</h2>
-            </div>
-        </div>
-        <div class="quick-actions">
-            @if (RoleIs("Admin", "HR"))
-            {
-                <a asp-controller="Resources" asp-action="Index" asp-route-key="employees">Employees</a>
-            }
-            @if (RoleIs("Admin", "HR", "Employee"))
-            {
-                <a asp-controller="Resources" asp-action="Index" asp-route-key="departments">Departments</a>
-                <a asp-controller="Resources" asp-action="Index" asp-route-key="job-history">Job History</a>
-            }
-            @if (RoleIs("Manager"))
-            {
-                <a asp-controller="Resources" asp-action="MyTeam">My Team</a>
-            }
-            <a asp-controller="Home" asp-action="Profile">Profile</a>
-        </div>
-    </div>
-</section>
-
-@if (Model.HighestSalaryEmployee is not null)
-{
-    <section class="panel mt-4">
-        <div class="panel-heading">
-            <div>
-                <p class="eyebrow">Admin Insight</p>
-                <h2>Highest Salary Employee</h2>
-            </div>
-        </div>
-        <div class="insight-row">
-            <span>@Value(Model.HighestSalaryEmployee, "employeeId")</span>
-            <strong>@Value(Model.HighestSalaryEmployee, "firstName") @Value(Model.HighestSalaryEmployee, "lastName")</strong>
-            <em>@Value(Model.HighestSalaryEmployee, "email")</em>
-            <b>@Value(Model.HighestSalaryEmployee, "salary")</b>
         </div>
     </section>
 }

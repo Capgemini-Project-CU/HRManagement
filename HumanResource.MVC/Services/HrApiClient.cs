@@ -107,7 +107,10 @@ public class HrApiClient
 
                 if (root.TryGetProperty("title", out var title))
                 {
-                    return title.ToString();
+                    var validationErrors = ReadValidationErrors(root);
+                    return string.IsNullOrWhiteSpace(validationErrors)
+                        ? title.ToString()
+                        : $"{title} {validationErrors}";
                 }
             }
         }
@@ -117,5 +120,29 @@ public class HrApiClient
         }
 
         return content;
+    }
+
+    private static string ReadValidationErrors(JsonElement root)
+    {
+        if (!root.TryGetProperty("errors", out var errors)
+            || errors.ValueKind != JsonValueKind.Object)
+        {
+            return string.Empty;
+        }
+
+        var messages = new List<string>();
+        foreach (var property in errors.EnumerateObject())
+        {
+            if (property.Value.ValueKind != JsonValueKind.Array)
+            {
+                continue;
+            }
+
+            messages.AddRange(property.Value.EnumerateArray()
+                .Select(message => message.ToString())
+                .Where(message => !string.IsNullOrWhiteSpace(message)));
+        }
+
+        return messages.Count == 0 ? string.Empty : string.Join(" ", messages);
     }
 }

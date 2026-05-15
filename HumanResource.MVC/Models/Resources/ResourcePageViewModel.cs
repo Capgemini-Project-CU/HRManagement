@@ -23,4 +23,14 @@ public class ResourcePageViewModel
     public bool CanEdit { get; set; }
 
     public bool CanDelete { get; set; }
+
+    public int PageNumber { get; set; } = 1;
+
+    public int PageSize { get; set; } = 10;
+
+    public int TotalRecords { get; set; }
+
+    public int TotalPages { get; set; }
+
+    public bool UsesDefaultPagination { get; set; }
 }

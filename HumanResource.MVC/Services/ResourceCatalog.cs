@@ -54,7 +54,7 @@ public class ResourceCatalog
                 Text("firstName", "First name", required: true),
                 Text("lastName", "Last name", required: true),
                 Text("email", "Email", required: true),
-                Password("password", "Password", required: true, showInTable: false),
+                Password("password", "Password", required: true, showInTable: false, showInEdit: false, includeInEditPayload: false),
                 Text("phoneNumber", "Phone"),
                 Date("hireDate", "Hire date", required: true, showInCreate: false, includeInCreatePayload: false),
                 Number("salary", "Salary", required: true),
@@ -69,9 +69,7 @@ public class ResourceCatalog
                 Filter("department", "By department", "api/Employees/department/{departmentId}", ["Admin", "HR", "Employee"], Select("departmentId", "Department", "departments", required: true)),
                 Filter("manager", "By manager", "api/Employees/manager/{managerId}", ["Admin", "HR"], Select("managerId", "Manager", "employees", required: true)),
                 Filter("job", "By job", "api/Employees/job/{jobId}", ["Admin", "HR", "Employee"], Select("jobId", "Job", "jobs", required: true, type: ApiFieldType.Text)),
-                Filter("role", "By role", "api/Employees/role/{roleId}", ["Admin"], Select("roleId", "Role", "roles", required: true)),
-                Filter("pagination", "Pagination", "api/Employees/pagination?pageNumber={pageNumber}&pageSize={pageSize}", ["Admin", "HR", "Employee"], Number("pageNumber", "Page", required: true), Number("pageSize", "Size", required: true)),
-                Filter("highest-salary", "Highest salary", "api/Employees/highest-salary", ["Admin"])
+                Filter("role", "By role", "api/Employees/role/{roleId}", ["Admin"], Select("roleId", "Role", "roles", required: true))
             ]
         };
     }
@@ -258,7 +256,7 @@ public class ResourceCatalog
                 Text("postalCode", "Postal code", required: true),
                 Text("city", "City", required: true),
                 Text("stateProvince", "State", required: true),
-                Select("countryId", "Country", "countries", required: true, type: ApiFieldType.Text),
+                Select("countryId", "Country", "countries", required: true, showInTable: false, type: ApiFieldType.Text),
                 Text("countryName", "Country", showInTable: true, readOnly: true)
             ],
             Filters =
@@ -282,9 +280,22 @@ public class ResourceCatalog
         return Field(name, label, ApiFieldType.Text, required, showInTable, readOnly, showInCreate, showInEdit, includeInCreatePayload, includeInEditPayload);
     }
 
-    private static ApiField Password(string name, string label, bool required = false, bool showInTable = false)
+    private static ApiField Password(
+        string name,
+        string label,
+        bool required = false,
+        bool showInTable = false,
+        bool showInEdit = true,
+        bool includeInEditPayload = true)
     {
-        return Field(name, label, ApiFieldType.Password, required, showInTable);
+        return Field(
+            name,
+            label,
+            ApiFieldType.Password,
+            required,
+            showInTable,
+            showInEdit: showInEdit,
+            includeInEditPayload: includeInEditPayload);
     }
 
     private static ApiField Number(

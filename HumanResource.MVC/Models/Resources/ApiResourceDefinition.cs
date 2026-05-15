@@ -25,6 +25,8 @@ public class ApiResourceDefinition
     public List<ApiField> Fields { get; set; } = [];
 
     public List<ResourceFilter> Filters { get; set; } = [];
+
+    public bool ShowDetails { get; set; }
 }
 
 public class ResourceFilter

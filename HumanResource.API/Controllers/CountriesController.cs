@@ -18,7 +18,7 @@ namespace HumanResource.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,HR")]
+        [Authorize(Roles = "Admin,HR,Employee")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();

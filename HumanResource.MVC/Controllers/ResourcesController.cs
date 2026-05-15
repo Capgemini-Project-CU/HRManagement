@@ -19,7 +19,7 @@ public class ResourcesController : MvcControllerBase
     }
 
     [HttpGet("{key}")]
-    public async Task<IActionResult> Index(string key, string? notice = null)
+    public async Task<IActionResult> Index(string key, string? notice = null, int pageNumber = 1)
     {
         var login = RequireLogin();
         if (login is not null)
@@ -38,7 +38,26 @@ public class ResourcesController : MvcControllerBase
             return RedirectToAction("AccessDenied", "Account");
         }
 
-        var model = await BuildPage(resource, resource.Endpoint);
+        var endpoint = resource.Endpoint;
+        var usesDefaultPagination = string.Equals(resource.Key, "employees", StringComparison.OrdinalIgnoreCase)
+            && RoleIs("Admin", "HR");
+
+        if (usesDefaultPagination)
+        {
+            pageNumber = Math.Max(1, pageNumber);
+            endpoint = $"api/Employees/pagination?pageNumber={pageNumber}&pageSize=10";
+        }
+
+        if (string.Equals(resource.Key, "job-history", StringComparison.OrdinalIgnoreCase)
+            && RoleIs("Employee")
+            && !string.IsNullOrWhiteSpace(EmployeeId))
+        {
+            endpoint = $"api/JobHistory/{Uri.EscapeDataString(EmployeeId)}";
+        }
+
+        var model = await BuildPage(resource, endpoint);
+        model.UsesDefaultPagination = usesDefaultPagination;
+        model.PageNumber = pageNumber;
         model.Notice = notice;
         return View(model);
     }
@@ -196,6 +215,11 @@ public class ResourcesController : MvcControllerBase
             : (null, RedirectToAction("AccessDenied", "Account"));
     }
 
+    private bool RoleIs(params string[] roles)
+    {
+        return roles.Any(role => string.Equals(role, Role, StringComparison.OrdinalIgnoreCase));
+    }
+
     private async Task<ResourcePageViewModel> BuildPage(ApiResourceDefinition resource, string endpoint)
     {
         var result = await _apiClient.GetAsync(endpoint, Token);
@@ -216,7 +240,39 @@ public class ResourcesController : MvcControllerBase
         }
 
         model.Records = ExtractRows(result.Data);
+        ApplyPaginationMetadata(model, result.Data);
         return model;
+    }
+
+    private static void ApplyPaginationMetadata(ResourcePageViewModel model, JsonElement? data)
+    {
+        if (data is null || data.Value.ValueKind != JsonValueKind.Object)
+        {
+            model.TotalRecords = model.Records.Count;
+            model.TotalPages = model.Records.Count > 0 ? 1 : 0;
+            return;
+        }
+
+        var root = data.Value;
+        model.TotalRecords = ReadInt(root, "totalRecords", model.Records.Count);
+        model.TotalPages = ReadInt(root, "totalPages", model.TotalRecords > 0 ? 1 : 0);
+        model.PageNumber = ReadInt(root, "pageNumber", model.PageNumber);
+        model.PageSize = ReadInt(root, "pageSize", model.PageSize);
+    }
+
+    private static int ReadInt(JsonElement root, string name, int fallback)
+    {
+        if (!root.TryGetProperty(name, out var value))
+        {
+            return fallback;
+        }
+
+        return value.ValueKind switch
+        {
+            JsonValueKind.Number when value.TryGetInt32(out var number) => number,
+            JsonValueKind.String when int.TryParse(value.GetString(), out var number) => number,
+            _ => fallback
+        };
     }
 
     private async Task<IActionResult> RedirectAfterWrite(

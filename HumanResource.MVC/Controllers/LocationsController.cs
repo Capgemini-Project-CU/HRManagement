@@ -5,8 +5,7 @@ namespace HumanResource.MVC.Controllers;
 
 public class LocationsController : ModuleControllerBase
 {
-    public LocationsController(HrApiClient apiClient)
-        : base(apiClient)
+    public LocationsController(HrApiClient apiClient): base(apiClient)
     {
     }
 

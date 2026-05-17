@@ -3,4 +3,4 @@ bin/
 obj/
 /HumanResource.API/appsettings.json
 /HumanResource.MVC/App_Data/
-
+.dotnet-home/

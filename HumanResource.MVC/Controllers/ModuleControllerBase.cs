@@ -9,15 +9,13 @@ namespace HumanResource.MVC.Controllers;
 public abstract class ModuleControllerBase : MvcControllerBase
 {
     private readonly HrApiClient _apiClient;
-    private readonly ResourceCatalog _catalog;
 
-    protected ModuleControllerBase(HrApiClient apiClient, ResourceCatalog catalog)
+    protected ModuleControllerBase(HrApiClient apiClient)
     {
         _apiClient = apiClient;
-        _catalog = catalog;
     }
 
-    protected abstract string ResourceKey { get; }
+    protected abstract ApiResourceDefinition GetResource();
 
     [HttpGet]
     public virtual async Task<IActionResult> Index(string? notice = null, int pageNumber = 1)
@@ -29,10 +27,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanView(resource))
         {
@@ -63,10 +57,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanCreate(resource))
         {
@@ -99,10 +89,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanDelete(resource))
         {
@@ -126,10 +112,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanView(resource))
         {
@@ -142,7 +124,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
             return NotFound();
         }
 
-        if (!_catalog.IsAllowed(Role, filter.Roles))
+        if (!RoleAllowed(Role, filter.Roles))
         {
             return RedirectToAction("AccessDenied", "Account");
         }
@@ -164,10 +146,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanEdit(resource))
         {
@@ -199,10 +177,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         var resource = GetResource();
-        if (resource is null)
-        {
-            return NotFound();
-        }
 
         if (!CanEdit(resource))
         {
@@ -237,29 +211,37 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return View("Index", model);
     }
 
-    private ApiResourceDefinition? GetResource()
-    {
-        return _catalog.Find(ResourceKey);
-    }
-
     private bool CanView(ApiResourceDefinition resource)
     {
-        return _catalog.IsAllowed(Role, resource.ViewRoles);
+        return RoleAllowed(Role, resource.ViewRoles);
     }
 
     private bool CanCreate(ApiResourceDefinition resource)
     {
-        return _catalog.IsAllowed(Role, resource.CreateRoles);
+        return RoleAllowed(Role, resource.CreateRoles);
     }
 
     private bool CanEdit(ApiResourceDefinition resource)
     {
-        return _catalog.IsAllowed(Role, resource.EditRoles);
+        return RoleAllowed(Role, resource.EditRoles);
     }
 
     private bool CanDelete(ApiResourceDefinition resource)
     {
-        return _catalog.IsAllowed(Role, resource.DeleteRoles);
+        return RoleAllowed(Role, resource.DeleteRoles);
+    }
+
+    private static bool RoleAllowed(string role, IEnumerable<string> allowedRoles)
+    {
+        foreach (var allowedRole in allowedRoles)
+        {
+            if (string.Equals(allowedRole, role, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool RoleIs(params string[] roles)

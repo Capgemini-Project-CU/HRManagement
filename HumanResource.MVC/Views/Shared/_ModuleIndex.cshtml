@@ -3,7 +3,7 @@
     ViewData["Title"] = Model.Resource.Title;
     var tableFields = Model.Resource.Fields.Where(field => field.ShowInTable).ToList();
     var createFields = Model.Resource.Fields.Where(field => !field.ReadOnly && field.ShowInCreate).ToList();
-    var hasActions = Model.Resource.ShowDetails || Model.CanEdit || Model.CanDelete;
+    var hasActions = Model.CanEdit || Model.CanDelete;
     var showFilters = Model.Resource.Filters.Count > 0
         && !(string.Equals(Model.Resource.Key, "job-history", StringComparison.OrdinalIgnoreCase)
             && string.Equals(Model.Role, "Employee", StringComparison.OrdinalIgnoreCase));
@@ -166,12 +166,6 @@
                         {
                             <td class="text-end">
                                 <div class="row-actions">
-                                    @if (Model.Resource.ShowDetails)
-                                    {
-                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#viewModal@index">
-                                            View
-                                        </button>
-                                    }
                                     @if (Model.CanEdit && !string.IsNullOrWhiteSpace(id))
                                     {
                                         <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@id">
@@ -253,33 +247,4 @@
             </div>
         </div>
     </div>
-}
-
-@for (var index = 0; index < Model.Records.Count; index++)
-{
-    var row = Model.Records[index];
-
-    @if (Model.Resource.ShowDetails)
-    {
-        <div class="modal fade" id="viewModal@index" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">@Model.Resource.Title details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body detail-grid">
-                        @foreach (var field in Model.Resource.Fields.Where(field => field.ShowInTable || !field.ReadOnly))
-                        {
-                            var value = DisplayValue(Model, row, field);
-                            <div>
-                                <span>@field.Label</span>
-                                <strong>@(string.IsNullOrWhiteSpace(value) ? "-" : value)</strong>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
 }

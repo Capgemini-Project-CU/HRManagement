@@ -37,7 +37,6 @@ namespace HumanResource.MVC
 
                 client.BaseAddress = new Uri(baseUrl);
             });
-            builder.Services.AddSingleton<Services.ResourceCatalog>();
 
             var app = builder.Build();
 

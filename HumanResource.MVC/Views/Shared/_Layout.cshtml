@@ -1,10 +1,13 @@
-@inject ResourceCatalog Catalog
 @{
     var role = Context.Session.GetString("UserRole") ?? string.Empty;
     var email = Context.Session.GetString("UserEmail") ?? string.Empty;
     var signedIn = !string.IsNullOrWhiteSpace(Context.Session.GetString("JwtToken"));
     var authScreen = ViewData["AuthScreen"] as bool? == true;
     var title = ViewData["Title"]?.ToString() ?? "HR Management System";
+    var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
+    var isHr = string.Equals(role, "HR", StringComparison.OrdinalIgnoreCase);
+    var isManager = string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase);
+    var isEmployee = string.Equals(role, "Employee", StringComparison.OrdinalIgnoreCase);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -28,15 +31,35 @@
 
             <nav class="sidebar-nav">
                 <a asp-controller="Home" asp-action="Index"><span>Dashboard</span></a>
-                @if (string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase))
+                @if (isManager)
                 {
                     <a asp-controller="Employees" asp-action="MyTeam"><span>My Team</span></a>
                 }
-                @foreach (var resource in Catalog.All.Where(item => Catalog.IsAllowed(role, item.ViewRoles)))
+                @if (isAdmin || isHr)
                 {
-                    <a asp-controller="@resource.ControllerName" asp-action="Index">
-                        <span>@resource.Title</span>
-                    </a>
+                    <a asp-controller="Employees" asp-action="Index"><span>Employees</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Departments" asp-action="Index"><span>Departments</span></a>
+                    <a asp-controller="Jobs" asp-action="Index"><span>Jobs</span></a>
+                    <a asp-controller="JobHistory" asp-action="Index"><span>Job History</span></a>
+                }
+                @if (isAdmin || isHr)
+                {
+                    <a asp-controller="Roles" asp-action="Index"><span>Roles</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Regions" asp-action="Index"><span>Regions</span></a>
+                }
+                @if (isAdmin || isHr)
+                {
+                    <a asp-controller="Countries" asp-action="Index"><span>Countries</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Locations" asp-action="Index"><span>Locations</span></a>
                 }
                 <a asp-controller="Home" asp-action="Profile"><span>Profile</span></a>
             </nav>

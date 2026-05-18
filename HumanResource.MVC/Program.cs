@@ -32,8 +32,7 @@ namespace HumanResource.MVC
 
             builder.Services.AddHttpClient<Services.HrApiClient>(client =>
             {
-                var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
-                    ?? "http://localhost:5032/";
+                var baseUrl = builder.Configuration["ApiSettings:BaseUrl"] ?? "http://localhost:5032/";
 
                 client.BaseAddress = new Uri(baseUrl);
             });

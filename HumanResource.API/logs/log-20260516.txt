@@ -1,0 +1,1146 @@
+2026-05-16 10:02:35.999 +05:30 [INF] User profile is available. Using 'C:\Users\jandy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-16 10:02:36.729 +05:30 [INF] Now listening on: http://localhost:5032
+2026-05-16 10:02:36.938 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-16 10:02:36.946 +05:30 [INF] Hosting environment: Development
+2026-05-16 10:02:36.949 +05:30 [INF] Content root path: C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API
+2026-05-16 10:02:40.376 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger - null null
+2026-05-16 10:02:40.788 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger - 301 null null 483.4916ms
+2026-05-16 10:02:40.796 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/index.html - null null
+2026-05-16 10:02:40.967 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/index.html - 200 null text/html;charset=utf-8 171.0004ms
+2026-05-16 10:02:40.977 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui-bundle.js - null null
+2026-05-16 10:02:40.974 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui.css - null null
+2026-05-16 10:02:40.996 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-16 10:02:40.976 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui-standalone-preset.js - null null
+2026-05-16 10:02:41.041 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - 200 14939 application/javascript; charset=utf-8 60.0004ms
+2026-05-16 10:02:41.014 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_vs/browserLink - null null
+2026-05-16 10:02:41.154 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-05-16 10:02:41.153 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-05-16 10:02:41.196 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-05-16 10:02:41.190 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui-standalone-preset.js - 200 312163 text/javascript 213.8941ms
+2026-05-16 10:02:41.203 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui.css - 200 144929 text/css 229.2672ms
+2026-05-16 10:02:41.208 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/swagger-ui-bundle.js - 200 1061536 text/javascript 231.1391ms
+2026-05-16 10:02:41.260 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_vs/browserLink - 200 null text/javascript; charset=UTF-8 246.3284ms
+2026-05-16 10:02:41.477 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - null null
+2026-05-16 10:02:41.527 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 49.9197ms
+2026-05-16 10:02:41.584 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/favicon-32x32.png - null null
+2026-05-16 10:02:41.590 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-05-16 10:02:41.619 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/favicon-32x32.png - 200 628 image/png 35.1735ms
+2026-05-16 10:03:20.280 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 50
+2026-05-16 10:03:20.292 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-05-16 10:03:20.381 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:03:20.415 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:03:21.591 +05:30 [WRN] The decimal property 'DepartmentId' is part of a key on entity type 'Department'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:03:21.593 +05:30 [WRN] The decimal property 'EmployeeId' is part of a key on entity type 'Employee'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:03:21.594 +05:30 [WRN] The decimal property 'LocationId' is part of a key on entity type 'Location'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:03:21.595 +05:30 [WRN] The decimal property 'RegionId' is part of a key on entity type 'Region'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:03:23.886 +05:30 [ERR] An error occurred using the connection to database 'HR' on server 'tcp:hrdb.database.windows.net,1433'.
+2026-05-16 10:03:23.935 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'HumanResource.API.Data.HRDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:1d409430-8d5a-4fa5-89a6-abff81009b29
+Error Number:18456,State:1,Class:14
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:1d409430-8d5a-4fa5-89a6-abff81009b29
+Error Number:18456,State:1,Class:14
+2026-05-16 10:03:24.125 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 3700.1993ms
+2026-05-16 10:03:24.128 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:03:24.241 +05:30 [ERR] Exception occurred while processing request: /api/Auth/login
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HumanResource.API.Repositories.Implementations.AuthRepository.GetByEmailAsync(String email) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Repositories\Implementations\AuthRepository.cs:line 19
+   at HumanResource.API.Services.AuthServices.AuthService.LoginAsync(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Services\AuthServices\AuthService.cs:line 80
+   at HumanResource.API.Controllers.AuthController.Login(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Controllers\AuthController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HumanResource.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Middleware\ExceptionMiddleware.cs:line 24
+ClientConnectionId:1d409430-8d5a-4fa5-89a6-abff81009b29
+Error Number:18456,State:1,Class:14
+2026-05-16 10:03:24.307 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 500 null application/json 4028.6444ms
+2026-05-16 10:03:54.704 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 50
+2026-05-16 10:03:54.713 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:03:54.714 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:03:55.033 +05:30 [ERR] An error occurred using the connection to database 'HR' on server 'tcp:hrdb.database.windows.net,1433'.
+2026-05-16 10:03:55.037 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'HumanResource.API.Data.HRDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:4e896a1e-a737-43b5-b3a1-0f646381a7ee
+Error Number:18456,State:1,Class:14
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:4e896a1e-a737-43b5-b3a1-0f646381a7ee
+Error Number:18456,State:1,Class:14
+2026-05-16 10:03:55.162 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 447.0936ms
+2026-05-16 10:03:55.164 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:03:55.232 +05:30 [ERR] Exception occurred while processing request: /api/Auth/login
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HumanResource.API.Repositories.Implementations.AuthRepository.GetByEmailAsync(String email) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Repositories\Implementations\AuthRepository.cs:line 19
+   at HumanResource.API.Services.AuthServices.AuthService.LoginAsync(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Services\AuthServices\AuthService.cs:line 80
+   at HumanResource.API.Controllers.AuthController.Login(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Controllers\AuthController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HumanResource.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Middleware\ExceptionMiddleware.cs:line 24
+ClientConnectionId:4e896a1e-a737-43b5-b3a1-0f646381a7ee
+Error Number:18456,State:1,Class:14
+2026-05-16 10:03:55.251 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 500 null application/json 553.1065ms
+2026-05-16 10:04:33.020 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 50
+2026-05-16 10:04:33.024 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:04:33.025 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:04:33.427 +05:30 [ERR] An error occurred using the connection to database 'HR' on server 'tcp:hrdb.database.windows.net,1433'.
+2026-05-16 10:04:33.431 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'HumanResource.API.Data.HRDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:567b6c8c-ec09-4a32-a4fb-43046794821e
+Error Number:18456,State:1,Class:14
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:567b6c8c-ec09-4a32-a4fb-43046794821e
+Error Number:18456,State:1,Class:14
+2026-05-16 10:04:33.518 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 491.5925ms
+2026-05-16 10:04:33.519 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:04:33.565 +05:30 [ERR] Exception occurred while processing request: /api/Auth/login
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HumanResource.API.Repositories.Implementations.AuthRepository.GetByEmailAsync(String email) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Repositories\Implementations\AuthRepository.cs:line 19
+   at HumanResource.API.Services.AuthServices.AuthService.LoginAsync(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Services\AuthServices\AuthService.cs:line 80
+   at HumanResource.API.Controllers.AuthController.Login(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Controllers\AuthController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HumanResource.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Middleware\ExceptionMiddleware.cs:line 24
+ClientConnectionId:567b6c8c-ec09-4a32-a4fb-43046794821e
+Error Number:18456,State:1,Class:14
+2026-05-16 10:04:33.579 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 500 null application/json 562.4244ms
+2026-05-16 10:05:13.292 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 57
+2026-05-16 10:05:13.301 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:05:13.301 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:05:13.695 +05:30 [ERR] An error occurred using the connection to database 'HR' on server 'tcp:hrdb.database.windows.net,1433'.
+2026-05-16 10:05:13.700 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'HumanResource.API.Data.HRDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:56fe3b9b-5451-43b9-bebb-594bca7c081f
+Error Number:18456,State:1,Class:14
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:56fe3b9b-5451-43b9-bebb-594bca7c081f
+Error Number:18456,State:1,Class:14
+2026-05-16 10:05:13.839 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 536.8463ms
+2026-05-16 10:05:13.842 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:05:13.928 +05:30 [ERR] Exception occurred while processing request: /api/Auth/login
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HumanResource.API.Repositories.Implementations.AuthRepository.GetByEmailAsync(String email) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Repositories\Implementations\AuthRepository.cs:line 19
+   at HumanResource.API.Services.AuthServices.AuthService.LoginAsync(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Services\AuthServices\AuthService.cs:line 80
+   at HumanResource.API.Controllers.AuthController.Login(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Controllers\AuthController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HumanResource.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Middleware\ExceptionMiddleware.cs:line 24
+ClientConnectionId:56fe3b9b-5451-43b9-bebb-594bca7c081f
+Error Number:18456,State:1,Class:14
+2026-05-16 10:05:13.938 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 500 null application/json 647.4335ms
+2026-05-16 10:06:08.319 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 57
+2026-05-16 10:06:08.325 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:06:08.326 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:06:08.629 +05:30 [ERR] An error occurred using the connection to database 'HR' on server 'tcp:hrdb.database.windows.net,1433'.
+2026-05-16 10:06:08.635 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'HumanResource.API.Data.HRDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ebfd861f-3e7a-4792-96a7-e614e3498ec2
+Error Number:18456,State:1,Class:14
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ebfd861f-3e7a-4792-96a7-e614e3498ec2
+Error Number:18456,State:1,Class:14
+2026-05-16 10:06:08.757 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 429.5931ms
+2026-05-16 10:06:08.760 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:06:08.832 +05:30 [ERR] Exception occurred while processing request: /api/Auth/login
+Microsoft.Data.SqlClient.SqlException (0x80131904): Login failed for user 'hradmin'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at HumanResource.API.Repositories.Implementations.AuthRepository.GetByEmailAsync(String email) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Repositories\Implementations\AuthRepository.cs:line 19
+   at HumanResource.API.Services.AuthServices.AuthService.LoginAsync(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Services\AuthServices\AuthService.cs:line 80
+   at HumanResource.API.Controllers.AuthController.Login(LoginRequestDto request) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Controllers\AuthController.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HumanResource.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API\Middleware\ExceptionMiddleware.cs:line 24
+ClientConnectionId:ebfd861f-3e7a-4792-96a7-e614e3498ec2
+Error Number:18456,State:1,Class:14
+2026-05-16 10:06:08.847 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 500 null application/json 532.3213ms
+2026-05-16 10:10:26.849 +05:30 [INF] User profile is available. Using 'C:\Users\jandy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-16 10:10:27.184 +05:30 [INF] Now listening on: http://localhost:5032
+2026-05-16 10:10:27.375 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-16 10:10:27.378 +05:30 [INF] Hosting environment: Development
+2026-05-16 10:10:27.379 +05:30 [INF] Content root path: C:\Users\jandy\OneDrive\Desktop\HRManagement\HumanResource.API
+2026-05-16 10:10:27.935 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/index.html - null null
+2026-05-16 10:10:28.292 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/index.html - 200 null text/html;charset=utf-8 373.3346ms
+2026-05-16 10:10:28.299 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_vs/browserLink - null null
+2026-05-16 10:10:28.302 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-16 10:10:28.352 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - 200 14939 application/javascript; charset=utf-8 45.4089ms
+2026-05-16 10:10:28.389 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_vs/browserLink - 200 null text/javascript; charset=UTF-8 93.7702ms
+2026-05-16 10:10:28.520 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - null null
+2026-05-16 10:10:28.554 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 34.0802ms
+2026-05-16 10:10:54.641 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 50
+2026-05-16 10:10:54.662 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-05-16 10:10:54.766 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:10:54.807 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-16 10:10:55.943 +05:30 [WRN] The decimal property 'DepartmentId' is part of a key on entity type 'Department'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:10:55.946 +05:30 [WRN] The decimal property 'EmployeeId' is part of a key on entity type 'Employee'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:10:55.948 +05:30 [WRN] The decimal property 'LocationId' is part of a key on entity type 'Location'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:10:55.949 +05:30 [WRN] The decimal property 'RegionId' is part of a key on entity type 'Region'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-16 10:10:57.433 +05:30 [INF] Executed DbCommand (143ms) [Parameters=[@__email_0='?' (Size = 25) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary], [r].[RoleId], [r].[RoleName]
+FROM [employees] AS [e]
+LEFT JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+WHERE [e].[email] = @__email_0
+2026-05-16 10:10:57.629 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.AuthDtos.LoginResponseDto'.
+2026-05-16 10:10:57.648 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 2833.4673ms
+2026-05-16 10:10:57.651 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-16 10:10:57.660 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 200 null application/json; charset=utf-8 3019.4425ms
+2026-05-16 10:10:57.679 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-16 10:10:57.758 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:10:57.768 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-16 10:10:57.966 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-16 10:10:58.014 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:10:58.031 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 261.0189ms
+2026-05-16 10:10:58.032 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:10:58.033 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 354.7727ms
+2026-05-16 10:10:58.046 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-16 10:10:58.052 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:58.056 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-16 10:10:58.180 +05:30 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-16 10:10:58.306 +05:30 [INF] Executed DbCommand (46ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.387 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.440 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.490 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.539 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.582 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.626 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.669 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.712 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.755 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.797 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.843 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.889 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:58.931 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:10:58.973 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:59.014 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:59.058 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:59.106 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:10:59.120 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:10:59.128 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 1070.3584ms
+2026-05-16 10:10:59.129 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:59.130 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 1084.2619ms
+2026-05-16 10:10:59.138 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-16 10:10:59.141 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:59.145 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-16 10:10:59.204 +05:30 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-16 10:10:59.227 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:10:59.231 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 84.1603ms
+2026-05-16 10:10:59.233 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:59.234 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 96.134ms
+2026-05-16 10:10:59.242 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Locations - null null
+2026-05-16 10:10:59.245 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:59.251 +05:30 [INF] Route matched with {action = "GetAll", controller = "Locations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.LocationsController (HumanResource.API).
+2026-05-16 10:10:59.358 +05:30 [INF] Executed DbCommand (91ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address], [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [locations] AS [l]
+LEFT JOIN [countries] AS [c] ON [l].[country_id] = [c].[country_id]
+2026-05-16 10:10:59.372 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.LocationDto.LocationResponseDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:10:59.376 +05:30 [INF] Executed action HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API) in 123.3337ms
+2026-05-16 10:10:59.378 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:10:59.379 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Locations - 200 null application/json; charset=utf-8 137.2255ms
+2026-05-16 10:11:11.295 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-16 10:11:11.303 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:11.304 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-16 10:11:11.348 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-16 10:11:11.366 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:11.369 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 63.3932ms
+2026-05-16 10:11:11.371 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:11.372 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 76.8674ms
+2026-05-16 10:11:11.384 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-16 10:11:11.387 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:11.387 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-16 10:11:11.429 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-16 10:11:11.472 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.515 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.557 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.598 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.642 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.685 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.728 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.769 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.811 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.854 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.897 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:11.941 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:11.984 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:12.028 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:12.068 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:12.111 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:12.153 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:12.195 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:12.199 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:12.201 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 812.618ms
+2026-05-16 10:11:12.202 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:12.204 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 819.4451ms
+2026-05-16 10:11:12.217 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-16 10:11:12.219 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:12.220 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-16 10:11:12.265 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-16 10:11:12.267 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:12.268 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 47.3162ms
+2026-05-16 10:11:12.269 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:12.271 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 54.1072ms
+2026-05-16 10:11:12.285 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Locations - null null
+2026-05-16 10:11:12.287 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:12.288 +05:30 [INF] Route matched with {action = "GetAll", controller = "Locations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.LocationsController (HumanResource.API).
+2026-05-16 10:11:12.329 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address], [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [locations] AS [l]
+LEFT JOIN [countries] AS [c] ON [l].[country_id] = [c].[country_id]
+2026-05-16 10:11:12.333 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.LocationDto.LocationResponseDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:12.334 +05:30 [INF] Executed action HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API) in 44.5803ms
+2026-05-16 10:11:12.335 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:12.337 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Locations - 200 null application/json; charset=utf-8 52.0721ms
+2026-05-16 10:11:14.549 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-16 10:11:14.553 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:14.553 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-16 10:11:14.597 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-16 10:11:14.605 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:14.609 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 54.1505ms
+2026-05-16 10:11:14.612 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:14.614 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 64.5323ms
+2026-05-16 10:11:14.629 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-16 10:11:14.632 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:14.633 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-16 10:11:14.676 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-16 10:11:14.717 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:14.760 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:14.803 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:14.844 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:14.885 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:14.926 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:14.969 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.010 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:15.052 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.095 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:15.136 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.177 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:15.218 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.260 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:15.306 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.347 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.389 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.431 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:15.433 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:15.434 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 798.683ms
+2026-05-16 10:11:15.435 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:15.437 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 807.5726ms
+2026-05-16 10:11:15.448 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-16 10:11:15.450 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:15.451 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-16 10:11:15.505 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-16 10:11:15.508 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:15.510 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 57.8863ms
+2026-05-16 10:11:15.511 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:15.513 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 65.1635ms
+2026-05-16 10:11:15.530 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Roles - null null
+2026-05-16 10:11:15.533 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-16 10:11:15.538 +05:30 [INF] Route matched with {action = "GetAll", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.RolesController (HumanResource.API).
+2026-05-16 10:11:15.605 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+2026-05-16 10:11:15.613 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.RoleDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:15.616 +05:30 [INF] Executed action HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API) in 76.2135ms
+2026-05-16 10:11:15.617 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-16 10:11:15.619 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Roles - 200 null application/json; charset=utf-8 88.8893ms
+2026-05-16 10:11:15.634 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - null null
+2026-05-16 10:11:15.636 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-16 10:11:15.644 +05:30 [INF] Route matched with {action = "GetPaginatedEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaginatedEmployees(Int32, Int32) on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-16 10:11:15.841 +05:30 [INF] Executed DbCommand (143ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [employees] AS [e]
+2026-05-16 10:11:15.857 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-16 10:11:15.859 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-16 10:11:15.910 +05:30 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-05-16 10:11:15.916 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.Common.PaginatedResponseDto`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:15.922 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API) in 274.8083ms
+2026-05-16 10:11:15.924 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-16 10:11:15.925 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 291.5616ms
+2026-05-16 10:11:33.599 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-16 10:11:33.604 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:33.605 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-16 10:11:33.725 +05:30 [INF] Executed DbCommand (118ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-16 10:11:33.729 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:33.730 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 124.4196ms
+2026-05-16 10:11:33.732 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-16 10:11:33.735 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 135.5069ms
+2026-05-16 10:11:33.742 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Locations - null null
+2026-05-16 10:11:33.745 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:33.746 +05:30 [INF] Route matched with {action = "GetAll", controller = "Locations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.LocationsController (HumanResource.API).
+2026-05-16 10:11:33.863 +05:30 [INF] Executed DbCommand (115ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address], [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [locations] AS [l]
+LEFT JOIN [countries] AS [c] ON [l].[country_id] = [c].[country_id]
+2026-05-16 10:11:33.866 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.LocationDto.LocationResponseDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:33.867 +05:30 [INF] Executed action HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API) in 120.5911ms
+2026-05-16 10:11:33.869 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:33.871 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Locations - 200 null application/json; charset=utf-8 128.5725ms
+2026-05-16 10:11:33.880 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-16 10:11:33.883 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:33.885 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-16 10:11:33.995 +05:30 [INF] Executed DbCommand (108ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-16 10:11:34.065 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.130 +05:30 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.193 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.261 +05:30 [INF] Executed DbCommand (65ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.326 +05:30 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.395 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.459 +05:30 [INF] Executed DbCommand (60ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.528 +05:30 [INF] Executed DbCommand (65ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.595 +05:30 [INF] Executed DbCommand (65ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.664 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.732 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.800 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:34.862 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:34.946 +05:30 [INF] Executed DbCommand (81ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-16 10:11:35.069 +05:30 [INF] Executed DbCommand (118ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:35.143 +05:30 [INF] Executed DbCommand (71ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:35.259 +05:30 [INF] Executed DbCommand (113ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:35.303 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-16 10:11:35.308 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:11:35.310 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 1423.4067ms
+2026-05-16 10:11:35.313 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-16 10:11:35.315 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 1435.6849ms
+2026-05-16 10:12:57.450 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Countries - null null
+2026-05-16 10:12:57.453 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API)'
+2026-05-16 10:12:57.456 +05:30 [INF] Route matched with {action = "GetAll", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.CountriesController (HumanResource.API).
+2026-05-16 10:12:57.554 +05:30 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+2026-05-16 10:12:57.685 +05:30 [INF] Executed DbCommand (110ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:12:57.765 +05:30 [INF] Executed DbCommand (62ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:12:57.824 +05:30 [INF] Executed DbCommand (57ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:12:57.880 +05:30 [INF] Executed DbCommand (51ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:12:57.965 +05:30 [INF] Executed DbCommand (83ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:12:57.971 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.CountryDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:12:57.974 +05:30 [INF] Executed action HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API) in 513.6059ms
+2026-05-16 10:12:57.976 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API)'
+2026-05-16 10:12:57.977 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Countries - 200 null application/json; charset=utf-8 526.49ms
+2026-05-16 10:12:57.985 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Locations - null null
+2026-05-16 10:12:57.988 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:12:57.989 +05:30 [INF] Route matched with {action = "GetAll", controller = "Locations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.LocationsController (HumanResource.API).
+2026-05-16 10:12:58.099 +05:30 [INF] Executed DbCommand (108ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address], [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [locations] AS [l]
+LEFT JOIN [countries] AS [c] ON [l].[country_id] = [c].[country_id]
+2026-05-16 10:12:58.103 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.LocationDto.LocationResponseDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:12:58.105 +05:30 [INF] Executed action HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API) in 114.7981ms
+2026-05-16 10:12:58.106 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-16 10:12:58.108 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Locations - 200 null application/json; charset=utf-8 122.4729ms
+2026-05-16 10:13:05.632 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Regions - null null
+2026-05-16 10:13:05.635 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.RegionsController.GetAll (HumanResource.API)'
+2026-05-16 10:13:05.641 +05:30 [INF] Route matched with {action = "GetAll", controller = "Regions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.RegionsController (HumanResource.API).
+2026-05-16 10:13:05.780 +05:30 [INF] Executed DbCommand (131ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+2026-05-16 10:13:05.892 +05:30 [INF] Executed DbCommand (93ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+WHERE [c].[region_id] = @__p_0
+2026-05-16 10:13:05.958 +05:30 [INF] Executed DbCommand (61ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+WHERE [c].[region_id] = @__p_0
+2026-05-16 10:13:06.061 +05:30 [INF] Executed DbCommand (98ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+WHERE [c].[region_id] = @__p_0
+2026-05-16 10:13:06.118 +05:30 [INF] Executed DbCommand (55ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+WHERE [c].[region_id] = @__p_0
+2026-05-16 10:13:06.180 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+WHERE [c].[region_id] = @__p_0
+2026-05-16 10:13:06.188 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.RegionDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:13:06.192 +05:30 [INF] Executed action HumanResource.API.Controllers.RegionsController.GetAll (HumanResource.API) in 549.2257ms
+2026-05-16 10:13:06.193 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.RegionsController.GetAll (HumanResource.API)'
+2026-05-16 10:13:06.195 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Regions - 200 null application/json; charset=utf-8 563.7735ms
+2026-05-16 10:13:06.208 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Countries - null null
+2026-05-16 10:13:06.212 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API)'
+2026-05-16 10:13:06.214 +05:30 [INF] Route matched with {action = "GetAll", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.CountriesController (HumanResource.API).
+2026-05-16 10:13:06.290 +05:30 [INF] Executed DbCommand (73ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [countries] AS [c]
+2026-05-16 10:13:06.385 +05:30 [INF] Executed DbCommand (90ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:13:06.465 +05:30 [INF] Executed DbCommand (77ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:13:06.524 +05:30 [INF] Executed DbCommand (57ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:13:06.627 +05:30 [INF] Executed DbCommand (100ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:13:06.754 +05:30 [INF] Executed DbCommand (121ms) [Parameters=[@__p_0='?' (Precision = 18) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[region_id], [r].[region_name]
+FROM [regions] AS [r]
+WHERE [r].[region_id] = @__p_0
+2026-05-16 10:13:06.756 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.CountryDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-16 10:13:06.757 +05:30 [INF] Executed action HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API) in 541.3007ms
+2026-05-16 10:13:06.758 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.CountriesController.GetAll (HumanResource.API)'
+2026-05-16 10:13:06.759 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Countries - 200 null application/json; charset=utf-8 550.9711ms

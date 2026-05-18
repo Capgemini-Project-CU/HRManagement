@@ -39,7 +39,7 @@ namespace HumanResource.API
                             "https://localhost:7173",
                             "http://localhost:24326",
                             "https://localhost:44344")
-                        .AllowAnyHeader()
+                        .AllowAnyHeader()  
                         .AllowAnyMethod();
                 });
             });

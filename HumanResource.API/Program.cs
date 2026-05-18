@@ -34,7 +34,7 @@ namespace HumanResource.API
             {
                 options.AddPolicy("AllowMvc", policy =>
                 {
-                    policy.WithOrigins(
+                    policy.WithOrigins(  
                             "http://localhost:5246",
                             "https://localhost:7173",
                             "http://localhost:24326",

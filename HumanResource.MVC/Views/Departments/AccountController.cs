@@ -1,10 +1,11 @@
+using HumanResource.MVC.Controllers;
 using HumanResource.MVC.Models.Auth;
 using HumanResource.MVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
 
-namespace HumanResource.MVC.Controllers;
+namespace HumanResource.MVC.Views.Departments;
 
 public class AccountController : MvcControllerBase
 {

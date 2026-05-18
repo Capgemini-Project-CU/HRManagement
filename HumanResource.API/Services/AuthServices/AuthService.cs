@@ -85,6 +85,18 @@ namespace HumanResource.API.Services.AuthServices
                 throw new UnauthorizedException(
                     "Invalid email or password");
             }
+            // Password verification
+            var passwordHasher = new PasswordHasher<Employee>();
+            var verificationResult = passwordHasher.VerifyHashedPassword(
+                employee,
+                employee.PasswordHash,
+                request.Password
+            );
+
+            if (verificationResult == PasswordVerificationResult.Failed)
+            {
+                throw new UnauthorizedException("Invalid email or password");
+            }
 
             var claims = new List<Claim>
             {

@@ -3,7 +3,6 @@ namespace HumanResource.MVC.Models.Resources;
 public enum ApiFieldType
 {
     Text,
-    Email,
     Password,
     Number,
     Date

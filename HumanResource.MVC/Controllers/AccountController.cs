@@ -6,9 +6,13 @@ using System.Text.Json;
 
 namespace HumanResource.MVC.Controllers;
 
-public class AccountController : MvcControllerBase
+public class AccountController : Controller
 {
     private readonly HrApiClient _apiClient;
+
+    private string? Token => HttpContext.Session.GetString("JwtToken");
+
+    private bool IsSignedIn => !string.IsNullOrWhiteSpace(Token);
 
     public AccountController(HrApiClient apiClient)
     {
@@ -99,7 +103,7 @@ public class AccountController : MvcControllerBase
         return View();
     }
 
-    private static string Get(System.Text.Json.JsonElement data, string propertyName)
+    private static string Get(JsonElement data, string propertyName)
     {
         return data.TryGetProperty(propertyName, out var value) ? value.ToString() : string.Empty;
     }

@@ -6,15 +6,9 @@ public class ApiResourceDefinition
 
     public string Title { get; set; } = string.Empty;
 
-    public string ControllerName { get; set; } = string.Empty;
-
     public string Endpoint { get; set; } = string.Empty;
 
     public string IdField { get; set; } = string.Empty;
-
-    public string Icon { get; set; } = "bi-grid";
-
-    public string Summary { get; set; } = string.Empty;
 
     public string[] ViewRoles { get; set; } = [];
 
@@ -27,8 +21,6 @@ public class ApiResourceDefinition
     public List<ApiField> Fields { get; set; } = [];
 
     public List<ResourceFilter> Filters { get; set; } = [];
-
-    public bool ShowDetails { get; set; }
 }
 
 public class ResourceFilter

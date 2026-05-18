@@ -51,9 +51,9 @@ namespace HumanResource.API.Services.Implementations
 
         public async Task<LocationResponseDto> CreateAsync(LocationRequestDto dto)
         {
-            var locationIdExists = await _repository.GetByIdAsync(dto.LocationId); 
-            var countryExists = await _repository.CountryExistsAsync(dto.CountryId); 
-            if (locationIdExists!=null) throw new BadRequestException("Location Id already Exists"); 
+            var locationIdExists = await _repository.GetByIdAsync(dto.LocationId);
+            var countryExists = await _repository.CountryExistsAsync(dto.CountryId);
+            if (locationIdExists != null) throw new BadRequestException("Location Id already Exists");
             if (!countryExists) throw new BadRequestException("Invalid Country Id");
 
             var location = _mapper.Map<Location>(dto);

@@ -8,9 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResource.MVC.Controllers;
 
-public class HomeController : MvcControllerBase
+public class HomeController : Controller
 {
     private readonly HrApiClient _apiClient;
+
+    private string? Token => HttpContext.Session.GetString("JwtToken");
+
+    private string Role => HttpContext.Session.GetString("UserRole") ?? string.Empty;
+
+    private string Email => HttpContext.Session.GetString("UserEmail") ?? string.Empty;
+
+    private string EmployeeId => HttpContext.Session.GetString("EmployeeId") ?? string.Empty;
+
+    private bool IsSignedIn => !string.IsNullOrWhiteSpace(Token);
 
     public HomeController(HrApiClient apiClient)
     {
@@ -75,6 +85,11 @@ public class HomeController : MvcControllerBase
     private bool RoleIs(params string[] roles)
     {
         return roles.Any(role => string.Equals(role, Role, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private IActionResult? RequireLogin()
+    {
+        return IsSignedIn ? null : RedirectToAction("Login", "Account");
     }
 
     private async Task<int> CountFrom(string path, List<string> warnings)

@@ -21,7 +21,7 @@ namespace Test.Controllers
         }
 
         // Positive Test Cases
-        
+
         [Fact]
         public async Task GetAll_ShouldReturnOk_WhenLocationsExist()
         {
@@ -86,9 +86,9 @@ namespace Test.Controllers
             result.Should().BeOfType<CreatedAtActionResult>();
         }
 
-       
 
-       
+
+
         // Negative Test Cases
         [Fact]
         public async Task GetById_ShouldThrowException_WhenLocationNotFound()
@@ -111,7 +111,7 @@ namespace Test.Controllers
                 .ThrowsAsync(
                     new Exception("Country not found"));
 
-            Func<Task> act = async () =>await _controller.GetByCountry("XX");
+            Func<Task> act = async () => await _controller.GetByCountry("XX");
 
             await act.Should()
                 .ThrowAsync<Exception>()

@@ -1,13 +1,301 @@
+﻿using System.Text.Json;
+using HumanResource.MVC.Models.Resources;
 using HumanResource.MVC.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResource.MVC.Controllers;
 
-public class DepartmentsController : ModuleControllerBase
+public class DepartmentsController : Controller
 {
-    public DepartmentsController(HrApiClient apiClient, ResourceCatalog catalog)
-        : base(apiClient, catalog)
+    private readonly HrApiClient _apiClient;
+    private readonly ModulePageService _modulePages;
+
+    public DepartmentsController(HrApiClient apiClient, ModulePageService modulePages)
     {
+        _apiClient = apiClient;
+        _modulePages = modulePages;
     }
 
-    protected override string ResourceKey => "departments";
+    [HttpGet]
+    public async Task<IActionResult> Index(string? notice = null, int pageNumber = 1)
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanView(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var endpoint = _modulePages.GetListEndpoint(resource, Role, EmployeeId, pageNumber);
+        var model = await BuildPageModel(resource, endpoint);
+        model.Notice = notice;
+
+        if (_modulePages.UseEmployeePagination(resource, Role))
+        {
+            model.UsesDefaultPagination = true;
+            model.PageNumber = Math.Max(1, pageNumber);
+        }
+
+        return View("Index", model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create()
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanCreate(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var apiPath = resource.Endpoint;
+        var token = Token;
+
+        if (resource.Key == "employees")
+        {
+            apiPath = "api/Auth/register";
+            token = null;
+        }
+
+        var payload = _modulePages.BuildCreatePayload(resource, Request.Form);
+        var result = await _apiClient.PostAsync(apiPath, payload, token);
+
+        return await RedirectAfterWrite(resource, result, "Record created.");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanDelete(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
+        var result = await _apiClient.DeleteAsync(apiPath, Token);
+
+        return await RedirectAfterWrite(resource, result, "Record deleted.");
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Filter(string filterKey)
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanView(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var filter = _modulePages.FindFilter(resource, filterKey);
+        if (filter is null)
+        {
+            return NotFound();
+        }
+
+        if (!_modulePages.RoleAllowed(Role, filter.Roles))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var endpoint = _modulePages.BuildFilterEndpoint(filter, Request.Form);
+        var model = await BuildPageModel(resource, endpoint);
+        model.ActiveFilterTitle = filter.Title;
+
+        return View("Index", model);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(string id)
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanEdit(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
+        var result = await _apiClient.GetAsync(apiPath, Token);
+        if (!result.Succeeded || result.Data is null)
+        {
+            var message = result.ErrorMessage ?? "Record details are unavailable.";
+            return RedirectToAction(nameof(Index), new { notice = message });
+        }
+
+        var values = _modulePages.ReadValuesFromJson(result.Data.Value, resource);
+        var model = await _modulePages.BuildEditModel(resource, id, values, Token);
+
+        return View("Edit", model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(string id, IFormCollection form)
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var resource = GetResource();
+        if (!CanEdit(resource))
+        {
+            return RedirectToAction("AccessDenied", "Account");
+        }
+
+        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
+        var payload = _modulePages.BuildEditPayload(resource, id, form);
+        var result = await _apiClient.PutAsync(apiPath, payload, Token);
+
+        if (result.Succeeded)
+        {
+            return RedirectToAction(nameof(Index), new { notice = "Record updated." });
+        }
+
+        var values = _modulePages.ReadValuesFromForm(resource, form);
+        var model = await _modulePages.BuildEditModel(resource, id, values, Token);
+        model.Error = result.ErrorMessage ?? "Record could not be updated.";
+
+        return View("Edit", model);
+    }
+
+    private ApiResourceDefinition GetResource()
+    {
+        return new ApiResourceDefinition
+        {
+            Key = "departments",
+            Title = "Departments",
+            Endpoint = "api/Departments",
+            IdField = "departmentId",
+            ViewRoles = new[] { "Admin", "HR", "Employee" },
+            CreateRoles = new[] { "Admin", "HR" },
+            EditRoles = new[] { "Admin", "HR" },
+            DeleteRoles = new[] { "Admin" },
+            Fields = new List<ApiField>
+            {
+                new ApiField { Name = "departmentId", Label = "Department", Type = ApiFieldType.Number, ShowInTable = false },
+                new ApiField { Name = "departmentName", Label = "Department name", Required = true },
+                new ApiField { Name = "managerId", Label = "Manager", Type = ApiFieldType.Number, LookupKey = "employees", ShowInTable = false },
+                new ApiField { Name = "locationId", Label = "Location", Type = ApiFieldType.Number, LookupKey = "locations", ShowInTable = false },
+                new ApiField { Name = "managerName", Label = "Manager", ReadOnly = true },
+                new ApiField { Name = "city", Label = "City", ReadOnly = true }
+            },
+            Filters = new List<ResourceFilter>
+            {
+                new ResourceFilter
+                {
+                    Key = "location",
+                    Title = "By location",
+                    EndpointTemplate = "api/Departments/location/{locationId}",
+                    Roles = new[] { "Admin", "HR", "Employee" },
+                    Fields = new List<ApiField> { new ApiField { Name = "locationId", Label = "Location", Type = ApiFieldType.Number, LookupKey = "locations", Required = true } }
+                }
+            }
+        };
+    }
+
+    private string? Token => HttpContext.Session.GetString("JwtToken");
+
+    private string Role => HttpContext.Session.GetString("UserRole") ?? string.Empty;
+
+    private string EmployeeId => HttpContext.Session.GetString("EmployeeId") ?? string.Empty;
+
+    private bool IsSignedIn => !string.IsNullOrWhiteSpace(Token);
+
+    private IActionResult? RequireLogin()
+    {
+        return IsSignedIn ? null : RedirectToAction("Login", "Account");
+    }
+
+    private IActionResult? RequireRole(params string[] roles)
+    {
+        if (!IsSignedIn)
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        return roles.Any(role => string.Equals(role, Role, StringComparison.OrdinalIgnoreCase))
+            ? null
+            : RedirectToAction("AccessDenied", "Account");
+    }
+
+    private bool CanView(ApiResourceDefinition resource)
+    {
+        return _modulePages.RoleAllowed(Role, resource.ViewRoles);
+    }
+
+    private bool CanCreate(ApiResourceDefinition resource)
+    {
+        return _modulePages.RoleAllowed(Role, resource.CreateRoles);
+    }
+
+    private bool CanEdit(ApiResourceDefinition resource)
+    {
+        return _modulePages.RoleAllowed(Role, resource.EditRoles);
+    }
+
+    private bool CanDelete(ApiResourceDefinition resource)
+    {
+        return _modulePages.RoleAllowed(Role, resource.DeleteRoles);
+    }
+
+    private Task<ResourcePageViewModel> BuildPageModel(ApiResourceDefinition resource, string endpoint)
+    {
+        return _modulePages.BuildPageModel(
+            resource,
+            endpoint,
+            Role,
+            Token,
+            CanCreate(resource),
+            CanEdit(resource),
+            CanDelete(resource));
+    }
+
+    private async Task<IActionResult> RedirectAfterWrite(
+        ApiResourceDefinition resource,
+        ApiResult<JsonElement?> result,
+        string successMessage)
+    {
+        if (result.Succeeded)
+        {
+            return RedirectToAction(nameof(Index), new { notice = successMessage });
+        }
+
+        var model = await BuildPageModel(resource, resource.Endpoint);
+        model.Error = result.ErrorMessage ?? "The action could not be completed.";
+        return View("Index", model);
+    }
 }

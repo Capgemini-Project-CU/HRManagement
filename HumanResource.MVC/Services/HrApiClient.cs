@@ -71,8 +71,15 @@ public class HrApiClient
                 return ApiResult<JsonElement?>.Success(null, (int)response.StatusCode);
             }
 
-            using var document = JsonDocument.Parse(content);
-            return ApiResult<JsonElement?>.Success(document.RootElement.Clone(), (int)response.StatusCode);
+            try
+            {
+                using var document = JsonDocument.Parse(content);
+                return ApiResult<JsonElement?>.Success(document.RootElement.Clone(), (int)response.StatusCode);
+            }
+            catch (JsonException)
+            {
+                return ApiResult<JsonElement?>.Success(null, (int)response.StatusCode);
+            }
         }
         catch (HttpRequestException)
         {

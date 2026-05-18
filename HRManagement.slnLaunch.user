@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "HumanResource.API\\HumanResource.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "HumanResource.MVC\\HumanResource.MVC.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

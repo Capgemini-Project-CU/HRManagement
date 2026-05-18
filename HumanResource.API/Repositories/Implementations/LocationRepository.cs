@@ -12,7 +12,7 @@ namespace HumanResource.API.Repositories.Implementations
         {
             _context = context;
         }
-        
+
         public async Task<IEnumerable<Location>> GetAllAsync()
         {
             return await _context.Locations
@@ -27,7 +27,7 @@ namespace HumanResource.API.Repositories.Implementations
                .Include(l => l.Country)
                .AsNoTracking()
                .FirstOrDefaultAsync(l => l.LocationId == id);
-        } 
+        }
 
         public async Task<IEnumerable<Location>> GetByCountryAsync(string countryId)
         {
@@ -38,7 +38,7 @@ namespace HumanResource.API.Repositories.Implementations
                 .ToListAsync();
         }
 
-       
+
         public async Task<Location> AddAsync(Location location)
         {
             _context.Locations.Add(location);

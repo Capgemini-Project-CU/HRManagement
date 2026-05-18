@@ -37,6 +37,7 @@ namespace HumanResource.MVC
 
                 client.BaseAddress = new Uri(baseUrl);
             });
+            builder.Services.AddScoped<Services.ModulePageService>();
 
             var app = builder.Build();
 

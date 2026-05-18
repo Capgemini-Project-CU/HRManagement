@@ -1,0 +1,19 @@
+@model ProfileViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<section class="profile-panel">
+    <div class="profile-avatar">HR</div>
+    <div>
+        <p class="eyebrow">Signed in user</p>
+        <h2>@Model.Email</h2>
+        <div class="profile-meta">
+            <span>@Model.Role</span>
+            @if (!string.IsNullOrWhiteSpace(Model.EmployeeId))
+            {
+                <span>Employee @Model.EmployeeId</span>
+            }
+        </div>
+    </div>
+</section>

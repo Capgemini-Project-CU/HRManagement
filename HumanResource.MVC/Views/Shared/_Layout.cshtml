@@ -1,46 +1,102 @@
-﻿<!DOCTYPE html>
+@{
+    var role = Context.Session.GetString("UserRole") ?? string.Empty;
+    var email = Context.Session.GetString("UserEmail") ?? string.Empty;
+    var signedIn = !string.IsNullOrWhiteSpace(Context.Session.GetString("JwtToken"));
+    var authScreen = ViewData["AuthScreen"] as bool? == true;
+    var title = ViewData["Title"]?.ToString() ?? "HR Management System";
+    var isAdmin = string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase);
+    var isHr = string.Equals(role, "HR", StringComparison.OrdinalIgnoreCase);
+    var isManager = string.Equals(role, "Manager", StringComparison.OrdinalIgnoreCase);
+    var isEmployee = string.Equals(role, "Employee", StringComparison.OrdinalIgnoreCase);
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HumanResource.MVC</title>
+    <title>@title - HR Management System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HumanResource.MVC.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HumanResource.MVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+<body class="@(signedIn && !authScreen ? "app-shell" : "auth-shell")">
+    @if (signedIn && !authScreen)
+    {
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">HR</span>
+                <span>
+                    <strong>HR Management System</strong>
+                </span>
+            </a>
+
+            <nav class="sidebar-nav">
+                <a asp-controller="Home" asp-action="Index"><span>Dashboard</span></a>
+                @if (isManager)
+                {
+                    <a asp-controller="Employees" asp-action="MyTeam"><span>My Team</span></a>
+                }
+                @if (isAdmin || isHr)
+                {
+                    <a asp-controller="Employees" asp-action="Index"><span>Employees</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Departments" asp-action="Index"><span>Departments</span></a>
+                    <a asp-controller="Jobs" asp-action="Index"><span>Jobs</span></a>
+                    <a asp-controller="JobHistory" asp-action="Index"><span>Job History</span></a>
+                }
+                @if (isAdmin || isHr)
+                {
+                    <a asp-controller="Roles" asp-action="Index"><span>Roles</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Regions" asp-action="Index"><span>Regions</span></a>
+                }
+                @if (isAdmin || isHr)
+                {
+                    <a asp-controller="Countries" asp-action="Index"><span>Countries</span></a>
+                }
+                @if (isAdmin || isHr || isEmployee)
+                {
+                    <a asp-controller="Locations" asp-action="Index"><span>Locations</span></a>
+                }
+                <a asp-controller="Home" asp-action="Profile"><span>Profile</span></a>
+            </nav>
+        </aside>
+
+        <div class="main-panel">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">HR Management System</p>
+                    <h1>@title</h1>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+                <div class="topbar-actions">
+                    <div class="user-chip">
+                        <span>@(string.IsNullOrWhiteSpace(email) ? "User" : email)</span>
+                        <strong>@role</strong>
+                    </div>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        @Html.AntiForgeryToken()
+                        <button class="icon-button danger" type="submit" title="Sign out" aria-label="Sign out">
+                            <span>Exit</span>
+                        </button>
+                    </form>
+                </div>
+            </header>
+
+            <main class="content-area">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        <main class="auth-page">
             @RenderBody()
         </main>
-    </div>
+    }
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - HumanResource.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,32 +1,122 @@
-using HumanResource.MVC.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Json;
+using HumanResource.MVC.Models;
+using HumanResource.MVC.Models.Auth;
+using HumanResource.MVC.Models.Dashboard;
+using HumanResource.MVC.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace HumanResource.MVC.Controllers
+namespace HumanResource.MVC.Controllers;
+
+public class HomeController : MvcControllerBase
 {
-    public class HomeController : Controller
+    private readonly HrApiClient _apiClient;
+
+    public HomeController(HrApiClient apiClient)
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        _apiClient = apiClient;
     }
+
+    public async Task<IActionResult> Index()
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var model = new DashboardViewModel { Role = Role };
+
+        if (RoleIs("Admin", "HR"))
+        {
+            model.EmployeeCount = await CountFrom("api/Employees", model.Warnings);
+        }
+
+        if (RoleIs("Admin", "HR", "Employee"))
+        {
+            model.DepartmentCount = await CountFrom("api/Departments", model.Warnings);
+            model.JobCount = await CountFrom("api/Jobs", model.Warnings);
+            model.LocationCount = await CountFrom("api/Locations", model.Warnings);
+        }
+
+        if (RoleIs("Manager"))
+        {
+            model.TeamMembers = await RowsFrom("api/Employees/my-team", model.Warnings);
+            model.EmployeeCount = model.TeamMembers.Count;
+        }
+
+        return View(model);
+    }
+
+    public IActionResult Profile()
+    {
+        var login = RequireLogin();
+        if (login is not null)
+        {
+            return login;
+        }
+
+        var model = new ProfileViewModel
+        {
+            Email = Email,
+            Role = Role,
+            EmployeeId = EmployeeId
+        };
+
+        return View(model);
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    private bool RoleIs(params string[] roles)
+    {
+        return roles.Any(role => string.Equals(role, Role, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private async Task<int> CountFrom(string path, List<string> warnings)
+    {
+        var rows = await RowsFrom(path, warnings);
+        return rows.Count;
+    }
+
+    private async Task<IReadOnlyList<JsonElement>> RowsFrom(string path, List<string> warnings)
+    {
+        var result = await _apiClient.GetAsync(path, Token);
+        if (!result.Succeeded)
+        {
+            warnings.Add(result.ErrorMessage ?? $"{path} is unavailable.");
+            return [];
+        }
+
+        return ExtractRows(result.Data);
+    }
+
+    private static IReadOnlyList<JsonElement> ExtractRows(JsonElement? data)
+    {
+        if (data is null)
+        {
+            return [];
+        }
+
+        var root = data.Value;
+
+        if (root.ValueKind == JsonValueKind.Array)
+        {
+            return root.EnumerateArray().Select(item => item.Clone()).ToList();
+        }
+
+        if (root.ValueKind == JsonValueKind.Object
+            && root.TryGetProperty("data", out var page)
+            && page.ValueKind == JsonValueKind.Array)
+        {
+            return page.EnumerateArray().Select(item => item.Clone()).ToList();
+        }
+
+        return [root.Clone()];
+    }
+
 }

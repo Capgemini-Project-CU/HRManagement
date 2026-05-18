@@ -30,6 +30,20 @@ namespace HumanResource.API
 
             builder.Services.AddControllers();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMvc", policy =>
+                {
+                    policy.WithOrigins(
+                            "http://localhost:5246",
+                            "https://localhost:7173",
+                            "http://localhost:24326",
+                            "https://localhost:44344")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             builder.Services.Configure<JwtSettings>(
                 builder.Configuration.GetSection("Jwt"));
 
@@ -142,6 +156,8 @@ namespace HumanResource.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowMvc");
 
             app.UseMiddleware<ExceptionMiddleware>();
 

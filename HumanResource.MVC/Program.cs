@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.DataProtection;
+
 namespace HumanResource.MVC
 {
     public class Program
@@ -5,17 +7,42 @@ namespace HumanResource.MVC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
+            builder.Logging.AddDebug();
 
-            // Add services to the container.
+            var keyDirectory = Path.Combine(
+                builder.Environment.ContentRootPath,
+                "App_Data",
+                "DataProtectionKeys");
+            Directory.CreateDirectory(keyDirectory);
+
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory))
+                .SetApplicationName("HumanResource.MVC");
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.Name = ".HumanResource.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(45);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            builder.Services.AddHttpClient<Services.HrApiClient>(client =>
+            {
+                var baseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+                    ?? "http://localhost:5032/";
+
+                client.BaseAddress = new Uri(baseUrl);
+            });
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -24,6 +51,7 @@ namespace HumanResource.MVC
 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(

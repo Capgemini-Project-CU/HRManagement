@@ -56,6 +56,8 @@
             ApiFieldType.Password => "password",
             ApiFieldType.Number => "number",
             ApiFieldType.Date => "date",
+            ApiFieldType.Email => "email",
+            ApiFieldType.Phone => "tel",
             _ => "text"
         };
     }
@@ -234,7 +236,7 @@
                                 }
                                 else
                                 {
-                                    <input id="create-@field.Name" name="@field.Name" type="@InputType(field)" class="form-control" required="@(field.Required ? "required" : null)" step="@(field.Type == ApiFieldType.Number ? "0.01" : null)" />
+                                    <input id="create-@field.Name" name="@field.Name" type="@InputType(field)" class="form-control" required="@(field.Required ? "required" : null)" step="@(field.Type == ApiFieldType.Number ? "0.01" : null)" pattern="@field.Pattern" title="@field.ValidationMessage" />
                                 }
                             </div>
                         }

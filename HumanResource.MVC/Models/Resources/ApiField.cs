@@ -5,7 +5,9 @@ public enum ApiFieldType
     Text,
     Password,
     Number,
-    Date
+    Date,
+    Email,
+    Phone
 }
 
 public class ApiField
@@ -31,6 +33,10 @@ public class ApiField
     public bool IncludeInEditPayload { get; set; } = true;
 
     public string? LookupKey { get; set; }
+
+    public string? Pattern { get; set; }
+
+    public string? ValidationMessage { get; set; }
 }
 
 public class LookupOption

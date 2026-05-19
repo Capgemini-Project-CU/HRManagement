@@ -26,8 +26,6 @@ namespace Test.Controllers
                     _serviceMock.Object);
         }
 
-        // ---------------- POSITIVE TEST CASES ----------------
-
         [Fact]
         public async Task
             GetAllEmployees_ShouldReturnOk()
@@ -99,7 +97,7 @@ namespace Test.Controllers
                 .BeOfType<OkObjectResult>();
         }
 
-        // ---------------- NEGATIVE TEST CASES ----------------
+   
 
         [Fact]
         public async Task

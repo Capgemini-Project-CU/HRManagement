@@ -6605,3 +6605,608 @@ OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
 2026-05-18 23:03:40.508 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API) in 22.5483ms
 2026-05-18 23:03:40.511 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
 2026-05-18 23:03:40.514 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 40.9189ms
+2026-05-18 23:15:06.011 +05:30 [INF] User profile is available. Using 'C:\Users\visha\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-18 23:15:06.593 +05:30 [INF] Now listening on: http://localhost:5032
+2026-05-18 23:15:06.849 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-18 23:15:06.853 +05:30 [INF] Hosting environment: Development
+2026-05-18 23:15:06.870 +05:30 [INF] Content root path: D:\Capgemini_Final_Project\HRManagement\HumanResource.API
+2026-05-18 23:15:07.939 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/index.html - null null
+2026-05-18 23:15:08.440 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/index.html - 200 null text/html;charset=utf-8 532.1536ms
+2026-05-18 23:15:09.381 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-18 23:15:09.381 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/_vs/browserLink - null null
+2026-05-18 23:15:09.394 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_framework/aspnetcore-browser-refresh.js - 200 16519 application/javascript; charset=utf-8 14.3301ms
+2026-05-18 23:15:09.489 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/_vs/browserLink - 200 null text/javascript; charset=UTF-8 109.3939ms
+2026-05-18 23:15:10.849 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - null null
+2026-05-18 23:15:10.912 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.9748ms
+2026-05-18 23:16:47.150 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 50
+2026-05-18 23:16:47.213 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-05-18 23:16:47.464 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-18 23:16:47.543 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-18 23:16:49.270 +05:30 [WRN] The decimal property 'DepartmentId' is part of a key on entity type 'Department'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-18 23:16:49.274 +05:30 [WRN] The decimal property 'EmployeeId' is part of a key on entity type 'Employee'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-18 23:16:49.277 +05:30 [WRN] The decimal property 'LocationId' is part of a key on entity type 'Location'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-18 23:16:49.280 +05:30 [WRN] The decimal property 'RegionId' is part of a key on entity type 'Region'. If the configured precision and scale don't match the column type in the database, this will cause values to be silently truncated if they do not fit in the default precision and scale. Consider using a different property as the key, or make sure that the database column type matches the model configuration and enable decimal rounding warnings using 'SET NUMERIC_ROUNDABORT ON'.
+2026-05-18 23:16:51.224 +05:30 [INF] Executed DbCommand (119ms) [Parameters=[@__email_0='?' (Size = 25) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary], [r].[RoleId], [r].[RoleName]
+FROM [employees] AS [e]
+LEFT JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+WHERE [e].[email] = @__email_0
+2026-05-18 23:16:51.625 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.AuthDtos.LoginResponseDto'.
+2026-05-18 23:16:51.656 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 4102.8856ms
+2026-05-18 23:16:51.661 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-18 23:16:51.681 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 200 null application/json; charset=utf-8 4542.3043ms
+2026-05-18 23:16:51.766 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-18 23:16:51.913 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:16:51.925 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:16:52.263 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-18 23:16:52.327 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:52.365 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 436.8016ms
+2026-05-18 23:16:52.369 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:16:52.372 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 605.8334ms
+2026-05-18 23:16:52.395 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-18 23:16:52.409 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:52.417 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-18 23:16:52.588 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-18 23:16:52.718 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.779 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.800 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.813 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.826 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.836 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.846 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.856 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.868 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.878 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.892 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.900 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.908 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.915 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:52.923 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.929 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.937 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.944 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:52.962 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:52.979 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 556.5004ms
+2026-05-18 23:16:52.983 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:52.986 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 591.5887ms
+2026-05-18 23:16:52.997 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-18 23:16:53.008 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:53.016 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-18 23:16:53.044 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-18 23:16:53.093 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:53.100 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 78.245ms
+2026-05-18 23:16:53.103 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:53.106 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 109.5199ms
+2026-05-18 23:16:53.127 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Locations - null null
+2026-05-18 23:16:53.133 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:53.143 +05:30 [INF] Route matched with {action = "GetAll", controller = "Locations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.LocationsController (HumanResource.API).
+2026-05-18 23:16:53.180 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address], [c].[country_id], [c].[country_name], [c].[region_id]
+FROM [locations] AS [l]
+LEFT JOIN [countries] AS [c] ON [l].[country_id] = [c].[country_id]
+2026-05-18 23:16:53.198 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.LocationDto.LocationResponseDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:53.206 +05:30 [INF] Executed action HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API) in 59.5417ms
+2026-05-18 23:16:53.209 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.LocationsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:53.212 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Locations - 200 null application/json; charset=utf-8 85.6965ms
+2026-05-18 23:16:57.308 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-18 23:16:57.317 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:16:57.320 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:16:57.342 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-18 23:16:57.369 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:57.375 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 50.5ms
+2026-05-18 23:16:57.378 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:16:57.382 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 74.1274ms
+2026-05-18 23:16:57.405 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-18 23:16:57.411 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.414 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-18 23:16:57.428 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-18 23:16:57.448 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.461 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.470 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.481 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.492 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.502 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.511 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.520 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.530 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.541 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.550 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.561 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.570 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.579 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:16:57.589 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.598 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.609 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.619 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:16:57.643 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:57.647 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 229.173ms
+2026-05-18 23:16:57.650 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.654 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 249.2586ms
+2026-05-18 23:16:57.669 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-18 23:16:57.676 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.679 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-18 23:16:57.693 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-18 23:16:57.700 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:57.704 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 21.6891ms
+2026-05-18 23:16:57.708 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.711 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 42.3234ms
+2026-05-18 23:16:57.725 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Roles - null null
+2026-05-18 23:16:57.734 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.746 +05:30 [INF] Route matched with {action = "GetAll", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.RolesController (HumanResource.API).
+2026-05-18 23:16:57.775 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+2026-05-18 23:16:57.790 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.RoleDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:57.796 +05:30 [INF] Executed action HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API) in 46.1819ms
+2026-05-18 23:16:57.799 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:16:57.803 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Roles - 200 null application/json; charset=utf-8 77.9349ms
+2026-05-18 23:16:57.819 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - null null
+2026-05-18 23:16:57.829 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-18 23:16:57.840 +05:30 [INF] Route matched with {action = "GetPaginatedEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaginatedEmployees(Int32, Int32) on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:16:57.941 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [employees] AS [e]
+2026-05-18 23:16:57.960 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-18 23:16:57.963 +05:30 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-05-18 23:16:57.983 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-05-18 23:16:57.992 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.Common.PaginatedResponseDto`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:16:57.999 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API) in 155.9324ms
+2026-05-18 23:16:58.003 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-18 23:16:58.006 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 186.8238ms
+2026-05-18 23:17:08.416 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/108 - null null
+2026-05-18 23:17:08.426 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetEmployeeById (HumanResource.API)'
+2026-05-18 23:17:08.435 +05:30 [INF] Route matched with {action = "GetEmployeeById", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetEmployeeById(Int32) on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:08.467 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.519 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+WHERE [r].[RoleId] = @__p_0
+2026-05-18 23:17:08.539 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+WHERE [d].[department_id] = @__p_0
+2026-05-18 23:17:08.546 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.557 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.EmployeeDto'.
+2026-05-18 23:17:08.560 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetEmployeeById (HumanResource.API) in 121.3271ms
+2026-05-18 23:17:08.563 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetEmployeeById (HumanResource.API)'
+2026-05-18 23:17:08.566 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/108 - 200 null application/json; charset=utf-8 150.1007ms
+2026-05-18 23:17:08.576 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-18 23:17:08.581 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:17:08.584 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:08.592 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-18 23:17:08.599 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:08.603 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 15.8125ms
+2026-05-18 23:17:08.605 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:17:08.608 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 31.5352ms
+2026-05-18 23:17:08.616 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-18 23:17:08.621 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.623 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-18 23:17:08.633 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-18 23:17:08.641 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.646 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.651 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.658 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.663 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.668 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.674 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.679 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.685 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.691 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.696 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.702 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.709 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.715 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:08.723 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.729 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.735 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.742 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:08.748 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:08.750 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 124.6452ms
+2026-05-18 23:17:08.753 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.755 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 139.7797ms
+2026-05-18 23:17:08.762 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-18 23:17:08.769 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.771 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-18 23:17:08.781 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-18 23:17:08.787 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:08.789 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 15.1218ms
+2026-05-18 23:17:08.792 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.794 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 32.3968ms
+2026-05-18 23:17:08.800 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Roles - null null
+2026-05-18 23:17:08.805 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.806 +05:30 [INF] Route matched with {action = "GetAll", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.RolesController (HumanResource.API).
+2026-05-18 23:17:08.814 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+2026-05-18 23:17:08.820 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.RoleDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:08.822 +05:30 [INF] Executed action HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API) in 13.3556ms
+2026-05-18 23:17:08.824 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:17:08.826 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Roles - 200 null application/json; charset=utf-8 26.1797ms
+2026-05-18 23:17:40.988 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5032/api/Employees/108 - application/json; charset=utf-8 221
+2026-05-18 23:17:41.001 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.UpdateEmployee (HumanResource.API)'
+2026-05-18 23:17:41.010 +05:30 [INF] Route matched with {action = "UpdateEmployee", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateEmployee(Int32, HumanResource.API.DTOs.EmployeeDto) on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:41.148 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.157 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+WHERE [r].[RoleId] = @__p_0
+2026-05-18 23:17:41.164 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+WHERE [d].[department_id] = @__p_0
+2026-05-18 23:17:41.172 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.438 +05:30 [INF] Executed DbCommand (58ms) [Parameters=[@p13='?' (Precision = 6) (DbType = Decimal), @p0='?' (Precision = 2) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 4) (DbType = Decimal), @p2='?' (Size = 25) (DbType = AnsiString), @p3='?' (Size = 20) (DbType = AnsiString), @p4='?' (DbType = Date), @p5='?' (DbType = Boolean), @p6='?' (Size = 10) (DbType = AnsiString), @p7='?' (Size = 25) (DbType = AnsiString), @p8='?' (Precision = 6) (DbType = Decimal), @p9='?' (Size = 4000), @p10='?' (Size = 20) (DbType = AnsiString), @p11='?' (DbType = Int32), @p12='?' (Precision = 8) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [employees] SET [commission_pct] = @p0, [department_id] = @p1, [email] = @p2, [first_name] = @p3, [hire_date] = @p4, [IsActive] = @p5, [job_id] = @p6, [last_name] = @p7, [manager_id] = @p8, [PasswordHash] = @p9, [phone_number] = @p10, [RoleId] = @p11, [salary] = @p12
+OUTPUT 1
+WHERE [employee_id] = @p13;
+2026-05-18 23:17:41.470 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.EmployeeDto'.
+2026-05-18 23:17:41.472 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.UpdateEmployee (HumanResource.API) in 459.6487ms
+2026-05-18 23:17:41.476 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.UpdateEmployee (HumanResource.API)'
+2026-05-18 23:17:41.479 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5032/api/Employees/108 - 200 null application/json; charset=utf-8 491.3774ms
+2026-05-18 23:17:41.512 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees - null null
+2026-05-18 23:17:41.517 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:17:41.519 +05:30 [INF] Route matched with {action = "GetAllEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllEmployees() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:41.529 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+2026-05-18 23:17:41.537 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:41.540 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API) in 17.7543ms
+2026-05-18 23:17:41.543 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetAllEmployees (HumanResource.API)'
+2026-05-18 23:17:41.546 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees - 200 null application/json; charset=utf-8 34.0809ms
+2026-05-18 23:17:41.559 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Departments - null null
+2026-05-18 23:17:41.565 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.566 +05:30 [INF] Route matched with {action = "GetAll", controller = "Departments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.DepartmentsController (HumanResource.API).
+2026-05-18 23:17:41.575 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+2026-05-18 23:17:41.584 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.593 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.600 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.606 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.613 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.619 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.626 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.634 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.641 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.647 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.654 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.661 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.668 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.675 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [l].[location_id], [l].[city], [l].[country_id], [l].[postal_code], [l].[state_province], [l].[street_address]
+FROM [locations] AS [l]
+WHERE [l].[location_id] = @__p_0
+2026-05-18 23:17:41.681 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.689 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.696 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.703 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[employee_id] = @__p_0
+2026-05-18 23:17:41.708 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.DepartmentDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:41.711 +05:30 [INF] Executed action HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API) in 142.1492ms
+2026-05-18 23:17:41.714 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.DepartmentsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.716 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Departments - 200 null application/json; charset=utf-8 156.6745ms
+2026-05-18 23:17:41.728 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Jobs - null null
+2026-05-18 23:17:41.733 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.736 +05:30 [INF] Route matched with {action = "GetAll", controller = "Jobs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.JobsController (HumanResource.API).
+2026-05-18 23:17:41.747 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [j].[job_id], [j].[job_title], [j].[max_salary], [j].[min_salary]
+FROM [jobs] AS [j]
+2026-05-18 23:17:41.752 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.JobDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:41.755 +05:30 [INF] Executed action HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API) in 14.6738ms
+2026-05-18 23:17:41.758 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.JobsController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.760 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Jobs - 200 null application/json; charset=utf-8 32.0606ms
+2026-05-18 23:17:41.773 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Roles - null null
+2026-05-18 23:17:41.779 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.781 +05:30 [INF] Route matched with {action = "GetAll", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller HumanResource.API.Controllers.RolesController (HumanResource.API).
+2026-05-18 23:17:41.795 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[RoleId], [r].[RoleName]
+FROM [Roles] AS [r]
+2026-05-18 23:17:41.814 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.RoleDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:41.817 +05:30 [INF] Executed action HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API) in 31.2878ms
+2026-05-18 23:17:41.820 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.RolesController.GetAll (HumanResource.API)'
+2026-05-18 23:17:41.822 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Roles - 200 null application/json; charset=utf-8 49.1429ms
+2026-05-18 23:17:41.832 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - null null
+2026-05-18 23:17:41.838 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-18 23:17:41.840 +05:30 [INF] Route matched with {action = "GetPaginatedEmployees", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPaginatedEmployees(Int32, Int32) on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:41.850 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [employees] AS [e]
+2026-05-18 23:17:41.858 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2026-05-18 23:17:41.862 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.Common.PaginatedResponseDto`1[[HumanResource.API.DTOs.EmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:41.865 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API) in 21.4862ms
+2026-05-18 23:17:41.867 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetPaginatedEmployees (HumanResource.API)'
+2026-05-18 23:17:41.870 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/pagination?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 37.729ms
+2026-05-18 23:17:59.467 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5032/api/Auth/login - application/json; charset=utf-8 54
+2026-05-18 23:17:59.476 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-18 23:17:59.479 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(HumanResource.API.DTOs.AuthDtos.LoginRequestDto) on controller HumanResource.API.Controllers.AuthController (HumanResource.API).
+2026-05-18 23:17:59.500 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__email_0='?' (Size = 25) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary], [r].[RoleId], [r].[RoleName]
+FROM [employees] AS [e]
+LEFT JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+WHERE [e].[email] = @__email_0
+2026-05-18 23:17:59.511 +05:30 [INF] Executing OkObjectResult, writing value of type 'HumanResource.API.DTOs.AuthDtos.LoginResponseDto'.
+2026-05-18 23:17:59.514 +05:30 [INF] Executed action HumanResource.API.Controllers.AuthController.Login (HumanResource.API) in 31.6964ms
+2026-05-18 23:17:59.517 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.AuthController.Login (HumanResource.API)'
+2026-05-18 23:17:59.520 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5032/api/Auth/login - 200 null application/json; charset=utf-8 53.4447ms
+2026-05-18 23:17:59.640 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/my-team - null null
+2026-05-18 23:17:59.648 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API)'
+2026-05-18 23:17:59.656 +05:30 [INF] Route matched with {action = "GetMyTeam", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyTeam() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:17:59.689 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__managerId_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[manager_id] = @__managerId_0
+2026-05-18 23:17:59.699 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+WHERE [d].[department_id] = @__p_0
+2026-05-18 23:17:59.712 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.MyTeamEmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:17:59.719 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API) in 59.3538ms
+2026-05-18 23:17:59.722 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API)'
+2026-05-18 23:17:59.725 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/my-team - 200 null application/json; charset=utf-8 84.896ms
+2026-05-18 23:18:06.576 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5032/api/Employees/my-team - null null
+2026-05-18 23:18:06.588 +05:30 [INF] Executing endpoint 'HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API)'
+2026-05-18 23:18:06.592 +05:30 [INF] Route matched with {action = "GetMyTeam", controller = "Employees"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyTeam() on controller HumanResource.API.Controllers.EmployeesController (HumanResource.API).
+2026-05-18 23:18:06.606 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__managerId_0='?' (Precision = 6) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[employee_id], [e].[commission_pct], [e].[department_id], [e].[email], [e].[first_name], [e].[hire_date], [e].[IsActive], [e].[job_id], [e].[last_name], [e].[manager_id], [e].[PasswordHash], [e].[phone_number], [e].[RoleId], [e].[salary]
+FROM [employees] AS [e]
+WHERE [e].[manager_id] = @__managerId_0
+2026-05-18 23:18:06.616 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Precision = 4) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[department_id], [d].[department_name], [d].[location_id], [d].[manager_id]
+FROM [departments] AS [d]
+WHERE [d].[department_id] = @__p_0
+2026-05-18 23:18:06.622 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[HumanResource.API.DTOs.MyTeamEmployeeDto, HumanResource.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-05-18 23:18:06.625 +05:30 [INF] Executed action HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API) in 29.545ms
+2026-05-18 23:18:06.628 +05:30 [INF] Executed endpoint 'HumanResource.API.Controllers.EmployeesController.GetMyTeam (HumanResource.API)'
+2026-05-18 23:18:06.632 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5032/api/Employees/my-team - 200 null application/json; charset=utf-8 55.4926ms

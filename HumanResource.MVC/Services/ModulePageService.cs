@@ -1,237 +1,19 @@
 using System.Globalization;
 using System.Text.Json;
 using HumanResource.MVC.Models.Resources;
-using HumanResource.MVC.Services;
-using Microsoft.AspNetCore.Mvc;
 
-namespace HumanResource.MVC.Controllers;
+namespace HumanResource.MVC.Services;
 
-public abstract class ModuleControllerBase : MvcControllerBase
+public class ModulePageService
 {
     private readonly HrApiClient _apiClient;
 
-    protected ModuleControllerBase(HrApiClient apiClient)
+    public ModulePageService(HrApiClient apiClient)
     {
         _apiClient = apiClient;
     }
 
-    protected abstract ApiResourceDefinition GetResource();
-
-    [HttpGet]
-    public virtual async Task<IActionResult> Index(string? notice = null, int pageNumber = 1)
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanView(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var endpoint = GetListEndpoint(resource, pageNumber);
-        var model = await BuildPageModel(resource, endpoint);
-        model.Notice = notice;
-
-        if (UseEmployeePagination(resource))
-        {
-            model.UsesDefaultPagination = true;
-            model.PageNumber = Math.Max(1, pageNumber);
-        }
-
-        return View("Index", model);
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public virtual async Task<IActionResult> Create()
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanCreate(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var apiPath = resource.Endpoint;
-        var token = Token;
-
-        if (resource.Key == "employees")
-        {
-            apiPath = "api/Auth/register";
-            token = null;
-        }
-
-        var payload = BuildCreatePayload(resource);
-        var result = await _apiClient.PostAsync(apiPath, payload, token);
-
-        return await RedirectAfterWrite(resource, result, "Record created.");
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public virtual async Task<IActionResult> Delete(string id)
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanDelete(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
-        var result = await _apiClient.DeleteAsync(apiPath, Token);
-
-        return await RedirectAfterWrite(resource, result, "Record deleted.");
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public virtual async Task<IActionResult> Filter(string filterKey)
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanView(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var filter = FindFilter(resource, filterKey);
-        if (filter is null)
-        {
-            return NotFound();
-        }
-
-        if (!RoleAllowed(Role, filter.Roles))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var endpoint = BuildFilterEndpoint(filter);
-        var model = await BuildPageModel(resource, endpoint);
-        model.ActiveFilterTitle = filter.Title;
-
-        return View("Index", model);
-    }
-
-    [HttpGet]
-    public virtual async Task<IActionResult> Edit(string id)
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanEdit(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
-        var result = await _apiClient.GetAsync(apiPath, Token);
-        if (!result.Succeeded || result.Data is null)
-        {
-            var message = result.ErrorMessage ?? "Record details are unavailable.";
-            return RedirectToAction(nameof(Index), new { notice = message });
-        }
-
-        var values = ReadValuesFromJson(result.Data.Value, resource);
-        var model = await BuildEditModel(resource, id, values);
-
-        return View("Edit", model);
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public virtual async Task<IActionResult> Edit(string id, IFormCollection form)
-    {
-        var login = RequireLogin();
-        if (login is not null)
-        {
-            return login;
-        }
-
-        var resource = GetResource();
-
-        if (!CanEdit(resource))
-        {
-            return RedirectToAction("AccessDenied", "Account");
-        }
-
-        var apiPath = resource.Endpoint + "/" + Uri.EscapeDataString(id);
-        var payload = BuildEditPayload(resource, id);
-        var result = await _apiClient.PutAsync(apiPath, payload, Token);
-
-        if (result.Succeeded)
-        {
-            return RedirectToAction(nameof(Index), new { notice = "Record updated." });
-        }
-
-        var values = ReadValuesFromForm(resource);
-        var model = await BuildEditModel(resource, id, values);
-        model.Error = result.ErrorMessage ?? "Record could not be updated.";
-
-        return View("Edit", model);
-    }
-
-    protected async Task<IActionResult> TeamIndex(ApiResourceDefinition team)
-    {
-        var denied = RequireRole("Manager");
-        if (denied is not null)
-        {
-            return denied;
-        }
-
-        var model = await BuildPageModel(team, team.Endpoint);
-        return View("Index", model);
-    }
-
-    private bool CanView(ApiResourceDefinition resource)
-    {
-        return RoleAllowed(Role, resource.ViewRoles);
-    }
-
-    private bool CanCreate(ApiResourceDefinition resource)
-    {
-        return RoleAllowed(Role, resource.CreateRoles);
-    }
-
-    private bool CanEdit(ApiResourceDefinition resource)
-    {
-        return RoleAllowed(Role, resource.EditRoles);
-    }
-
-    private bool CanDelete(ApiResourceDefinition resource)
-    {
-        return RoleAllowed(Role, resource.DeleteRoles);
-    }
-
-    private static bool RoleAllowed(string role, IEnumerable<string> allowedRoles)
+    public bool RoleAllowed(string role, IEnumerable<string> allowedRoles)
     {
         foreach (var allowedRole in allowedRoles)
         {
@@ -244,53 +26,53 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return false;
     }
 
-    private bool RoleIs(params string[] roles)
+    public bool UseEmployeePagination(ApiResourceDefinition resource, string role)
     {
-        foreach (var role in roles)
-        {
-            if (string.Equals(role, Role, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return resource.Key == "employees" && RoleIs(role, "Admin", "HR");
     }
 
-    private bool UseEmployeePagination(ApiResourceDefinition resource)
+    public string GetListEndpoint(
+        ApiResourceDefinition resource,
+        string role,
+        string employeeId,
+        int pageNumber)
     {
-        return resource.Key == "employees" && RoleIs("Admin", "HR");
-    }
-
-    private string GetListEndpoint(ApiResourceDefinition resource, int pageNumber)
-    {
-        if (UseEmployeePagination(resource))
+        if (UseEmployeePagination(resource, role))
         {
             var safePageNumber = Math.Max(1, pageNumber);
             return $"api/Employees/pagination?pageNumber={safePageNumber}&pageSize=10";
         }
 
         if (resource.Key == "job-history"
-            && RoleIs("Employee")
-            && !string.IsNullOrWhiteSpace(EmployeeId))
+            && RoleIs(role, "Employee")
+            && !string.IsNullOrWhiteSpace(employeeId))
         {
-            return "api/JobHistory/" + Uri.EscapeDataString(EmployeeId);
+            return "api/JobHistory/" + Uri.EscapeDataString(employeeId);
         }
 
         return resource.Endpoint;
     }
 
-    private async Task<ResourcePageViewModel> BuildPageModel(ApiResourceDefinition resource, string endpoint)
+    public async Task<ResourcePageViewModel> BuildPageModel(
+        ApiResourceDefinition resource,
+        string endpoint,
+        string role,
+        string? token,
+        bool canCreate,
+        bool canEdit,
+        bool canDelete)
     {
-        var model = new ResourcePageViewModel();
-        model.Resource = resource;
-        model.Role = Role;
-        model.CanCreate = CanCreate(resource);
-        model.CanEdit = CanEdit(resource);
-        model.CanDelete = CanDelete(resource);
-        model.LookupOptions = await BuildLookupOptions(resource, includeFilterFields: true);
+        var model = new ResourcePageViewModel
+        {
+            Resource = resource,
+            Role = role,
+            CanCreate = canCreate,
+            CanEdit = canEdit,
+            CanDelete = canDelete,
+            LookupOptions = await BuildLookupOptions(resource, token, includeFilterFields: true)
+        };
 
-        var result = await _apiClient.GetAsync(endpoint, Token);
+        var result = await _apiClient.GetAsync(endpoint, token);
         if (!result.Succeeded)
         {
             model.Error = result.ErrorMessage ?? "Records are unavailable.";
@@ -303,23 +85,26 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return model;
     }
 
-    private async Task<ResourceEditViewModel> BuildEditModel(
+    public async Task<ResourceEditViewModel> BuildEditModel(
         ApiResourceDefinition resource,
         string id,
-        Dictionary<string, string> values)
+        Dictionary<string, string> values,
+        string? token)
     {
         values[resource.IdField] = id;
 
-        var model = new ResourceEditViewModel();
-        model.Resource = resource;
-        model.Id = id;
-        model.Values = values;
-        model.LookupOptions = await BuildLookupOptions(resource, includeFilterFields: false);
-
-        return model;
+        return new ResourceEditViewModel
+        {
+            Resource = resource,
+            Id = id,
+            Values = values,
+            LookupOptions = await BuildLookupOptions(resource, token, includeFilterFields: false)
+        };
     }
 
-    private Dictionary<string, object?> BuildCreatePayload(ApiResourceDefinition resource)
+    public Dictionary<string, object?> BuildCreatePayload(
+        ApiResourceDefinition resource,
+        IFormCollection form)
     {
         var payload = new Dictionary<string, object?>();
 
@@ -330,7 +115,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
                 continue;
             }
 
-            var value = Request.Form[field.Name].ToString();
+            var value = form[field.Name].ToString();
             if (!field.ShowInCreate && string.IsNullOrWhiteSpace(value))
             {
                 continue;
@@ -342,7 +127,10 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return payload;
     }
 
-    private Dictionary<string, object?> BuildEditPayload(ApiResourceDefinition resource, string id)
+    public Dictionary<string, object?> BuildEditPayload(
+        ApiResourceDefinition resource,
+        string id,
+        IFormCollection form)
     {
         var payload = new Dictionary<string, object?>();
 
@@ -353,7 +141,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
                 continue;
             }
 
-            var value = Request.Form[field.Name].ToString();
+            var value = form[field.Name].ToString();
             if (string.IsNullOrWhiteSpace(value) && field.Name == resource.IdField)
             {
                 value = id;
@@ -365,7 +153,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return payload;
     }
 
-    private ResourceFilter? FindFilter(ApiResourceDefinition resource, string filterKey)
+    public ResourceFilter? FindFilter(ApiResourceDefinition resource, string filterKey)
     {
         foreach (var filter in resource.Filters)
         {
@@ -378,13 +166,13 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return null;
     }
 
-    private string BuildFilterEndpoint(ResourceFilter filter)
+    public string BuildFilterEndpoint(ResourceFilter filter, IFormCollection form)
     {
         var endpoint = filter.EndpointTemplate;
 
         foreach (var field in filter.Fields)
         {
-            var value = Request.Form[field.Name].ToString();
+            var value = form[field.Name].ToString();
             endpoint = endpoint.Replace(
                 "{" + field.Name + "}",
                 Uri.EscapeDataString(value),
@@ -394,23 +182,46 @@ public abstract class ModuleControllerBase : MvcControllerBase
         return endpoint;
     }
 
-    private async Task<IActionResult> RedirectAfterWrite(
-        ApiResourceDefinition resource,
-        ApiResult<JsonElement?> result,
-        string successMessage)
+    public Dictionary<string, string> ReadValuesFromJson(JsonElement row, ApiResourceDefinition resource)
     {
-        if (result.Succeeded)
+        var values = new Dictionary<string, string>();
+
+        foreach (var field in resource.Fields)
         {
-            return RedirectToAction(nameof(Index), new { notice = successMessage });
+            var value = ReadJsonValue(row, field.Name);
+            if (field.Type == ApiFieldType.Date && value.Length >= 10)
+            {
+                value = value.Substring(0, 10);
+            }
+
+            values[field.Name] = value;
         }
 
-        var model = await BuildPageModel(resource, resource.Endpoint);
-        model.Error = result.ErrorMessage ?? "The action could not be completed.";
-        return View("Index", model);
+        return values;
+    }
+
+    public Dictionary<string, string> ReadValuesFromForm(
+        ApiResourceDefinition resource,
+        IFormCollection form)
+    {
+        var values = new Dictionary<string, string>();
+
+        foreach (var field in resource.Fields)
+        {
+            if (field.ReadOnly || !field.IncludeInEditPayload)
+            {
+                continue;
+            }
+
+            values[field.Name] = form[field.Name].ToString();
+        }
+
+        return values;
     }
 
     private async Task<Dictionary<string, List<LookupOption>>> BuildLookupOptions(
         ApiResourceDefinition resource,
+        string? token,
         bool includeFilterFields)
     {
         var lookupKeys = GetLookupKeys(resource, includeFilterFields);
@@ -418,7 +229,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
 
         foreach (var lookupKey in lookupKeys)
         {
-            options[lookupKey] = await GetLookupOptions(lookupKey);
+            options[lookupKey] = await GetLookupOptions(lookupKey, token);
         }
 
         return options;
@@ -456,7 +267,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
     }
 
-    private async Task<List<LookupOption>> GetLookupOptions(string lookupKey)
+    private async Task<List<LookupOption>> GetLookupOptions(string lookupKey, string? token)
     {
         var endpoint = GetLookupEndpoint(lookupKey);
         if (string.IsNullOrWhiteSpace(endpoint))
@@ -464,7 +275,7 @@ public abstract class ModuleControllerBase : MvcControllerBase
             return [];
         }
 
-        var result = await _apiClient.GetAsync(endpoint, Token);
+        var result = await _apiClient.GetAsync(endpoint, token);
         if (!result.Succeeded)
         {
             return [];
@@ -539,41 +350,6 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         return option;
-    }
-
-    private static Dictionary<string, string> ReadValuesFromJson(JsonElement row, ApiResourceDefinition resource)
-    {
-        var values = new Dictionary<string, string>();
-
-        foreach (var field in resource.Fields)
-        {
-            var value = ReadJsonValue(row, field.Name);
-            if (field.Type == ApiFieldType.Date && value.Length >= 10)
-            {
-                value = value.Substring(0, 10);
-            }
-
-            values[field.Name] = value;
-        }
-
-        return values;
-    }
-
-    private Dictionary<string, string> ReadValuesFromForm(ApiResourceDefinition resource)
-    {
-        var values = new Dictionary<string, string>();
-
-        foreach (var field in resource.Fields)
-        {
-            if (field.ReadOnly || !field.IncludeInEditPayload)
-            {
-                continue;
-            }
-
-            values[field.Name] = Request.Form[field.Name].ToString();
-        }
-
-        return values;
     }
 
     private static object? ConvertValue(ApiField field, string value)
@@ -714,5 +490,18 @@ public abstract class ModuleControllerBase : MvcControllerBase
         }
 
         return string.Join(" - ", visibleParts);
+    }
+
+    private static bool RoleIs(string currentRole, params string[] roles)
+    {
+        foreach (var role in roles)
+        {
+            if (string.Equals(role, currentRole, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
